@@ -25,17 +25,17 @@ const getWidth = () => {
 
 
 class DesktopContainer extends Component {
-  state = {}
-
+  state = {e: ''}
+  
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
 
   render() {
-    const { children } = this.props
-    const { fixed } = this.state
+    const { children, main } = this.props
+    const { fixed, cons } = this.state
 
     return (
-      <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth} s>
+      <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth} >
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -56,8 +56,21 @@ class DesktopContainer extends Component {
             >
               <Container>
                 
-                <Menu.Item as='a' active>Realtime</Menu.Item>
-                <Menu.Item as='a'>Sensor Control</Menu.Item>
+                <Menu.Item as='a' active={main.state.realTime} onClick={(e) => {
+                   
+                     
+                    main.setState({
+                      realTime: true,
+                      sensorControl: null
+                    })
+                }}>Realtime</Menu.Item>
+                <Menu.Item as='a' active={main.state.sensorControl} onClick={(e) => {
+                  
+                    main.setState({
+                      realTime: null,
+                      sensorControl: true
+                    })
+                }}>Sensor Control</Menu.Item>
                 <Menu.Item as='a'>Cities</Menu.Item>
                 <Menu.Item position='right'>
                   {/* <Button as='a' inverted={!fixed}>
@@ -161,13 +174,13 @@ class MainContainer extends Component {
 
 
     render(){
-        const { children } = this.props;
+        const { children, main } = this.props;
         return(
         <div style={{
             height: '100vh'
         }}>
-        <DesktopContainer>{children}</DesktopContainer>
-        <MobileContainer>{children}</MobileContainer>
+        <DesktopContainer main={main}>{children}</DesktopContainer>
+        <MobileContainer main={main}>{children}</MobileContainer>
       </div>
       )
     }

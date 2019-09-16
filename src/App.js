@@ -9,15 +9,15 @@ class App extends Component {
     constructor(props){
       super(props);
       this.state ={
-        realTime: true,
-        sensorControl: null
+        realTime: null,
+        sensorControl: true
       }
     }
   render(){
     
     var { realTime, sensorControl } = this.state;
     return(
-      <MainContainer>
+      <MainContainer main={this}>
       { realTime && <RealTime  main={this}/> }
       { sensorControl && <SensorControl  main={this}/> }
      </MainContainer>
