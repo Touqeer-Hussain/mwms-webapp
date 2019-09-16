@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Screens
+import MainContainer from './container/container'
+import RealTime from './screens/realtime/realtime'
+import SensorControl from './screens/sensorcontrol/sensorcontrol'
+
+class App extends Component {
+    constructor(props){
+      super(props);
+      this.state ={
+        realTime: true,
+        sensorControl: null
+      }
+    }
+  render(){
+    
+    var { realTime, sensorControl } = this.state;
+    return(
+      <MainContainer>
+      { realTime && <RealTime  main={this}/> }
+      { sensorControl && <SensorControl  main={this}/> }
+     </MainContainer>
+   
+    )
+  }
 }
 
 export default App;

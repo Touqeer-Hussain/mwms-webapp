@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Card, Image, Button, Container} from 'semantic-ui-react';
-import Fist from '../assest/images/temp.jpg'
+import 'typeface-roboto'
 
 class MainCard extends Component {
   constructor(props) {
@@ -8,7 +8,8 @@ class MainCard extends Component {
     this.state = {}
   }
   render() {
-
+      console.log(this.props)
+      const { title, data, unit, image } = this.props
     return (
       <Card
         style={{
@@ -29,7 +30,7 @@ class MainCard extends Component {
             }}>
               <h1 style={{
                 fontSize: '2.5em'
-              }}>Temperature</h1>
+              }}>{title}</h1>
             </div>
             <div
               style={{
@@ -37,21 +38,24 @@ class MainCard extends Component {
               float: 'right',
               height: '100%'
             }}>
-              <Image floated='right' size='medium' src={Fist}/>
+              <Image floated='right' size='medium' src={image}/>
+              
             </div>
 
           </div>
 
           <div style={{
-            height: '70%'
+            height: '70%',
+            paddingLeft: '13%'
           }}>
 
-            <h1 style={{
+            <p style={{
           fontSize: '5.5em',
-          fontFamily: ''
+          fontFamily: 'typeface-roboto',
+          
         }} >
-          25 &#8451;
-        </h1>
+          {data}{unit}
+        </p>
               </div>
 
               <div >
