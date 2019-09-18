@@ -29,14 +29,17 @@ class MainCard extends Component {
               width: '75%'
             }}>
               <h1 style={{
-                fontSize: '2.5em'
+                fontSize: '2.5em',
+                paddingLeft: '2px',
               }}>{title}</h1>
             </div>
             <div
               style={{
               width: '25%',
               float: 'right',
-              height: '100%'
+              height: '100%',
+              paddingTop: '2px',
+              paddingRight: '2px',
             }}>
               <Image floated='right' size='medium' src={image}/>
               
