@@ -14,7 +14,8 @@ import {
 import firebase from 'config/firebase'
 import plusimage from 'assest/images/plus.png'
 import MainCard from 'components/maincard'
-
+import CitiesCard from 'components/citiescard'
+import Exximg from 'assest/images/fist.jpg'
 
 
 
@@ -22,7 +23,12 @@ class Cities extends Component {
     constructor(props){
       super(props);
       this.state ={
-         searchQuery: ''
+         searchQuery: '',
+         cityName: 'Karachi',
+         temperature: '10',
+         eximage: Exximg , 
+         rdate:   'sep 20, 2019',
+         
       }
       
       
@@ -48,12 +54,18 @@ class Cities extends Component {
     
   render(){
       
+    const { cityName, temperature, eximage, rdate, main } = this.state
+
+
     return(
         <Container style={{
             padding: '5vh'
         }}>
         <Card.Group>
-        <MainCard title='Temperature' data={'temperature'} unit='&#8451;' image={plusimage}/>
+           
+        <CitiesCard   title={cityName} data={temperature} image={eximage} date={rdate} unit='&#8451;' main={this.props.main}/>
+           
+        <CitiesCard   title={cityName} data={temperature} image={eximage} date={rdate} unit='&#8451;' main={this.props.main}/>
             
             
         <Modal trigger={<Card
@@ -85,6 +97,7 @@ class Cities extends Component {
         }
     }}/>
     </Form>
+    <h1>sdsdsds</h1>
     </Modal.Content>
   </Modal>
             

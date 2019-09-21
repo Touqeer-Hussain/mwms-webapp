@@ -61,17 +61,26 @@ class DesktopContainer extends Component {
                      
                     main.setState({
                       realTime: true,
-                      sensorControl: null
+                      sensorControl: null,
+                      cities: null
                     })
                 }}>Realtime</Menu.Item>
                 <Menu.Item as='a' active={main.state.sensorControl} onClick={(e) => {
                   
                     main.setState({
                       realTime: null,
-                      sensorControl: true
+                      sensorControl: true,
+                      cities: null
                     })
                 }}>Sensor Control</Menu.Item>
-                <Menu.Item as='a'>Cities</Menu.Item>
+                <Menu.Item as='a' onClick={(e) => {
+                  
+                  main.setState({
+                    realTime: null,
+                    sensorControl: null,
+                    cities: true
+                  })
+              }} >Cities</Menu.Item>
                 <Menu.Item position='right'>
                   {/* <Button as='a' inverted={!fixed}>
                     Log in
