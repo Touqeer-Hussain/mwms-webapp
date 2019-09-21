@@ -40,34 +40,350 @@ class CityDetail extends Component {
       <Container style={{
         padding: '5vh'
       }}>
+        
 
-        <Grid columns={2} divided>
+        <Grid columns={1} divided >
           <Grid.Row stretched>
             <Grid.Column>
-              <Segment >
-                  <div style={{
-                      height: '100%',
-                      width: '100%',
+              <Segment>
+            <div style={{
+          height: '100%'
+        }}>
+          <div style={{
+            height: '30%'
+          }}>
+            <div
+              style={{
+              height: '100%',
+              float: 'left',
+              width: '75%'
+            }}>
+              <h1 style={{
+                fontSize: '2.5em',
+                paddingLeft: '2px',
+              }}>Temperature</h1>
+            </div>
 
-                  }}>
-                  <h1>Temperature  </h1>
-                  <Image src={Exximg}/>
-                 </div>
-                 <div>
-                     <h2> 32 &#8451; </h2> </div>
-                </Segment>
-              <Segment>Humidity</Segment>
-              <Segment>air pressure</Segment>
-              <Segment>luminicity</Segment>
-              <Segment>wind direction</Segment>
-              <Segment>oxcygen</Segment>
-              <Segment>xxxx</Segment>
-            </Grid.Column>
-            <Grid.Column>
-              <Segment >1</Segment>
+            <div
+              style={{
+              width: '25%',
+              float: 'right',
+              height: '100%',
+              paddingTop: '2px',
+              paddingRight: '2px',
+            }}>
+              <Image floated='right' size='medium' src={Exximg}/>
+              
+            </div>
+
+          </div>
+
+          <div style={{
+            height: '70%',
+            paddingLeft: '13%'
+          }}>
+
+            <p style={{
+          fontSize: '5.5em',
+          fontFamily: 'typeface-roboto',
+          
+        }} >
+          10<span style={{
+          fontSize: '0.7em',
+          fontFamily: 'typeface-roboto',
+          
+        }}>&#8451;</span>
+        </p>
+              </div>
+
+              <div >
+              </div>
+      </div>
+
+            </Segment>
+              
             </Grid.Column>
           </Grid.Row>
         </Grid>
+
+
+        <Grid columns={3} divided >
+          <Grid.Row stretched>
+            <Grid.Column>
+          
+          
+            <Segment>
+             <div
+              style={{
+                      float: 'left',
+              
+            }}>
+              <h1 style={{
+                fontSize: '1.5em',
+                paddingLeft: '2px',
+              }}> Temperature:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+               
+                
+            </div>
+</Segment>
+ 
+ 
+<Segment>
+             <div
+              style={{
+              height: '100%',
+              float: 'left',
+              width: '100%'
+            }}>
+              <h1 style={{
+                fontSize: '1.5em',
+                paddingLeft: '2px',
+              }}> Temperature:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+               
+                
+            </div>
+</Segment>
+             <Segment>
+             <div
+              style={{
+              height: '100%',
+              float: 'left',
+              width: '100%'
+            }}>
+              <h1 style={{
+                fontSize: '1.5em',
+                paddingLeft: '2px',
+              }}> Temperature:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+               
+                
+            </div>
+ 
+              </Segment>
+              </Grid.Column>
+         
+
+          
+         <Grid.Column>
+          
+<Segment>
+             <div
+              style={{
+              height: '100%',
+              float: 'left',
+              width: '100%'
+            }}>
+              <h1 style={{
+                fontSize: '1.5em',
+                paddingLeft: '2px',
+              }}> Temperature:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+               
+                
+            </div>
+</Segment>
+ 
+ 
+<Segment>
+             <div
+              style={{
+              height: '100%',
+              float: 'left',
+              width: '100%'
+            }}>
+              <h1 style={{
+                fontSize: '1.5em',
+                paddingLeft: '2px',
+              }}> Temperature:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+               
+                
+            </div>
+</Segment>
+          
+             <Segment>
+             <div
+              style={{
+              height: '100%',
+              float: 'left',
+              width: '100%'
+            }}>
+              <h1 style={{
+                fontSize: '1.5em',
+                paddingLeft: '2px',
+              }}> Temperature:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+               
+                
+            </div>
+ 
+              </Segment>
+              </Grid.Column> 
+            
+            
+             <Grid.Column>
+             
+             <Segment>
+             <div
+              style={{
+              height: '100%',
+              float: 'left',
+              width: '100%'
+            }}>
+              <h1 style={{
+                fontSize: '1.5em',
+                paddingLeft: '2px',
+              }}> Temperature:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+               
+                
+            </div>
+ 
+              </Segment>
+
+
+              <Segment>
+             <div
+              style={{
+              height: '100%',
+              float: 'left',
+              width: '100%'
+            }}>
+              <h1 style={{
+                fontSize: '1.5em',
+                paddingLeft: '2px',
+              }}> Temperature:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+               
+                
+            </div>
+</Segment>
+ 
+ 
+<Segment>
+             <div
+              style={{
+              height: '100%',
+              float: 'left',
+              width: '100%'
+            }}>
+              <h1 style={{
+                fontSize: '1.5em',
+                paddingLeft: '2px',
+              }}> Temperature:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+               
+                
+            </div>
+</Segment> 
+</Grid.Column>
+</Grid.Row>
+        </Grid>
+
+        <Grid columns={1} divided>
+          <Grid.Row stretched>
+            <Grid.Column>
+            <div style={{
+          height: '100%'
+        }}>
+
+          <h1 style={{
+            fontSize: '1.5em'
+
+          }}> Hourly Update </h1>
+
+      </div>
+
+              
+      </Grid.Column> 
+            </Grid.Row>
+            </Grid>
+             
+
+
       </Container>
 
     )
