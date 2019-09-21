@@ -41,45 +41,48 @@ class CityDetail extends Component {
         padding: '5vh'
       }}>
         
+        <Grid columns={1} divided  stackable>
+          <Grid.Row stretched>
+            <Grid.Column>
 
-        <Grid columns={1} divided >
+        <Grid columns={1} divided  stackable>
           <Grid.Row stretched>
             <Grid.Column>
               <Segment>
             <div style={{
           height: '100%'
         }}>
-          <div style={{
-            height: '30%'
-          }}>
+          
             <div
               style={{
+              width: '100%',
               height: '100%',
               float: 'left',
-              width: '75%'
+            
             }}>
               <h1 style={{
                 fontSize: '2.5em',
                 paddingLeft: '2px',
-              }}>Temperature</h1>
-            </div>
-
-            <div
-              style={{
+                border: '1px solid red'
+              }}>Temperature
+ 
+ </h1>
+         </div>
+             <div style={{
               width: '25%',
-              float: 'right',
+              float: 'left',
               height: '100%',
               paddingTop: '2px',
-              paddingRight: '2px',
-            }}>
-              <Image floated='right' size='medium' src={Exximg}/>
-              
-            </div>
+              border: '1px solid red'
+            }}> 
+             <Image floated='right' size='medium' src={Exximg}/>
+              </div>
+            
 
-          </div>
 
           <div style={{
-            height: '70%',
+            height: '100%',
+            width: '100%',
             paddingLeft: '13%'
           }}>
 
@@ -96,8 +99,7 @@ class CityDetail extends Component {
         </p>
               </div>
 
-              <div >
-              </div>
+              
       </div>
 
             </Segment>
@@ -107,7 +109,7 @@ class CityDetail extends Component {
         </Grid>
 
 
-        <Grid columns={3} divided >
+        <Grid columns={3} divided  stackable>
           <Grid.Row stretched>
             <Grid.Column>
           
@@ -382,7 +384,10 @@ class CityDetail extends Component {
             </Grid.Row>
             </Grid>
              
-
+            </Grid.Column> 
+            </Grid.Row>
+            </Grid>
+             
 
       </Container>
 
