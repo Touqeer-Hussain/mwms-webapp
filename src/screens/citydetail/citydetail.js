@@ -384,9 +384,6 @@ class CityDetail extends Component {
             </Grid.Row>
             </Grid>
              
-            </Grid.Column> 
-            </Grid.Row>
-            </Grid>
              
 
             <Grid columns={6} divided  stackable>
@@ -547,7 +544,7 @@ fontSize: '0.9em',
 </Grid.Column> 
 
 
-<Grid.Column stackable>
+<Grid.Column>
 
 <Segment>
  <div
@@ -580,6 +577,96 @@ fontSize: '0.9em',
             </Grid.Row>
             </Grid>
 
+
+
+            <Grid columns={1} divided stackable>
+          <Grid.Row stretched>
+            <Grid.Column>
+            <div style={{
+          height: '100%'
+        }}>
+
+          <h1 style={{
+            fontSize: '1.5em'
+
+          }}> Day by Days Update  </h1>
+
+      </div>
+
+              
+      </Grid.Column> 
+            </Grid.Row>
+            </Grid>
+             
+             
+
+            <Grid columns={8} divided stackable> 
+          <Grid.Row stretched>
+            <Grid.Column>
+            
+
+            <Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+<div style={{
+width: '100%',
+height: '40%',
+float: 'left'
+
+}}>
+<h1 style={{
+  float: 'left',
+  fontSize: '1.6em',
+
+}}> Monday 
+</h1>
+<span sytle={{
+float: 'left',
+fontSize: '0.1em',
+
+}}> 
+
+30.sep.2019
+
+
+</span>
+</div>
+<div style={{
+width: '100%',
+height: '60%',
+float: 'left'
+
+}}>
+
+
+<h1 style={{
+    fontSize: '1.5em',
+    paddingLeft: '2px',
+  }}>  10  
+  <span style={{
+fontSize: '1em',
+
+}}> &#8451; </span> 
+   </h1>
+   
+    
+</div>
+  
+</div>
+</Segment>
+
+
+            </Grid.Column> 
+            </Grid.Row>
+            </Grid>
+
+            </Grid.Column> 
+            </Grid.Row>
+            </Grid>
       </Container>
 
     )
