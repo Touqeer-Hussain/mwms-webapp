@@ -624,16 +624,7 @@ float: 'left'
 
 }}> Monday 
 </h1>
-<span sytle={{
-float: 'left',
-fontSize: '0.1em',
 
-}}> 
-
-30.sep.2019
-
-
-</span>
 </div>
 <div style={{
 width: '100%',
@@ -642,20 +633,24 @@ float: 'left'
 
 }}>
 
-
-<h1 style={{
-    fontSize: '1.5em',
-    paddingLeft: '2px',
-  }}>  10  
-  <span style={{
-fontSize: '1em',
-
-}}> &#8451; </span> 
-   </h1>
-   
-    
-</div>
   
+<h1 style={{
+                fontSize: '1.5em',
+                paddingLeft: '2px',
+              }}> Temperature:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+              
+
+</div>
 </div>
 </Segment>
 
