@@ -47,7 +47,7 @@ class CityDetail extends Component {
 
         <Grid columns={1} divided  stackable>
           <Grid.Row stretched>
-            <Grid.Column>
+            <Grid.Column stackable>
               <Segment>
             <div style={{
           height: '100%'
@@ -56,7 +56,7 @@ class CityDetail extends Component {
             <div
               style={{
               width: '100%',
-              height: '100%',
+              height: '30%',
               float: 'left',
             
             }}>
@@ -71,7 +71,7 @@ class CityDetail extends Component {
              <div style={{
               width: '25%',
               float: 'left',
-              height: '100%',
+              height: '60%',
               paddingTop: '2px',
               border: '1px solid red'
             }}> 
@@ -81,8 +81,8 @@ class CityDetail extends Component {
 
 
           <div style={{
-            height: '100%',
-            width: '100%',
+            height: '70%',
+            width: '60%',
             paddingLeft: '13%'
           }}>
 
@@ -111,7 +111,7 @@ class CityDetail extends Component {
 
         <Grid columns={3} divided  stackable>
           <Grid.Row stretched>
-            <Grid.Column>
+            <Grid.Column stackable>
           
           
             <Segment>
@@ -195,7 +195,7 @@ class CityDetail extends Component {
          
 
           
-         <Grid.Column>
+         <Grid.Column stackable>
           
 <Segment>
              <div
@@ -279,7 +279,7 @@ class CityDetail extends Component {
               </Grid.Column> 
             
             
-             <Grid.Column>
+             <Grid.Column stackable>
              
              <Segment>
              <div
@@ -365,7 +365,7 @@ class CityDetail extends Component {
 </Grid.Row>
         </Grid>
 
-        <Grid columns={1} divided>
+        <Grid columns={1} divided stackable>
           <Grid.Row stretched>
             <Grid.Column>
             <div style={{
@@ -388,6 +388,197 @@ class CityDetail extends Component {
             </Grid.Row>
             </Grid>
              
+
+            <Grid columns={6} divided  stackable>
+          <Grid.Row stretched>
+            <Grid.Column>
+
+            <Segment>
+             <div
+              style={{
+              height: '100%',
+              float: 'left',
+              width: '100%'
+            }}>
+              <h1 style={{
+                fontSize: '1.5em',
+                paddingLeft: '2px',
+              }}> 10:30 pm 
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+               
+                
+            </div>
+</Segment>
+
+             
+            </Grid.Column> 
+
+            <Grid.Column stackable>
+
+<Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+  <h1 style={{
+    fontSize: '1.5em',
+    paddingLeft: '2px',
+  }}> 10:30 pm 
+  
+  <span style={{
+fontSize: '1.2em',
+paddingLeft: '5px',
+}}> 10 </span> 
+  <span style={{
+fontSize: '0.9em',
+
+}}> &#8451; </span> 
+   </h1>
+   
+    
+</div>
+</Segment>
+
+ 
+</Grid.Column> 
+
+<Grid.Column stackable>
+
+<Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+  <h1 style={{
+    fontSize: '1.5em',
+    paddingLeft: '2px',
+  }}> 10:30 pm 
+  
+  <span style={{
+fontSize: '1.2em',
+paddingLeft: '5px',
+}}> 10 </span> 
+  <span style={{
+fontSize: '0.9em',
+
+}}> &#8451; </span> 
+   </h1>
+   
+    
+</div>
+</Segment>
+
+ 
+</Grid.Column> 
+
+<Grid.Column stackable>
+
+<Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+  <h1 style={{
+    fontSize: '1.5em',
+    paddingLeft: '2px',
+  }}> 10:30 pm 
+  
+  <span style={{
+fontSize: '1.2em',
+paddingLeft: '5px',
+}}> 10 </span> 
+  <span style={{
+fontSize: '0.9em',
+
+}}> &#8451; </span> 
+   </h1>
+   
+    
+</div>
+</Segment>
+
+ 
+</Grid.Column> 
+
+<Grid.Column stackable>
+
+<Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+  <h1 style={{
+    fontSize: '1.5em',
+    paddingLeft: '2px',
+  }}> 10:30 pm 
+  
+  <span style={{
+fontSize: '1.2em',
+paddingLeft: '5px',
+}}> 10 </span> 
+  <span style={{
+fontSize: '0.9em',
+
+}}> &#8451; </span> 
+   </h1>
+   
+    
+</div>
+</Segment>
+
+ 
+</Grid.Column> 
+
+
+<Grid.Column stackable>
+
+<Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+  <h1 style={{
+    fontSize: '1.5em',
+    paddingLeft: '2px',
+  }}> 10:30 pm 
+  
+  <span style={{
+fontSize: '1.2em',
+paddingLeft: '5px',
+}}> 10 </span> 
+  <span style={{
+fontSize: '0.9em',
+
+}}> &#8451; </span> 
+   </h1>
+   
+    
+</div>
+</Segment>
+
+ 
+</Grid.Column> 
+            </Grid.Row>
+            </Grid>
 
       </Container>
 
