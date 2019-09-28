@@ -600,7 +600,7 @@ fontSize: '0.9em',
              
              
 
-            <Grid columns={8} divided stackable> 
+            <Grid columns={7} divided reversed> 
           <Grid.Row stretched>
             <Grid.Column>
             
