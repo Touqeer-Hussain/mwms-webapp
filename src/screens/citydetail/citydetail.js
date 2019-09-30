@@ -9,7 +9,8 @@ import {
   Input,
   Form,
   Grid,
-  Segment
+  Segment,
+  Radio
 
 } from 'semantic-ui-react'
 
@@ -20,7 +21,10 @@ import Exximg from 'assest/images/fist.jpg'
 class CityDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+
+      pageToggle: 'true'
+    }
 
   }
 
@@ -35,12 +39,22 @@ class CityDetail extends Component {
   }
 
   render() {
-
+      const { pageToggle } = this.state;
     return (
       <Container style={{
         padding: '5vh'
       }}>
-        
+
+        {/* yaha per grid laga inko left aur right corner ka leyeh */}
+        <Button color='twitter' >Back</Button>
+        <Radio toggle checked={pageToggle} onChange={(e, { checked }) => {
+              this.setState({
+                pageToggle: !checked ? false : true
+              })
+      }}/>
+
+
+
         <Grid columns={1} divided  stackable>
           <Grid.Row stretched>
             <Grid.Column>
