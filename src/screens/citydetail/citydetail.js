@@ -23,7 +23,7 @@ class CityDetail extends Component {
     super(props);
     this.state = {
 
-      pageToggle: 'true'
+     
     }
 
   }
@@ -39,7 +39,7 @@ class CityDetail extends Component {
   }
 
   render() {
-      const { pageToggle } = this.state;
+      const {  } = this.state;
     return (
       <Container style={{
         padding: '5vh'
@@ -47,11 +47,7 @@ class CityDetail extends Component {
 
         {/* yaha per grid laga inko left aur right corner ka leyeh */}
         <Button color='twitter' >Back</Button>
-        <Radio toggle checked={pageToggle} onChange={(e, { checked }) => {
-              this.setState({
-                pageToggle: !checked ? false : true
-              })
-      }}/>
+        
 
 
 
