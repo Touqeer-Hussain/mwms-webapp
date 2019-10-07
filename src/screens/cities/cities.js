@@ -28,6 +28,7 @@ class Cities extends Component {
          temperature: '10',
          eximage: Exximg , 
          rdate:   'sep 20, 2019',
+         searchList: ''
          
       }
       
@@ -52,6 +53,17 @@ class Cities extends Component {
       
     }
     
+    async searchFunc(){
+      const { searchQuery } = this.state;
+      let fth = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${searchQuery}&key=1ef2a51a49a748d1afd8e32f57c441d9`);
+      let res = await fth.json();
+      console.log(res)
+      this.setState({
+        searchList: res
+      })
+    }
+
+
   render(){
       
     const { cityName, temperature, eximage, rdate, main } = this.state
@@ -63,12 +75,18 @@ class Cities extends Component {
         }}>
         <Card.Group>
            
-        <CitiesCard   title={cityName} data={temperature} image={eximage} date={rdate} unit='&#8451;' main={this.props.main}/>
+        <CitiesCard  onClick={() => {
+          this.props.main.setState({
+            realTime: null,
+            sensorControl: null,
+            cities: null,
+            citydetail: true   
+          })
+        }} title={cityName} data={temperature} image={eximage} date={rdate} unit='&#8451;' main={this.props.main}/>
            
         <CitiesCard   title={cityName} data={temperature} image={eximage} date={rdate} unit='&#8451;' main={this.props.main}/>
             
-            
-        <Modal trigger={<Card
+        <Card  onClick={() => this.setState({ modalOpen: true })}
         style={{
         border: '2px solid teal',
         borderRadius: '5px'
@@ -82,22 +100,78 @@ class Cities extends Component {
               <Image  size='small' src={plusimage} centered/>
               
     </div>
-    </Card>} closeIcon size='small'>
+    </Card>
+
+        <Modal closeIcon size='small'  open={this.state.modalOpen}>
     <Modal.Header>Add City</Modal.Header>
     <Modal.Content>
-    <Form onSubmit={console.log('dark sky')}>
+    <Form onSubmit={() => {
+      console.log('cities')
+      this.searchFunc();
+    }}>
     <Form.Input fluid onChange={(e) => {
         this.setState({
             searchQuery: e.target.value
         })
     }} placeholder='Search...' action={{
-        icon: 'search',
-        onClick: () => {
-            console.log('dark sky')
-        }
+        icon: 'search'
+       
     }}/>
     </Form>
-    <h1>sdsdsds</h1>
+    {this.state.searchList && this.state.searchList.results.map((data) => {
+        return data.confidence <= 3 ? <div onClick={() => {
+
+          
+          firebase.database().ref('cities').once("value", snap  => {
+            if(snap.val() !== null){
+              firebase.database().ref('cities').once("child_added", snap => {
+              
+                console.log(snap)
+                if(snap.val().city !== data.components.city){
+                  firebase.database().ref('cities').push({
+                    lat: data.geometry.lat,
+                    lng: data.geometry.lng,
+                    city: data.components.city,
+                    country: data.components.country
+                  }, (err) => {
+                    if(err){
+
+                    }else{
+                      this.setState({
+                          modalOpen: false
+                      })
+                    }
+                  })
+                }else{
+                  console.log('city already')
+                }
+              })
+            }else{
+
+              firebase.database().ref('cities').push({
+                lat: data.geometry.lat,
+                lng: data.geometry.lng,
+                city: data.components.city,
+                country: data.components.country
+              }, (err) => {
+                if(err){
+
+                }else{
+                  this.setState({
+                      modalOpen: false
+                  })
+                }
+              })
+
+            }
+          })
+            
+          
+
+
+
+      }} key={data.annotations.geohash}  ><h3>{data.components.city +", "+ data.components.country}</h3> </div>: ''
+    })}
     </Modal.Content>
   </Modal>
             

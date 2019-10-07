@@ -13,8 +13,8 @@ class App extends Component {
       this.state ={
         realTime: null,
         sensorControl: null,
-        cities: null,
-        citydetail: true
+        cities: true,
+        citydetail: null
       }
     }
   render(){
