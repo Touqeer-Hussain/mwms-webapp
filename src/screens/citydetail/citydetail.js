@@ -900,6 +900,301 @@ fontSize: '0.9em',
             </Grid.Row>
             </Grid>
 
+
+
+
+
+            <Grid columns={1} divided stackable>
+          <Grid.Row stretched>
+            <Grid.Column>
+            <div style={{
+          height: '100%'
+        }}>
+
+          <h1 style={{ 
+          marginLeft: '45%',
+
+
+          }}> Abc update  </h1>
+
+      </div>
+
+              
+      </Grid.Column> 
+            </Grid.Row> 
+            </Grid>
+
+            <Grid columns={1} divided stackable>
+          <Grid.Row stretched>
+            <Grid.Column>
+            <div style={{
+          height: '100%'
+        }}>
+
+          <h1 style={{ 
+        float: 'left',
+
+
+          }}> Abcdef update  </h1>
+
+      </div>
+
+              
+      </Grid.Column> 
+            </Grid.Row> 
+            </Grid>
+
+            <Grid columns={7} divided stackable> 
+          <Grid.Row stretched>
+            <Grid.Column>
+            
+
+            <Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+<h1 style={{
+  float: 'left',
+  fontSize: '1.3em',
+
+}}> Monday, 30 2019 
+</h1>
+
+
+  
+<h1 style={{
+                fontSize: '1.6em',
+                paddingTop: '15px',
+              }}> Temp:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+              
+
+</div>
+</Segment>
+
+
+            </Grid.Column> 
+           
+            <Grid.Column>
+            
+
+            <Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+<h1 style={{
+  float: 'left',
+  fontSize: '1.3em',
+
+}}> Tuesday, 31 2019 
+</h1>
+
+
+  
+<h1 style={{
+                fontSize: '1.6em',
+                paddingTop: '15px',
+              }}> Temp:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+              
+
+</div>
+</Segment>
+
+
+            </Grid.Column> 
+            <Grid.Column>
+            
+
+            <Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+<h1 style={{
+  float: 'left',
+  fontSize: '1.3em',
+
+}}> Wednesday, 30 2019 
+</h1>
+
+
+  
+<h1 style={{
+                fontSize: '1.6em',
+                paddingTop: '15px',
+              }}> Temp:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+              
+
+</div>
+</Segment>
+
+
+            </Grid.Column> 
+            <Grid.Column>
+            
+
+            <Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+<h1 style={{
+  float: 'left',
+  fontSize: '1.3em',
+
+}}> Tursday, 30 2019 
+</h1>
+
+
+  
+<h1 style={{
+                fontSize: '1.6em',
+                paddingTop: '15px',
+              }}> Temp:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+              
+
+</div>
+</Segment>
+
+
+            </Grid.Column> 
+            <Grid.Column>
+            
+
+            <Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+<h1 style={{
+  float: 'left',
+  fontSize: '1.3em',
+
+}}> Friday, 30 2019 
+</h1>
+
+
+  
+<h1 style={{
+                fontSize: '1.6em',
+                paddingTop: '15px',
+              }}> Temp:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+              
+
+</div>
+</Segment>
+
+
+            </Grid.Column> 
+
+            <Grid.Column>
+            
+
+            <Segment>
+ <div
+  style={{
+  height: '100%',
+  float: 'left',
+  width: '100%'
+}}>
+<h1 style={{
+  float: 'left',
+  fontSize: '1.3em',
+
+}}> Saturday, 30 2019 
+</h1>
+
+
+  
+<h1 style={{
+                fontSize: '1.6em',
+                paddingTop: '15px',
+              }}> Temp:
+              
+              <span style={{
+            fontSize: '1.2em',
+            paddingLeft: '5px',
+          }}> 10 </span> 
+              <span style={{
+            fontSize: '0.9em',
+            
+          }}> &#8451; </span> 
+               </h1>
+              
+
+</div>
+</Segment>
+
+
+            </Grid.Column> 
+           
+           
+           
+            </Grid.Row>
+            </Grid>
+
+
             </Grid.Column> 
             
             
