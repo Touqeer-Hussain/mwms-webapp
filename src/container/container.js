@@ -62,7 +62,8 @@ class DesktopContainer extends Component {
                     main.setState({
                       realTime: true,
                       sensorControl: null,
-                      cities: null
+                      cities: null,
+                      citydetail: null
                     })
                 }}>Realtime</Menu.Item>
                 <Menu.Item as='a' active={main.state.sensorControl} onClick={(e) => {
@@ -70,7 +71,8 @@ class DesktopContainer extends Component {
                     main.setState({
                       realTime: null,
                       sensorControl: true,
-                      cities: null
+                      cities: null,
+                      citydetail: null
                     })
                 }}>Sensor Control</Menu.Item>
                 <Menu.Item as='a' onClick={(e) => {
@@ -78,7 +80,8 @@ class DesktopContainer extends Component {
                   main.setState({
                     realTime: null,
                     sensorControl: null,
-                    cities: true
+                    cities: true,
+                    citydetail: null
                   })
               }} >Cities</Menu.Item>
                 <Menu.Item position='right'>

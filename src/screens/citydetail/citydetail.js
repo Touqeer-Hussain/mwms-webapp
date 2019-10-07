@@ -42,7 +42,14 @@ class CityDetail extends Component {
             }}>
 
                 {/* yaha per grid laga inko left aur right corner ka leyeh */}
-                <Button color='twitter'>Back</Button>
+                <Button onClick={() => {
+                  this.props.main.setState({
+                    realTime: null,
+                    sensorControl: null,
+                    cities: true,
+                    citydetail: null   
+                  })
+                }} color='twitter'>Back</Button>
 
                 <Grid columns={1} divided stackable>
                     <Grid.Row stretched>

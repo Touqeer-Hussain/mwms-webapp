@@ -28,7 +28,10 @@ class Cities extends Component {
          temperature: '10',
          eximage: Exximg , 
          rdate:   'sep 20, 2019',
-         searchList: ''
+         searchList: '',
+         citiesList: [],
+         citiesName: [],
+         citiesLength: ''
          
       }
       
@@ -49,6 +52,31 @@ class Cities extends Component {
     //     })
     //     console.log(data.val())
     //   })
+    firebase.database().ref('cities').once("value", async snap => { 
+        this.setState({
+          citiesLength: snap.numChildren()
+        })
+      })
+
+    firebase.database().ref('cities').on("child_added", async snap => { 
+    
+     
+      
+
+      fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04eaa61891ba6ace0154c6b2b6ce1c60/${snap.val().lat},${snap.val().lng}`).then(fth => {
+        fth.json().then(res => { 
+
+          this.setState({
+            citiesList: this.state.citiesList.concat({...res, "city": snap.val().city})
+           
+          })
+
+        })})
+          
+         
+          
+
+    })
 
       
     }
@@ -66,7 +94,7 @@ class Cities extends Component {
 
   render(){
       
-    const { cityName, temperature, eximage, rdate, main } = this.state
+    const { cityName, temperature, eximage, rdate, main, citiesList, citiesLength, citiesName } = this.state
 
 
     return(
@@ -75,16 +103,24 @@ class Cities extends Component {
         }}>
         <Card.Group>
            
-        <CitiesCard  onClick={() => {
-          this.props.main.setState({
-            realTime: null,
-            sensorControl: null,
-            cities: null,
-            citydetail: true   
-          })
-        }} title={cityName} data={temperature} image={eximage} date={rdate} unit='&#8451;' main={this.props.main}/>
+          {citiesLength == citiesList.length ?  citiesList.map((snap,i )=> {
+                    console.log(citiesList)
+                    
+                return <CitiesCard  onClick={() => {
+                  this.props.main.setState({
+                    realTime: null,
+                    sensorControl: null,
+                    cities: null,
+                    citydetail: true   
+                  })
+                }} title={snap.city} data={Math.round(snap.currently.temperature)} image={require('assest/images/clear-day.png')} date={new Date(snap.currently.time * 1000).toDateString()} unit='&#8451;' main={this.props.main}/>
+             
            
-        <CitiesCard   title={cityName} data={temperature} image={eximage} date={rdate} unit='&#8451;' main={this.props.main}/>
+           
+             
+          }) : ''}
+
+        
             
         <Card  onClick={() => this.setState({ modalOpen: true })}
         style={{
