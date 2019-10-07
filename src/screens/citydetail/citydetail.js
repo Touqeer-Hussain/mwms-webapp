@@ -1419,7 +1419,7 @@ fontSize: '0.9em',
 </Segment>
 
 
-</Grid.Column>
+      </Grid.Column>
             </Grid.Row>
             </Grid>
 
