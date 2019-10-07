@@ -23,9 +23,7 @@ class CityDetail extends Component {
     super(props);
     this.state = {
 
-
     }
-
   }
 
   componentDidMount() {
