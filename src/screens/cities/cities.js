@@ -206,7 +206,11 @@ class Cities extends Component {
 
 
 
-      }} key={data.annotations.geohash}  ><h3>{data.components.city +", "+ data.components.country}</h3> </div>: ''
+      }} key={data.annotations.geohash}  ><h3 style={{
+        fontSize: '3em',
+        fontFamily: 'vincHand'
+       
+      }}>{data.components.city +",    "+ data.components.country}</h3> </div>: ''
     })}
     </Modal.Content>
   </Modal>

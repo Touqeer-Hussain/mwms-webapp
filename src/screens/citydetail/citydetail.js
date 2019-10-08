@@ -61,7 +61,8 @@ class CityDetail extends Component {
                                 stackable
                                 style={{
                                 border: '2px solid teal',
-                                borderRadius: '5px'
+                                borderRadius: '5px',
+                                marginTop: '3%'
                             }}>
                                 <Grid.Row stretched>
                                     <Grid.Column>
@@ -440,7 +441,8 @@ class CityDetail extends Component {
                                 stackable
                                 style={{
                                 border: '2px solid teal',
-                                borderRadius: '5px'
+                                borderRadius: '5px',
+                                marginTop: '2%'
                             }}>
                                 <Grid.Row stretched>
                                     <Grid.Column>
@@ -1005,7 +1007,8 @@ class CityDetail extends Component {
                                 stackable
                                 style={{
                                 border: '2px solid teal',
-                                borderRadius: '5px'
+                                borderRadius: '5px',
+                                marginTop: '2%'
                             }}>
                                 <Grid.Row stretched>
                                     <Grid.Column>

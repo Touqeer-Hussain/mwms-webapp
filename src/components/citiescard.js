@@ -45,14 +45,15 @@ class CitiesCard extends Component {
             }}>
               <h1 style={{
                 fontSize: '2.5em',
-                paddingLeft: '2px',
+                marginLeft: '3px'
+              
               }}>{title}</h1>
             </div>
            
           </div>
 
           <div style={{
-            height: '60%',
+            height: '55%',
         
           }}>
 
@@ -61,14 +62,15 @@ class CitiesCard extends Component {
          style={{
 
             height: '100%',
-            width: '50%',
+            width: '60%',
             float: 'left',
-            border: '1px solid blue'
+            border: '1px solid blue',
+          
 
          }
          }><h1 style={{
             fontSize: '4em',
-            paddingLeft: '2px',
+            paddingLeft: '5px',
           }}>{data}
           <span style={{
             fontSize: '0.8em'
@@ -81,14 +83,18 @@ class CitiesCard extends Component {
             <div
          style={{
 
-            height: '50%',
-            width: '50%',
-            float: 'right',
+            height: '100%',
+            width: '40%',
+            float: 'left',
             border: '1px solid blue'
 
          }
          }>
-             <Image src={image}/>
+             <Image style={{
+          marginTop: '-22px',
+          marginLeft: '13px',
+
+             }} src={image}/>
               </div>
 
               <div >
@@ -99,7 +105,7 @@ class CitiesCard extends Component {
 
 <div
               style={{
-                height: '10%',
+                height: '15%',
                 width: '100%',
                 float: 'left',
                 border: '1px solid red'
