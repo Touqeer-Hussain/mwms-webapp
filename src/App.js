@@ -11,9 +11,9 @@ class App extends Component {
     constructor(props){
       super(props);
       this.state ={
-        realTime: null,
+        realTime: true,
         sensorControl: null,
-        cities: true,
+        cities: null,
         citydetail: null
       }
     }
