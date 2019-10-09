@@ -3,6 +3,8 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
 } from 'recharts';
 
+import firebase from 'config/firebase'
+
 
 
 export default class Chart extends Component {
@@ -11,25 +13,25 @@ export default class Chart extends Component {
       this.state = {
         data: [
           {
-            name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
+            time: 'Page A', temperature: 4000
           },
           {
-            name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
+            time: 'Page B', temperature: 3000
           },
           {
-            name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
+            time: 'Page C', temperature: 2000
           },
           {
-            name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
+            time: 'Page D', temperature: 2780
           },
           {
-            name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
+            time: 'Page E', temperature: 1890
           },
           {
-            name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
+            time: 'Page F', temperature: 2390
           },
           {
-            name: 'Page G', uv: 3490, pv: 4300, amt: 2200,
+            time: 'Page G', temperature: 3490
           }
         ]
       }
@@ -43,7 +45,7 @@ export default class Chart extends Component {
             f++
             this.setState({
               data:  this.state.data.concat({
-                name: 'dsds '+f, uv: Math.random(100), pv: Math.random(100), amt: Math.random(100),
+                time: 'dsds '+f, temperature: Math.random(100)
               })
             }, () => {
               this.state.data.shift();
@@ -51,6 +53,10 @@ export default class Chart extends Component {
          
           
       },2000)
+
+      firebase.database().ref('realtime').limitToLast(5).on('child_added', snap => {
+        console.log(snap.val())
+      })
     }
 
   render() {
@@ -63,17 +69,12 @@ export default class Chart extends Component {
       <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
       <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
     </linearGradient>
-    <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8}/>
-      <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
-    </linearGradient>
   </defs>
-  <XAxis dataKey="name" />
-  <YAxis />
+  <XAxis dataKey="time" />
+  <YAxis dataKey="temperature"/>
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
-  <Area type="monotone" dataKey="uv" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
-  <Area type="monotone" dataKey="pv" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+  <Area type="monotone" dataKey="temperature" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
     );
   }
