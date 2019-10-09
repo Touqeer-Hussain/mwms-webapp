@@ -8,6 +8,7 @@ import {
 
 import MainCard from 'components/maincard'
 import firebase from 'config/firebase'
+import Chart from 'components/chart'
 
 import temperatureimage from 'assest/images/temperature.png'
 import humidityimage from 'assest/images/humidity.png'
@@ -65,6 +66,7 @@ class RealTime extends Component {
             <MainCard title='Luminosity' data={lux} unit='lux' image={luminosityimage}/>
             <MainCard title='RealFeel' data={realFeel} unit='&#8451;' image={realfeelimage}/>
         </Card.Group>
+        <Chart />
         </Container>
 
    
