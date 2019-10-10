@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, ResponsiveContainer
 } from 'recharts';
 
 import firebase from 'config/firebase'
@@ -46,10 +46,10 @@ export default class Chart extends Component {
     componentDidMount(){
 
         var count = 0
-      firebase.database().ref('realtime').limitToLast(8).on('child_added', snap => {
+      firebase.database().ref('realtime').limitToLast(12).on('child_added', snap => {
         count++;
         console.log(snap.val())
-        var time = new Date(snap.val().time).getHours() + ":" +new Date(snap.val().time).getMinutes() + ":" +new Date(snap.val().time).getSeconds();
+        var time = new Date(snap.val().time * 1000).getHours() + ":" +new Date(snap.val().time * 1000).getMinutes() + ":" +new Date(snap.val().time * 1000).getSeconds();
         this.setState({
             tempData: this.state.tempData.concat({
               time: time, 
@@ -70,7 +70,7 @@ export default class Chart extends Component {
               time: time, 
               realFeel: snap.val().realFeel})      
         }, () => {
-          if (count == 5) {
+          if (count == 12) {
                   this.state.tempData.shift();
                   this.state.humidityData.shift();
                   this.state.luxData.shift();
@@ -108,7 +108,7 @@ export default class Chart extends Component {
       <div>
 
 
-        <AreaChart width={730} height={250} data={tempData}
+        <AreaChart width={870} height={300} data={tempData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -120,11 +120,12 @@ export default class Chart extends Component {
   <YAxis dataKey="temperature"/>
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
+  <Legend verticalAlign="top" height={36}/>
   <Area type="monotone" dataKey="temperature" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 
 
-      <AreaChart width={730} height={250} data={tempData}
+      <AreaChart width={870} height={300} data={humidityData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -133,15 +134,17 @@ export default class Chart extends Component {
     </linearGradient>
   </defs>
   <XAxis dataKey="time" />
-  <YAxis dataKey="temperature"/>
+  <YAxis dataKey="humidity"/>
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
-  <Area type="monotone" dataKey="temperature" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+  <Legend verticalAlign="top" height={36}/>
+  <Legend verticalAlign="top" height={36}/>
+  <Area type="monotone" dataKey="humidity" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 
 
 
-<AreaChart width={730} height={250} data={tempData}
+<AreaChart width={870} height={300} data={airPreData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -150,15 +153,16 @@ export default class Chart extends Component {
     </linearGradient>
   </defs>
   <XAxis dataKey="time" />
-  <YAxis dataKey="temperature"/>
+  <YAxis dataKey="airPressure"/>
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
-  <Area type="monotone" dataKey="temperature" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+  <Legend verticalAlign="top" height={36}/>
+  <Area type="monotone" dataKey="airPressure" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 
 
 
-<AreaChart width={730} height={250} data={tempData}
+<AreaChart width={870} height={300} data={altiData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -167,15 +171,16 @@ export default class Chart extends Component {
     </linearGradient>
   </defs>
   <XAxis dataKey="time" />
-  <YAxis dataKey="temperature"/>
+  <YAxis dataKey="altitude"/>
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
-  <Area type="monotone" dataKey="temperature" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+  <Legend verticalAlign="top" height={36}/>
+  <Area type="monotone" dataKey="altitude" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 
 
 
-<AreaChart width={730} height={250} data={tempData}
+<AreaChart width={870} height={300} data={luxData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -184,15 +189,16 @@ export default class Chart extends Component {
     </linearGradient>
   </defs>
   <XAxis dataKey="time" />
-  <YAxis dataKey="temperature"/>
+  <YAxis dataKey="lux"/>
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
-  <Area type="monotone" dataKey="temperature" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+  <Legend verticalAlign="top" height={36}/>
+  <Area type="monotone" dataKey="lux" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 
 
 
-<AreaChart width={730} height={250} data={tempData}
+<AreaChart width={870} height={300} data={realFeelData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -201,10 +207,11 @@ export default class Chart extends Component {
     </linearGradient>
   </defs>
   <XAxis dataKey="time" />
-  <YAxis dataKey="temperature"/>
+  <YAxis dataKey="realFeel"/>
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
-  <Area type="monotone" dataKey="temperature" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+  <Legend verticalAlign="top" height={36}/>
+  <Area type="monotone" dataKey="realFeel" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 </div>
     );

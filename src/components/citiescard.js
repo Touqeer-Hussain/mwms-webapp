@@ -13,7 +13,7 @@ class CitiesCard extends Component {
   }
   render() {
 
-    const { title, data, image, date, unit, main } = this.props
+    const { title, data, image, date, unit, main, coords } = this.props
 
     return ( 
         
@@ -22,7 +22,8 @@ class CitiesCard extends Component {
             cities: null,
             citydetail: true
         })
-        
+          
+          localStorage.setItem('city', JSON.stringify(coords))
         this.setState({
         
         })

@@ -11,10 +11,11 @@ class App extends Component {
     constructor(props){
       super(props);
       this.state ={
-        realTime: true,
+        realTime: null,
         sensorControl: null,
-        cities: null,
-        citydetail: null
+        cities: true,
+        citydetail: null,
+  
       }
     }
   render(){

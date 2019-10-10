@@ -16,6 +16,7 @@ import plusimage from 'assest/images/plus.png'
 import MainCard from 'components/maincard'
 import CitiesCard from 'components/citiescard'
 import Exximg from 'assest/images/fist.jpg'
+import { async } from 'q'
 
 
 
@@ -24,10 +25,10 @@ class Cities extends Component {
       super(props);
       this.state ={
          searchQuery: '',
-         cityName: 'Karachi',
-         temperature: '10',
+         cityName: '',
+         temperature: '',
          eximage: Exximg , 
-         rdate:   'sep 20, 2019',
+         rdate:   '',
          searchList: '',
          citiesList: [],
          citiesName: [],
@@ -106,14 +107,7 @@ class Cities extends Component {
           {citiesLength == citiesList.length ?  citiesList.map((snap,i )=> {
                     console.log(citiesList)
                     
-                return <CitiesCard  onClick={() => {
-                  this.props.main.setState({
-                    realTime: null,
-                    sensorControl: null,
-                    cities: null,
-                    citydetail: true   
-                  })
-                }} title={snap.city} data={Math.round(snap.currently.temperature)} image={require('assest/images/clear-day.png')} date={new Date(snap.currently.time * 1000).toDateString()} unit='&#8451;' main={this.props.main}/>
+                return <CitiesCard coords={{lat: snap.latitude, lng: snap.longitude}} title={snap.city} data={Math.round(snap.currently.temperature)} image={require('assest/images/clear-day.png')} date={new Date(snap.currently.time * 1000).toDateString()} unit='&#8451;' main={this.props.main}/>
              
            
            

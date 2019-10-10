@@ -17,20 +17,31 @@ import {
 import firebase from 'config/firebase'
 import plusimage from 'assest/images/plus.png'
 import Exximg from 'assest/images/fist.jpg'
+import { concat } from 'bytebuffer'
 
 class CityDetail extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            city: JSON.parse(localStorage.getItem('city')),
+            cityData: ''
+        }
     }
 
     componentDidMount() {
-        //   firebase.database().ref('current').on('value', (data) =>{ this.setState({
-        //     temperature: Math.round(data.val().temperature), humidity:
-        // Math.round(data.val().humidity),       lux: data.val().lux, realFeel:
-        // Math.round(data.val().realFeel),       airPressure: data.val().airPressure,
-        //     altitude: Math.round(data.val().altitude) })     console.log(data.val())
-        //  })
+        const { city } = this.state;
+        console.log(city)
+
+
+        fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04eaa61891ba6ace0154c6b2b6ce1c60/${city.lat},${city.lng}`).then(fth => {
+        fth.json().then(res => { 
+            console.log(res)
+          this.setState({
+            cityData: res
+           
+          })
+
+        })})
 
     }
 
