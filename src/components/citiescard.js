@@ -13,20 +13,19 @@ class CitiesCard extends Component {
   }
   render() {
 
-    const { title, data, image, date, unit, main, coords } = this.props
+    const { title, temp, image, date, unit, main, data } = this.props
 
     return ( 
         
-      <Card onClick={() => {
+      <Card onClick={async () => {
+        await localStorage.setItem('data', JSON.stringify(data))
         main.setState({
             cities: null,
             citydetail: true
         })
           
-          localStorage.setItem('city', JSON.stringify(coords))
-        this.setState({
+         
         
-        })
       }} 
         style={{
         border: '2px solid teal',
@@ -72,7 +71,7 @@ class CitiesCard extends Component {
          }><h1 style={{
             fontSize: '4em',
             paddingLeft: '5px',
-          }}>{data}
+          }}>{temp}
           <span style={{
             fontSize: '0.8em'
             

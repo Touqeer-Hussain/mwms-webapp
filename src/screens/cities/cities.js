@@ -64,7 +64,7 @@ class Cities extends Component {
      
       
 
-      fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04eaa61891ba6ace0154c6b2b6ce1c60/${snap.val().lat},${snap.val().lng}`).then(fth => {
+      fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04eaa61891ba6ace0154c6b2b6ce1c60/${snap.val().lat},${snap.val().lng}?units=si`).then(fth => {
         fth.json().then(res => { 
 
           this.setState({
@@ -107,7 +107,7 @@ class Cities extends Component {
           {citiesLength == citiesList.length ?  citiesList.map((snap,i )=> {
                     console.log(citiesList)
                     
-                return <CitiesCard coords={{lat: snap.latitude, lng: snap.longitude}} title={snap.city} data={Math.round(snap.currently.temperature)} image={require('assest/images/clear-day.png')} date={new Date(snap.currently.time * 1000).toDateString()} unit='&#8451;' main={this.props.main}/>
+                return <CitiesCard data={snap} title={snap.city} temp={Math.round(snap.currently.temperature)} image={require('assest/images/clear-day.png')} date={new Date(snap.currently.time * 1000).toDateString()} unit='&#8451;' main={this.props.main}/>
              
            
            

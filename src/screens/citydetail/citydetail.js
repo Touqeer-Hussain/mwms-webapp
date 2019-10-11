@@ -17,52 +17,66 @@ import {
 import firebase from 'config/firebase'
 import plusimage from 'assest/images/plus.png'
 import Exximg from 'assest/images/fist.jpg'
-import { concat } from 'bytebuffer'
+import {concat} from 'bytebuffer'
 
 class CityDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            city: JSON.parse(localStorage.getItem('city')),
-            cityData: ''
+            data: '',
+            cityData: '',
+            load: false,
+            list: [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+            ]
         }
     }
 
     componentDidMount() {
-        const { city } = this.state;
-        console.log(city)
 
+        this.getData();
 
-        fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04eaa61891ba6ace0154c6b2b6ce1c60/${city.lat},${city.lng}`).then(fth => {
-        fth.json().then(res => { 
-            console.log(res)
-          this.setState({
-            cityData: res
-           
-          })
+        //
+        // fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04
+        // eaa61891ba6ace0154c6b2b6ce1c60/${city.lat},${city.lng}?units=si`).then(fth =>
+        // {     fth.json().then(res => {         console.log(res)       this.setState({
+        //         cityData: res,         load: true,       })     }) })
 
-        })})
+    }
+
+    async getData() {
+        this.setState({
+            data: await JSON.parse(localStorage.getItem('data'))
+        }, () => {
+            this.setState({load: true})
+
+        })
 
     }
 
     render() {
-        const {} = this.state;
+        const {data, load, list} = this.state;
         return (
             <Container style={{
                 padding: '5vh'
             }}>
 
                 {/* yaha per grid laga inko left aur right corner ka leyeh */}
-                <Button onClick={() => {
-                  this.props.main.setState({
-                    realTime: null,
-                    sensorControl: null,
-                    cities: true,
-                    citydetail: null   
-                  })
-                }} color='twitter'>Back</Button>
+                <Button
+                    onClick={() => {
+                    this
+                        .props
+                        .main
+                        .setState({realTime: null, sensorControl: null, cities: true, citydetail: null})
+                }}
+                    color='twitter'>Back</Button>
 
-                <Grid columns={1} divided stackable>
+                {load && <Grid columns={1} divided stackable>
                     <Grid.Row stretched>
                         <Grid.Column>
 
@@ -98,8 +112,7 @@ class CityDetail extends Component {
                                                                     fontSize: '2.5em',
                                                                     paddingLeft: '2px',
                                                                     border: '1px solid red'
-                                                                }}>Temperature
-
+                                                                }}>{data.city}
                                                                 </h1>
                                                             </div>
                                                             <div
@@ -110,7 +123,7 @@ class CityDetail extends Component {
                                                                 paddingTop: '2px',
                                                                 border: '1px solid red'
                                                             }}>
-                                                                <Image floated='right' size='medium' src={Exximg}/>
+                                                                <Image floated='right' size='medium' src={require('assest/images/fist.jpg')}/>
                                                             </div>
 
                                                             <div
@@ -125,11 +138,11 @@ class CityDetail extends Component {
                                                                     fontSize: '5.5em',
                                                                     fontFamily: 'typeface-roboto'
                                                                 }}>
-                                                                    10<span
+                                                                    {Math.round(data.currently.temperature)}<span
                                                                         style={{
-                fontSize: '0.7em',
-                fontFamily: 'typeface-roboto'
-            }}>&#8451;</span>
+                    fontSize: '0.7em',
+                    fontFamily: 'typeface-roboto'
+                }}>&#8451;</span>
                                                                 </p>
                                                             </div>
 
@@ -155,7 +168,7 @@ class CityDetail extends Component {
                                                                 fontSize: '1.5em',
                                                                 paddingLeft: '2px'
                                                             }}>
-                                                                Temperature:
+                                                                Humidity:
 
                                                                 <span
                                                                     style={{
@@ -187,7 +200,7 @@ class CityDetail extends Component {
                                                                 fontSize: '1.5em',
                                                                 paddingLeft: '2px'
                                                             }}>
-                                                                Temperature:
+                                                                Air Pressure:
 
                                                                 <span
                                                                     style={{
@@ -218,107 +231,7 @@ class CityDetail extends Component {
                                                                 fontSize: '1.5em',
                                                                 paddingLeft: '2px'
                                                             }}>
-                                                                Temperature:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-
-                                                    </Segment>
-                                                </Grid.Column>
-
-                                                <Grid.Column stackable>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                Temperature:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                Temperature:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                Temperature:
+                                                                UV Index:
 
                                                                 <span
                                                                     style={{
@@ -354,7 +267,107 @@ class CityDetail extends Component {
                                                                 fontSize: '1.5em',
                                                                 paddingLeft: '2px'
                                                             }}>
-                                                                Temperature:
+                                                                Visibility:
+
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '1.2em',
+                                                                    paddingLeft: '5px'
+                                                                }}>
+                                                                    10
+                                                                </span>
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '0.9em'
+                                                                }}>
+                                                                    &#8451;
+                                                                </span>
+                                                            </h1>
+
+                                                        </div>
+                                                    </Segment>
+
+                                                    <Segment>
+                                                        <div
+                                                            style={{
+                                                            height: '100%',
+                                                            float: 'left',
+                                                            width: '100%'
+                                                        }}>
+                                                            <h1
+                                                                style={{
+                                                                fontSize: '1.5em',
+                                                                paddingLeft: '2px'
+                                                            }}>
+                                                                Wind Direction:
+
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '1.2em',
+                                                                    paddingLeft: '5px'
+                                                                }}>
+                                                                    10
+                                                                </span>
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '0.9em'
+                                                                }}>
+                                                                    &#8451;
+                                                                </span>
+                                                            </h1>
+
+                                                        </div>
+                                                    </Segment>
+
+                                                    <Segment>
+                                                        <div
+                                                            style={{
+                                                            height: '100%',
+                                                            float: 'left',
+                                                            width: '100%'
+                                                        }}>
+                                                            <h1
+                                                                style={{
+                                                                fontSize: '1.5em',
+                                                                paddingLeft: '2px'
+                                                            }}>
+                                                                Wind Speed:
+
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '1.2em',
+                                                                    paddingLeft: '5px'
+                                                                }}>
+                                                                    10
+                                                                </span>
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '0.9em'
+                                                                }}>
+                                                                    &#8451;
+                                                                </span>
+                                                            </h1>
+
+                                                        </div>
+
+                                                    </Segment>
+                                                </Grid.Column>
+
+                                                <Grid.Column stackable>
+
+                                                    <Segment>
+                                                        <div
+                                                            style={{
+                                                            height: '100%',
+                                                            float: 'left',
+                                                            width: '100%'
+                                                        }}>
+                                                            <h1
+                                                                style={{
+                                                                fontSize: '1.5em',
+                                                                paddingLeft: '2px'
+                                                            }}>
+                                                                Real Feel:
 
                                                                 <span
                                                                     style={{
@@ -503,221 +516,46 @@ class CityDetail extends Component {
 
                                         <Grid columns={6} divided stackable>
                                             <Grid.Row stretched>
-                                                <Grid.Column>
+                                                {list.map(snap => {
+                                                    return (
+                                                        <Grid.Column>
 
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
-
-                                                                <span
+                                                            <Segment stackable>
+                                                                <div
                                                                     style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
+                                                                    height: '100%',
+                                                                    float: 'left',
+                                                                    width: '100%'
                                                                 }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
+                                                                    <h1
+                                                                        style={{
+                                                                        fontSize: '1.5em',
+                                                                        paddingLeft: '2px'
+                                                                    }}>
+                                                                        10:30 pm
 
-                                                        </div>
-                                                    </Segment>
+                                                                        <span
+                                                                            style={{
+                                                                            fontSize: '1.2em',
+                                                                            paddingLeft: '5px'
+                                                                        }}>
+                                                                            10
+                                                                        </span>
+                                                                        <span
+                                                                            style={{
+                                                                            fontSize: '0.9em'
+                                                                        }}>
+                                                                            &#8451;
+                                                                        </span>
+                                                                    </h1>
 
-                                                </Grid.Column>
+                                                                </div>
+                                                            </Segment>
 
-                                                <Grid.Column stackable>
+                                                        </Grid.Column>
+                                                    )
+                                                })}
 
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column stackable>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column stackable>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column stackable>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
                                             </Grid.Row>
                                         </Grid>
 
@@ -744,266 +582,53 @@ class CityDetail extends Component {
 
                                         <Grid columns={6} divided stackable>
                                             <Grid.Row stretched>
-                                                <Grid.Column>
+                                                {list.map(snap => {
+                                                    return (
+                                                        <Grid.Column>
 
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Monday, 30 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
+                                                            <Segment>
+                                                                <div
                                                                     style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
+                                                                    height: '100%',
+                                                                    float: 'left',
+                                                                    width: '100%'
                                                                 }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
+                                                                    <h1
+                                                                        style={{
+                                                                        float: 'left',
+                                                                        fontSize: '1.3em'
+                                                                    }}>
+                                                                        Monday, 30 2019
+                                                                    </h1>
 
-                                                        </div>
-                                                    </Segment>
+                                                                    <h1
+                                                                        style={{
+                                                                        fontSize: '1.6em',
+                                                                        paddingTop: '15px'
+                                                                    }}>
+                                                                        Temp:
 
-                                                </Grid.Column>
+                                                                        <span
+                                                                            style={{
+                                                                            fontSize: '1.2em',
+                                                                            paddingLeft: '5px'
+                                                                        }}>
+                                                                            10
+                                                                        </span>
+                                                                        <span
+                                                                            style={{
+                                                                            fontSize: '0.9em'
+                                                                        }}>
+                                                                            &#8451;
+                                                                        </span>
+                                                                    </h1>
 
-                                                <Grid.Column>
+                                                                </div>
+                                                            </Segment>
 
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Tuesday, 31 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Wednesday, 30 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Tursday, 30 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Friday, 30 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Sunday, 30 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
+                                                        </Grid.Column>
+                                                    )
+                                                })}
 
                                             </Grid.Row>
                                         </Grid>
@@ -1037,299 +662,12 @@ class CityDetail extends Component {
                                                             marginLeft: '45%',
                                                             marginTop: '4%'
                                                         }}>
-                                                            Abc update
-                                                        </h1>
-
-                                                    </div>
-
-                                                </Grid.Column>
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={1} divided stackable>
-                                            <Grid.Row stretched>
-                                                <Grid.Column>
-                                                    <div
-                                                        style={{
-                                                        height: '100%'
-                                                    }}>
-
-                                                        <h1
-                                                            style={{
-                                                            float: 'left'
-                                                        }}>
                                                             Abcdef update
                                                         </h1>
 
                                                     </div>
 
                                                 </Grid.Column>
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={6} divided stackable>
-                                            <Grid.Row stretched>
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Monday, 30 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Tuesday, 31 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Wednesday, 30 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Tursday, 30 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Friday, 30 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                float: 'left',
-                                                                fontSize: '1.3em'
-                                                            }}>
-                                                                Saturday, 30 2019
-                                                            </h1>
-
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.6em',
-                                                                paddingTop: '15px'
-                                                            }}>
-                                                                Temp:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
                                             </Grid.Row>
                                         </Grid>
 
@@ -1356,231 +694,130 @@ class CityDetail extends Component {
 
                                         <Grid columns={6} divided stackable>
                                             <Grid.Row stretched>
+                                                {list.map(snap => {
+                                                    return (
+                                                        <Grid.Column>
+
+                                                            <Segment stackable>
+                                                                <div
+                                                                    style={{
+                                                                    height: '100%',
+                                                                    float: 'left',
+                                                                    width: '100%'
+                                                                }}>
+                                                                    <h1
+                                                                        style={{
+                                                                        fontSize: '1.5em',
+                                                                        paddingLeft: '2px'
+                                                                    }}>
+                                                                        10:30 pm
+
+                                                                        <span
+                                                                            style={{
+                                                                            fontSize: '1.2em',
+                                                                            paddingLeft: '5px'
+                                                                        }}>
+                                                                            10
+                                                                        </span>
+                                                                        <span
+                                                                            style={{
+                                                                            fontSize: '0.9em'
+                                                                        }}>
+                                                                            &#8451;
+                                                                        </span>
+                                                                    </h1>
+
+                                                                </div>
+                                                            </Segment>
+
+                                                        </Grid.Column>
+                                                    )
+                                                })}
+
+                                            </Grid.Row>
+                                        </Grid>
+
+                                        <Grid columns={1} divided stackable>
+                                            <Grid.Row stretched>
                                                 <Grid.Column>
+                                                    <div
+                                                        style={{
+                                                        height: '100%'
+                                                    }}>
 
-                                                    <Segment>
-                                                        <div
+                                                        <h1
                                                             style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
+                                                            fontSize: '1.5em'
                                                         }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
+                                                            Day by Days Update
+                                                        </h1>
 
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column stackable>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column stackable>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column stackable>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column stackable>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                </Grid.Column>
-
-                                                <Grid.Column>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                10:30 pm
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
+                                                    </div>
 
                                                 </Grid.Column>
                                             </Grid.Row>
                                         </Grid>
 
+                                        <Grid columns={6} divided stackable>
+                                            <Grid.Row stretched>
+                                                {list.map(snap => {
+                                                    return (
+                                                        <Grid.Column>
+
+                                                            <Segment>
+                                                                <div
+                                                                    style={{
+                                                                    height: '100%',
+                                                                    float: 'left',
+                                                                    width: '100%'
+                                                                }}>
+                                                                    <h1
+                                                                        style={{
+                                                                        float: 'left',
+                                                                        fontSize: '1.3em'
+                                                                    }}>
+                                                                        Monday, 30 2019
+                                                                    </h1>
+
+                                                                    <h1
+                                                                        style={{
+                                                                        fontSize: '1.6em',
+                                                                        paddingTop: '15px'
+                                                                    }}>
+                                                                        Temp:
+
+                                                                        <span
+                                                                            style={{
+                                                                            fontSize: '1.2em',
+                                                                            paddingLeft: '5px'
+                                                                        }}>
+                                                                            10
+                                                                        </span>
+                                                                        <span
+                                                                            style={{
+                                                                            fontSize: '0.9em'
+                                                                        }}>
+                                                                            &#8451;
+                                                                        </span>
+                                                                    </h1>
+
+                                                                </div>
+                                                            </Segment>
+
+                                                        </Grid.Column>
+                                                    )
+                                                })}
+
+                                            </Grid.Row>
+                                        </Grid>
                                     </Grid.Column>
+
                                 </Grid.Row>
                             </Grid>
 
                         </Grid.Column>
                     </Grid.Row>
-                </Grid>
+                </Grid>}
             </Container>
 
         )
