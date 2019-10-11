@@ -3,7 +3,10 @@ import {
     Card,
     Image,
     Button,
-    Container
+    Container,
+    Segment,
+    Loader,
+    Dimmer
 } from 'semantic-ui-react'
 
 import MainCard from 'components/maincard'
@@ -17,6 +20,8 @@ import realfeelimage from 'assest/images/realfeel.png'
 import luminosityimage from 'assest/images/luminosity.png'
 import altitudeimage from 'assest/images/altitude.png'
 
+import DotLoader from 'react-spinners/DotLoader';
+
 
 
 class RealTime extends Component {
@@ -28,7 +33,8 @@ class RealTime extends Component {
           lux: '',
           realFeel: '',
           airPressure: '',
-          altitude: ''
+          altitude: '',
+          load: false
       }
       
       
@@ -45,6 +51,10 @@ class RealTime extends Component {
           realFeel: Math.round(data.val().realFeel),
           airPressure: data.val().airPressure,
           altitude: Math.round(data.val().altitude)
+        }, () => {
+          this.setState({
+            load: true
+          })
         })
         console.log(data.val())
       })
@@ -53,11 +63,12 @@ class RealTime extends Component {
     }
     
   render(){
-      const { temperature, humidity, lux, realFeel, airPressure, altitude } = this.state
+      const { temperature, humidity, lux, realFeel, airPressure, altitude, load } = this.state
     return(
         <Container style={{
             padding: '5vh'
         }}>
+          {load ? <div>
         <Card.Group>
             <MainCard title='Temperature' data={temperature} unit='&#8451;' image={temperatureimage}/>
             <MainCard title='Humidity' data={humidity} unit='%' image={humidityimage}/>
@@ -67,6 +78,20 @@ class RealTime extends Component {
             <MainCard title='RealFeel' data={realFeel} unit='&#8451;' image={realfeelimage}/>
         </Card.Group>
         <Chart />
+        </div> : <div className='sweet-loading'>
+        <DotLoader
+          css={`
+          display: block;
+          margin: 0 auto;
+          border-color: red;
+      `}
+          sizeUnit={"px"}
+          size={150}
+          color={'#123abc'}
+          loading={this.state.loading}
+        />
+      </div> 
+        }
         </Container>
 
    

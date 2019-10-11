@@ -16,9 +16,9 @@ import plusimage from 'assest/images/plus.png'
 import MainCard from 'components/maincard'
 import CitiesCard from 'components/citiescard'
 import Exximg from 'assest/images/fist.jpg'
-import { async } from 'q'
 
 
+import DotLoader from 'react-spinners/DotLoader';
 
 class Cities extends Component {
     constructor(props){
@@ -32,7 +32,9 @@ class Cities extends Component {
          searchList: '',
          citiesList: [],
          citiesName: [],
-         citiesLength: ''
+         citiesLength: '',
+         load: false,
+         searchLoad: true
          
       }
       
@@ -70,6 +72,10 @@ class Cities extends Component {
           this.setState({
             citiesList: this.state.citiesList.concat({...res, "city": snap.val().city})
            
+          }, () => {
+            this.setState({
+              load: true
+            })
           })
 
         })})
@@ -84,21 +90,28 @@ class Cities extends Component {
     
     async searchFunc(){
       const { searchQuery } = this.state;
+      this.setState({
+        searchLoad: false
+      })
       let fth = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${searchQuery}&key=1ef2a51a49a748d1afd8e32f57c441d9`);
       let res = await fth.json();
       console.log(res)
       this.setState({
         searchList: res
+      }, () => {
+        this.setState({
+          searchLoad: true
+        })
       })
     }
 
 
   render(){
       
-    const { cityName, temperature, eximage, rdate, main, citiesList, citiesLength, citiesName } = this.state
+    const { cityName, temperature, eximage, rdate, main, citiesList, citiesLength, citiesName, load, searchLoad } = this.state
 
 
-    return(
+    return( load ? 
         <Container style={{
             padding: '5vh'
         }}>
@@ -147,8 +160,11 @@ class Cities extends Component {
         icon: 'search'
        
     }}/>
-    </Form>
-    {this.state.searchList && this.state.searchList.results.map((data) => {
+    </Form> {
+      searchLoad ? 
+    
+    this.state.searchList && this.state.searchList > 1 && this.state.searchList.results.map((data, i) => {
+      
         return data.confidence <= 3 ? <div onClick={() => {
 
           
@@ -204,8 +220,25 @@ class Cities extends Component {
         fontSize: '3em',
         fontFamily: 'vincHand'
        
-      }}>{data.components.city +",    "+ data.components.country}</h3> </div>: ''
-    })}
+      }}>{data.components.city +",    "+ data.components.country}</h3> </div>: <h3 style={{
+        fontSize: '3em',
+        fontFamily: 'vincHand'
+       
+      }}>{"No results found!\nPlease search again!"}</h3>
+    })
+     : <div className='sweet-loading'>
+        <DotLoader
+          css={`
+          display: block;
+          margin: 0 auto;
+          border-color: red;
+      `}
+          sizeUnit={"px"}
+          size={150}
+          color={'#123abc'}
+          loading={this.state.loading}
+        />
+    </div> }
     </Modal.Content>
   </Modal>
             
@@ -213,7 +246,19 @@ class Cities extends Component {
             
             
         </Card.Group>
-        </Container>
+        </Container> : <div className='sweet-loading'>
+        <DotLoader
+          css={`
+          display: block;
+          margin: 0 auto;
+          border-color: red;
+      `}
+          sizeUnit={"px"}
+          size={150}
+          color={'#123abc'}
+          loading={this.state.loading}
+        />
+      </div>
 
    
     )

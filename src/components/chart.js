@@ -4,7 +4,7 @@ import {
 } from 'recharts';
 
 import firebase from 'config/firebase'
-
+import DotLoader from 'react-spinners/DotLoader';
 
 
 export default class Chart extends Component {
@@ -39,7 +39,8 @@ export default class Chart extends Component {
         luxData: [],
         airPreData: [],
         altiData: [],
-        realFeelData: []
+        realFeelData: [],
+        load: false
       }
     }
 
@@ -70,6 +71,7 @@ export default class Chart extends Component {
               time: time, 
               realFeel: snap.val().realFeel})      
         }, () => {
+          
           if (count == 12) {
                   this.state.tempData.shift();
                   this.state.humidityData.shift();
@@ -77,6 +79,9 @@ export default class Chart extends Component {
                   this.state.airPreData.shift();
                   this.state.altiData.shift();
                   this.state.realFeelData.shift();
+                  this.setState({
+                    load: true
+                  })
           }
         })
         
@@ -103,8 +108,9 @@ export default class Chart extends Component {
     }
 
   render() {
-    const { data, tempData, airPreData, altiData, humidityData, luxData, realFeelData } = this.state;
+    const { data, tempData, airPreData, altiData, humidityData, luxData, realFeelData, load } = this.state;
     return (
+      load ? 
       <div>
 
 
@@ -213,7 +219,19 @@ export default class Chart extends Component {
   <Legend verticalAlign="top" height={36}/>
   <Area type="monotone" dataKey="realFeel" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
-</div>
+</div> : <div className='sweet-loading'>
+        <DotLoader
+          css={`
+          display: block;
+          margin: 0 auto;
+          border-color: red;
+      `}
+          sizeUnit={"px"}
+          size={150}
+          color={'#123abc'}
+          loading={this.state.loading}
+        />
+      </div> 
     );
   }
 }

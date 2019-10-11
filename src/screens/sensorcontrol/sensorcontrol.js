@@ -5,6 +5,7 @@ import {
   Radio
 } from 'semantic-ui-react'
 import firebase from 'config/firebase'
+import DotLoader from 'react-spinners/DotLoader';
 
 
 
@@ -14,7 +15,8 @@ class SensorControl extends Component {
       this.state ={
           dht22: '',
           bmp180: '',
-          ldr: ''
+          ldr: '',
+          load: false
 
       }
     }
@@ -25,13 +27,18 @@ class SensorControl extends Component {
                 dht22: data.val().dht22,
                 bmp180: data.val().bmp180,
                 ldr: data.val().ldr
+              }, () => {
+                this.setState({
+                  load: true
+                })
               })
           })
     }
   render(){
 
-        const { dht22, bmp180, ldr } = this.state
+        const { dht22, bmp180, ldr, load } = this.state
     return(
+      load ?
       <Container style={{
         padding: '5vh'
     }}>
@@ -74,7 +81,19 @@ class SensorControl extends Component {
     </Segment>
         
         
-        </Container>
+        </Container> : <div className='sweet-loading'>
+        <DotLoader
+          css={`
+          display: block;
+          margin: 0 auto;
+          border-color: red;
+      `}
+          sizeUnit={"px"}
+          size={150}
+          color={'#123abc'}
+          loading={this.state.loading}
+        />
+      </div>
 
    
     )
