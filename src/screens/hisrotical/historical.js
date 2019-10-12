@@ -14,26 +14,50 @@ import {
 
 } from 'semantic-ui-react'
 
+import {
+    AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, ResponsiveContainer, Line, LineChart
+  } from 'recharts';
+
+import DateTimePicker from 'react-datetime-picker';
 import firebase from 'config/firebase'
 import plusimage from 'assest/images/plus.png'
 import Exximg from 'assest/images/fist.jpg'
 import {concat} from 'bytebuffer'
 
-class CityDetail extends Component {
+
+
+class Historical extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data: '',
             cityData: '',
             load: false,
-            list: [
-                1,
-                2,
-                3,
-                4,
-                5,
-                6
-            ]
+            date: new Date(),
+            unixDate: '',
+            cdata: [
+                {
+                  time: 'Page A', temperature: 4000, temp: 2222
+                },
+                {
+                  time: 'Page B', temperature: 3000, temp: 2222
+                },
+                {
+                  time: 'Page C', temperature: 2000, temp: 2222
+                },
+                {
+                  time: 'Page D', temperature: 2780, temp: 2222
+                },
+                {
+                  time: 'Page E', temperature: 1890, temp: 2222
+                },
+                {
+                  time: 'Page F', temperature: 2390, temp: 2222
+                },
+                {
+                  time: 'Page G', temperature: 3490, temp: 2222
+                }
+              ],
         }
     }
 
@@ -41,15 +65,42 @@ class CityDetail extends Component {
 
         this.getData();
 
-        //
-        // fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04
-        // eaa61891ba6ace0154c6b2b6ce1c60/${city.lat},${city.lng}?units=si`).then(fth =>
-        // {     fth.json().then(res => {         console.log(res)       this.setState({
-        //         cityData: res,         load: true,       })     }) })
+        
 
     }
 
+    dateChange = date => {
+        this.setState({ 
+            date,
+            unixDate: new Date(date).getTime()
+        }, () => {
+            console.log(this.state.unixDate)
+        })
+       
+    }
+
     async getData() {
+        console.log("done")
+           const {  unixDate } = this.state 
+
+
+        // fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04eaa61891ba6ace0154c6b2b6ce1c60/${snap.val().lat},${snap.val().lng},${unixDate}?units=si`).then(fth => {
+        //     fth.json().then(res => { 
+    
+        //       this.setState({
+        //         citiesList: this.state.citiesList.concat({...res, "city": snap.val().city})
+               
+        //       }, () => {
+        //         this.setState({
+        //           load: true
+        //         })
+        //       })
+    
+        //     })})
+
+
+
+
         this.setState({
             data: await JSON.parse(localStorage.getItem('data'))
         }, () => {
@@ -63,23 +114,51 @@ class CityDetail extends Component {
     }
 
     render() {
-        const {data, load, list} = this.state;
+        const {data, load, list, cdata, unixDate} = this.state;
         return (
             <Container style={{
                 padding: '5vh'
             }}>
 
-                {/* yaha per grid laga inko left aur right corner ka leyeh */}
-                <Button
+<Grid divided="vertically">
+                    <Grid.Row columns={2}>
+                        <Grid.Column>
+
+                        <Button
                     onClick={() => {
                     this
                         .props
                         .main
-                        .setState({realTime: null, sensorControl: null, cities: true, citydetail: null})
+                        .setState({realTime: null, sensorControl: null, cities: null, citydetail: true, historical:  null})
                 }}
                     color='twitter'>Back</Button>
+                       
+                
+                        </Grid.Column>
+                    
+                    
+                        <Grid.Column >
 
-                {load && <Grid columns={1} divided stackable>
+                        <DateTimePicker
+                             onChange={this.dateChange}
+                             value={this.state.date}
+                             minDate={new Date(0)}
+                        />
+                           <Button
+                    onClick={() => {
+                        this.getData()
+                    
+                    }}
+                    color='black' >Select</Button>
+                        </Grid.Column>
+                        </Grid.Row>
+</Grid>
+                
+               
+
+                {load && 
+                    <div>
+                <Grid columns={1} divided stackable>
                     <Grid.Row stretched>
                         <Grid.Column>
 
@@ -461,404 +540,48 @@ class CityDetail extends Component {
                                     </Grid.Column>
                                 </Grid.Row>
                             </Grid>
-
-                            <Grid
-                                columns={1}
-                                divided
-                                stackable
-                                style={{
-                                border: '2px solid teal',
-                                borderRadius: '5px',
-                                marginTop: '2%'
-                            }}>
-                                <Grid.Row stretched>
-                                    <Grid.Column>
-
-                                        <Grid columns={1} divided stackable>
-                                            <Grid.Row stretched>
-                                                <Grid.Column>
-                                                    <div
-                                                        style={{
-                                                        height: '100%'
-                                                    }}>
-
-                                                        <h1
-                                                            style={{
-                                                            marginLeft: '45%',
-                                                            marginTop: '4%'
-                                                        }}>
-                                                            Forcast
-                                                        </h1>
-
-                                                    </div>
-
-                                                </Grid.Column>
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={1} divided stackable>
-                                            <Grid.Row stretched>
-                                                <Grid.Column>
-                                                    <div
-                                                        style={{
-                                                        height: '100%'
-                                                    }}>
-
-                                                        <h1
-                                                            style={{
-                                                            fontSize: '1.5em'
-                                                        }}>
-                                                            Hourly Update
-                                                        </h1>
-
-                                                    </div>
-
-                                                </Grid.Column>
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={6} divided stackable>
-                                            <Grid.Row stretched>
-                                                {data.hourly.data.map(snap => {
-                                                    var cTime = new Date(snap.time * 1000).toLocaleTimeString().split(":");
-                                                    var pTime = `${cTime[0]}:${cTime[1]} ${cTime[2].split(" ")[1]}`
-                                                    return (
-                                                        <Grid.Column>
-
-                                                            <Segment>
-                                                                <div
-                                                                    style={{
-                                                                    height: '100%',
-                                                                    float: 'left',
-                                                                    width: '100%'
-                                                                }}>
-                                                                    <h1
-                                                                        style={{
-                                                                        float: 'left',
-                                                                        fontSize: '1.3em'
-                                                                    }}>
-                                                                        
-                                                                        {pTime}
-                                                                    </h1>
-
-                                                                    <h1
-                                                                        style={{
-                                                                        fontSize: '1.6em',
-                                                                        paddingTop: '15px'
-                                                                    }}>
-                                                                        {snap.temperature}
-
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '1.2em',
-                                                                            paddingLeft: '5px'
-                                                                        }}>
-                                                                            
-                                                                        </span>
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '0.9em'
-                                                                        }}>
-                                                                            &#8451;
-                                                                        </span>
-                                                                    </h1>
-
-                                                                </div>
-                                                            </Segment>
-
-                                                        </Grid.Column>
-                                                    )
-                                                })}
-
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={1} divided stackable>
-                                            <Grid.Row stretched>
-                                                <Grid.Column>
-                                                    <div
-                                                        style={{
-                                                        height: '100%'
-                                                    }}>
-
-                                                        <h1
-                                                            style={{
-                                                            fontSize: '1.5em'
-                                                        }}>
-                                                            Day by Days Update
-                                                        </h1>
-
-                                                    </div>
-
-                                                </Grid.Column>
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={6} divided stackable>
-                                            <Grid.Row stretched>
-                                                {data.daily.data.map(snap => {
-                                                    var cDate = new Date(snap.time * 1000).toLocaleDateString()
-                                                    return (
-                                                        <Grid.Column>
-
-                                                            <Segment>
-                                                                <div
-                                                                    style={{
-                                                                    height: '100%',
-                                                                    float: 'left',
-                                                                    width: '100%'
-                                                                }}>
-                                                                    <h1
-                                                                        style={{
-                                                                        float: 'left',
-                                                                        fontSize: '1.3em'
-                                                                    }}>
-                                                                        {cDate}
-                                                                    </h1>
-
-                                                                    <h1
-                                                                        style={{
-                                                                        fontSize: '1.6em',
-                                                                        paddingTop: '15px'
-                                                                    }}>
-                                                                       ↑
-
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '1.2em',
-                                                                            paddingLeft: '5px'
-                                                                        }}>
-                                                                            {snap.temperatureHigh}
-                                                                        </span>
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '0.9em'
-                                                                        }}>
-                                                                            &#8451;
-                                                                        </span>
-                                                                    </h1>
-                                                                    
-                                                                    <h1
-                                                                        style={{
-                                                                        fontSize: '1.6em',
-                                                                       
-                                                                    }}>
-                                                                       ↓
-
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '1.2em',
-                                                                            paddingLeft: '5px'
-                                                                        }}>
-                                                                            {snap.temperatureLow}
-                                                                        </span>
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '0.9em'
-                                                                        }}>
-                                                                            &#8451;
-                                                                        </span>
-                                                                    </h1>
-
-                                                                </div>
-                                                            </Segment>
-
-                                                        </Grid.Column>
-                                                    )
-                                                })}
-
-                                            </Grid.Row>
-                                        </Grid>
-                                    </Grid.Column>
-
-                                </Grid.Row>
-                            </Grid>
-
-                            <Grid
-                                columns={1}
-                                divided
-                                stackable
-                                style={{
-                                border: '2px solid teal',
-                                borderRadius: '5px',
-                                marginTop: '2%'
-                            }}>
-                                <Grid.Row stretched>
-                                    <Grid.Column>
-
-                                        <Grid columns={1} divided stackable>
-                                            <Grid.Row stretched>
-                                                <Grid.Column>
-                                                    <div
-                                                        style={{
-                                                        height: '100%'
-                                                    }}>
-
-                                                        <h1
-                                                            style={{
-                                                            marginLeft: '45%',
-                                                            marginTop: '4%'
-                                                        }}>
-                                                            Historical
-                                                        </h1>
-
-                                                    </div>
-
-                                                </Grid.Column>
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={1} divided stackable>
-                                            <Grid.Row stretched>
-                                                <Grid.Column>
-                                                    <div
-                                                        style={{
-                                                        height: '100%'
-                                                    }}>
-
-                                                        <h1
-                                                            style={{
-                                                            fontSize: '1.5em'
-                                                        }}>
-                                                            Hourly Update
-                                                        </h1>
-
-                                                    </div>
-
-                                                </Grid.Column>
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={6} divided stackable>
-                                            <Grid.Row stretched>
-                                                {list.map(snap => {
-                                                    return (
-                                                        <Grid.Column>
-
-                                                            <Segment stackable>
-                                                                <div
-                                                                    style={{
-                                                                    height: '100%',
-                                                                    float: 'left',
-                                                                    width: '100%'
-                                                                }}>
-                                                                    <h1
-                                                                        style={{
-                                                                        fontSize: '1.5em',
-                                                                        paddingLeft: '2px'
-                                                                    }}>
-                                                                        10:30 pm
-
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '1.2em',
-                                                                            paddingLeft: '5px'
-                                                                        }}>
-                                                                            10
-                                                                        </span>
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '0.9em'
-                                                                        }}>
-                                                                            &#8451;
-                                                                        </span>
-                                                                    </h1>
-
-                                                                </div>
-                                                            </Segment>
-
-                                                        </Grid.Column>
-                                                    )
-                                                })}
-
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={1} divided stackable>
-                                            <Grid.Row stretched>
-                                                <Grid.Column>
-                                                    <div
-                                                        style={{
-                                                        height: '100%'
-                                                    }}>
-
-                                                        <h1
-                                                            style={{
-                                                            fontSize: '1.5em'
-                                                        }}>
-                                                            Day by Days Update
-                                                        </h1>
-
-                                                    </div>
-
-                                                </Grid.Column>
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={6} divided stackable>
-                                            <Grid.Row stretched>
-                                                {list.map(snap => {
-                                                    return (
-                                                        <Grid.Column>
-
-                                                            <Segment>
-                                                                <div
-                                                                    style={{
-                                                                    height: '100%',
-                                                                    float: 'left',
-                                                                    width: '100%'
-                                                                }}>
-                                                                    <h1
-                                                                        style={{
-                                                                        float: 'left',
-                                                                        fontSize: '1.3em'
-                                                                    }}>
-                                                                        Monday, 30 2019
-                                                                    </h1>
-
-                                                                    <h1
-                                                                        style={{
-                                                                        fontSize: '1.6em',
-                                                                        paddingTop: '15px'
-                                                                    }}>
-                                                                        Temp:
-
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '1.2em',
-                                                                            paddingLeft: '5px'
-                                                                        }}>
-                                                                            10
-                                                                        </span>
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '0.9em'
-                                                                        }}>
-                                                                            &#8451;
-                                                                        </span>
-                                                                    </h1>
-
-                                                                </div>
-                                                            </Segment>
-
-                                                        </Grid.Column>
-                                                    )
-                                                })}
-
-                                            </Grid.Row>
-                                        </Grid>
-                                    </Grid.Column>
-
-                                </Grid.Row>
-                            </Grid>
-
+                                     
+                              
                         </Grid.Column>
                     </Grid.Row>
-                </Grid>}
+                </Grid>
+                
+                <LineChart width={1000} height={390} data={cdata}
+  margin={{ top: 100, right: 30, left: 0, bottom: 0 }}>
+  
+  <XAxis dataKey="time" />
+  <YAxis dataKey="temperature"/>
+  <CartesianGrid strokeDasharray="3 3" />
+  <Tooltip />
+  <Legend verticalAlign="top" height={36}/>
+  <Line type="monotone" dataKey="temperature" stroke="#FFA500" fillOpacity={1}  />
+  <Line type="monotone" dataKey="temp" stroke="#00BFFF" fillOpacity={1}  />
+</LineChart>
+
+
+      <AreaChart width={1000} height={300} data={cdata}
+  margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+  <defs>
+    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
+      <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+    </linearGradient>
+  </defs>
+  <XAxis dataKey="time" />
+  <YAxis dataKey="temperature"/>
+  <CartesianGrid strokeDasharray="3 3" />
+  <Tooltip />
+  <Legend verticalAlign="top" height={36}/>
+  <Legend verticalAlign="top" height={36}/>
+  <Area type="monotone" dataKey="temperature" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+</AreaChart>
+
+                </div>
+            }
             </Container>
 
         )
     }
 }
 
-export default CityDetail;
+export default Historical;
