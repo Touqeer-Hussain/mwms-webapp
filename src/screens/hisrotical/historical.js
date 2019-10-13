@@ -34,8 +34,12 @@ class Historical extends Component {
             cityData: '',
             load: false,
             date: new Date(),
-            unixDate: '',
+            arrayDate: '',
             histData: '',
+            monthlyData: '',
+            dailyData: '',
+            hourlyData: '',
+            numOfDays: '',
             cdata: [
                 {
                   time: 'Page A', temperature: 4000, temp: 2222
@@ -71,11 +75,14 @@ class Historical extends Component {
     }
 
     dateChange = date => {
+        var cDate = new Date(date).toLocaleDateString().split("/");
+        var numOfDays = new Date(cDate[2], cDate[0], 0).getDate()
+        console.log(numOfDays)
         this.setState({ 
             date,
-            unixDate: Math.round(new Date(date).getTime() / 10000)
+            arrayDate: cDate,
+            numOfDays: numOfDays
         }, () => {
-            console.log(this.state.unixDate);
             
         })
        
@@ -83,24 +90,75 @@ class Historical extends Component {
 
     async getData() {
         console.log("done")
-           const {  unixDate, data } = this.state 
+           const {  unixDate, data, arrayDate, numOfDays } = this.state 
 
-        console.log(unixDate / 1000)
-        fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04eaa61891ba6ace0154c6b2b6ce1c60/${data.latitude},${data.longitude},${unixDate}?units=si`).then(fth => {
+        
+
+
+
+
+        fetch(`https://api.meteostat.net/v1/stations/nearby?lat=${data.latitude}&lon=${data.longitude}&limit=1&key=oyRxjMhk`).then(fth => {
             fth.json().then(res => { 
                 console.log(res)
-                console.log(data.city)
-              this.setState({
-                histData: this.state.histData.concat({...res, "city:": data.city})
+                if(res.data.length >= 1){
+                        // Monthly
+                    fetch(`https://api.meteostat.net/v1/history/monthly?station=${res.data[0].id}&start=${arrayDate[2]}-01&end=${arrayDate[2]}-12&time_zone=${data.timezone}&time_format=Y-m-d%20H:i&key=oyRxjMhk`).then(fth => {
+                        fth.json().then(res => { 
+                        console.log("monthly", res)
+                        this.setState({
+                                monthlyData: res
                
-              }, () => {
-                  
-                this.setState({
-                  load: false
-                })
-              })
+                        }, () => {
+                            this.setState({
+                            load: false
+                        })
+                        })
     
-            })})
+                    })})
+
+                    //daily
+                    console.log(`start=${arrayDate[2]}-${arrayDate[0]}-01&end=${arrayDate[2]}-${arrayDate[0]}-${numOfDays}`)
+                    fetch(`https://api.meteostat.net/v1/history/daily?station=${res.data[0].id}&start=${arrayDate[2]}-${arrayDate[0]}-01&end=${arrayDate[2]}-${arrayDate[0]}-${numOfDays}&time_zone=${data.timezone}&key=oyRxjMhk`).then(fth => {
+                            console.log(fth)    
+                    fth.json().then(res => { 
+                        console.log("daily",res)
+                        this.setState({
+                                dailyData: res
+               
+                        }, () => {
+                            this.setState({
+                            load: false
+                        })
+                        })
+    
+                    })})
+
+                    //hourly
+                    fetch(`https://api.meteostat.net/v1/history/hourly?station=${res.data[0].id}&start=${arrayDate[2]}-${arrayDate[0]}-${arrayDate[1]}&end=${arrayDate[2]}-${arrayDate[0]}-${arrayDate[1]}&time_zone=${data.timezone}&time_format=Y-m-d%20H:i&key=oyRxjMhk`).then(fth => {
+                        fth.json().then(res => { 
+                        console.log("hourly",res)
+                        this.setState({
+                                hourlyData: res
+               
+                        }, () => {
+                            this.setState({
+                            load: false
+                        })
+                        })
+    
+                    })})
+    
+                }else{
+                    prompt('No Nearby Station therefore no data found!!')
+                }
+                    
+        })})
+
+
+
+
+        
+        
 
     }
 
@@ -560,6 +618,24 @@ class Historical extends Component {
 
 
       <AreaChart width={1000} height={300} data={cdata}
+  margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+  <defs>
+    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
+      <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+    </linearGradient>
+  </defs>
+  <XAxis dataKey="time" />
+  <YAxis dataKey="temperature"/>
+  <CartesianGrid strokeDasharray="3 3" />
+  <Tooltip />
+  <Legend verticalAlign="top" height={36}/>
+  <Legend verticalAlign="top" height={36}/>
+  <Area type="monotone" dataKey="temperature" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+</AreaChart>
+
+
+<AreaChart width={1000} height={300} data={cdata}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
