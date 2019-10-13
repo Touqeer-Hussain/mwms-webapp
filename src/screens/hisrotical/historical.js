@@ -40,29 +40,7 @@ class Historical extends Component {
             dailyData: '',
             hourlyData: '',
             numOfDays: new Date(new Date().toLocaleDateString().split("/")[2], new Date().toLocaleDateString().split("/")[0], 0).getDate(),
-            cdata: [
-                {
-                  time: 'Page A', temperature: 4000, temp: 2222
-                },
-                {
-                  time: 'Page B', temperature: 3000, temp: 2222
-                },
-                {
-                  time: 'Page C', temperature: 2000, temp: 2222
-                },
-                {
-                  time: 'Page D', temperature: 2780, temp: 2222
-                },
-                {
-                  time: 'Page E', temperature: 1890, temp: 2222
-                },
-                {
-                  time: 'Page F', temperature: 2390, temp: 2222
-                },
-                {
-                  time: 'Page G', temperature: 3490, temp: 2222
-                }
-              ],
+            
         }
     }
 
