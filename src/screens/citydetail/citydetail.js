@@ -70,6 +70,11 @@ class CityDetail extends Component {
             }}>
 
                 {/* yaha per grid laga inko left aur right corner ka leyeh */}
+                <Grid divided="vertically">
+                    <Grid.Row columns={2}>
+                        <Grid.Column>
+
+          
                 <Button
                     onClick={() => {
                     this
@@ -78,6 +83,29 @@ class CityDetail extends Component {
                         .setState({realTime: null, sensorControl: null, cities: true, citydetail: null})
                 }}
                     color='twitter'>Back</Button>
+
+                    </Grid.Column>
+
+                    <Grid.Column>
+
+                    <Button
+                    onClick={() => {
+                    this
+                        .props
+                        .main
+                        .setState({realTime: null, sensorControl: null, cities: null, citydetail: null, historical: true})
+                }}
+                
+                    color='twitter'>Historical</Button>
+                        </Grid.Column>
+
+
+                    
+                    
+                    </Grid.Row>
+                    </Grid>
+
+
 
                 {load && <Grid columns={1} divided stackable>
                     <Grid.Row stretched>

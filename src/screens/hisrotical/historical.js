@@ -30,11 +30,12 @@ class Historical extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: '',
+            data: JSON.parse(localStorage.getItem('data')),
             cityData: '',
             load: false,
             date: new Date(),
             unixDate: '',
+            histData: '',
             cdata: [
                 {
                   time: 'Page A', temperature: 4000, temp: 2222
@@ -63,7 +64,7 @@ class Historical extends Component {
 
     componentDidMount() {
 
-        this.getData();
+       
 
         
 
@@ -72,49 +73,39 @@ class Historical extends Component {
     dateChange = date => {
         this.setState({ 
             date,
-            unixDate: new Date(date).getTime()
+            unixDate: Math.round(new Date(date).getTime() / 10000)
         }, () => {
-            console.log(this.state.unixDate)
+            console.log(this.state.unixDate);
+            
         })
        
     }
 
     async getData() {
         console.log("done")
-           const {  unixDate } = this.state 
+           const {  unixDate, data } = this.state 
 
-
-        // fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04eaa61891ba6ace0154c6b2b6ce1c60/${snap.val().lat},${snap.val().lng},${unixDate}?units=si`).then(fth => {
-        //     fth.json().then(res => { 
-    
-        //       this.setState({
-        //         citiesList: this.state.citiesList.concat({...res, "city": snap.val().city})
+        console.log(unixDate / 1000)
+        fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04eaa61891ba6ace0154c6b2b6ce1c60/${data.latitude},${data.longitude},${unixDate}?units=si`).then(fth => {
+            fth.json().then(res => { 
+                console.log(res)
+                console.log(data.city)
+              this.setState({
+                histData: this.state.histData.concat({...res, "city:": data.city})
                
-        //       }, () => {
-        //         this.setState({
-        //           load: true
-        //         })
-        //       })
+              }, () => {
+                  
+                this.setState({
+                  load: false
+                })
+              })
     
-        //     })})
-
-
-
-
-        this.setState({
-            data: await JSON.parse(localStorage.getItem('data'))
-        }, () => {
-            this.setState({load: true})
-            this.state.data.daily.data.length = 6
-            this.state.data.hourly.data.length = 6
-            console.log(this.state.data)
-
-        })
+            })})
 
     }
 
     render() {
-        const {data, load, list, cdata, unixDate} = this.state;
+        const {data, load, list, cdata, unixDate, histData} = this.state;
         return (
             <Container style={{
                 padding: '5vh'
@@ -137,19 +128,28 @@ class Historical extends Component {
                         </Grid.Column>
                     
                     
-                        <Grid.Column >
+                        <Grid.Column   >
+<div style={{
 
-                        <DateTimePicker
+    float: 'right'
+}}>
+                        <DateTimePicker 
                              onChange={this.dateChange}
                              value={this.state.date}
                              minDate={new Date(0)}
                         />
-                           <Button
+                           <Button compact style={{
+
+                               borderRadius: '0px ',
+                            
+                           }}
                     onClick={() => {
                         this.getData()
                     
                     }}
                     color='black' >Select</Button>
+
+                    </div> 
                         </Grid.Column>
                         </Grid.Row>
 </Grid>
@@ -194,7 +194,7 @@ class Historical extends Component {
                                                                     fontSize: '2.5em',
                                                                     paddingLeft: '2px',
                                                                     border: '1px solid red'
-                                                                }}>{data.city}
+                                                                }}>{histData.city}
                                                                 </h1>
                                                             </div>
                                                             <div
@@ -220,7 +220,7 @@ class Historical extends Component {
                                                                     fontSize: '5.5em',
                                                                     fontFamily: 'typeface-roboto'
                                                                 }}>
-                                                                    {Math.round(data.currently.temperature)}<span
+                                                                    {Math.round(histData.currently.temperature)}<span
                                                                         style={{
                     fontSize: '0.7em',
                     fontFamily: 'typeface-roboto'
@@ -257,7 +257,7 @@ class Historical extends Component {
                                                                     fontSize: '1.2em',
                                                                     paddingLeft: '5px'
                                                                 }}>
-                                                                    {data.currently.humidity.toString().split('.')[1]}
+                                                                    {histData.currently.humidity.toString().split('.')[1]}
                                                                 </span>
                                                                 <span
                                                                     style={{
@@ -289,7 +289,7 @@ class Historical extends Component {
                                                                     fontSize: '1.2em',
                                                                     paddingLeft: '5px'
                                                                 }}>
-                                                                    {Math.round(data.currently.pressure)}
+                                                                    {Math.round(histData.currently.pressure)}
                                                                 </span>
                                                                 <span
                                                                     style={{
@@ -320,7 +320,7 @@ class Historical extends Component {
                                                                     fontSize: '1.2em',
                                                                     paddingLeft: '5px'
                                                                 }}>
-                                                                    {data.currently.uvIndex}
+                                                                    {histData.currently.uvIndex}
                                                                 </span>
                                                                 <span
                                                                     style={{
@@ -356,7 +356,7 @@ class Historical extends Component {
                                                                     fontSize: '1.2em',
                                                                     paddingLeft: '5px'
                                                                 }}>
-                                                                    {data.currently.visibility.toFixed(2)}
+                                                                    {histData.currently.visibility.toFixed(2)}
                                                                 </span>
                                                                 <span
                                                                     style={{
@@ -388,7 +388,7 @@ class Historical extends Component {
                                                                     fontSize: '1.2em',
                                                                     paddingLeft: '5px'
                                                                 }}>
-                                                                    {data.currently.windBearing}
+                                                                    {histData.currently.windBearing}
                                                                 </span>
                                                                 <span
                                                                     style={{
@@ -420,7 +420,7 @@ class Historical extends Component {
                                                                     fontSize: '1.2em',
                                                                     paddingLeft: '5px'
                                                                 }}>
-                                                                    {data.currently.windSpeed}
+                                                                    {histData.currently.windSpeed}
                                                                 </span>
                                                                 <span
                                                                     style={{
@@ -456,7 +456,7 @@ class Historical extends Component {
                                                                     fontSize: '1.2em',
                                                                     paddingLeft: '5px'
                                                                 }}>
-                                                                    {Math.round(data.currently.apparentTemperature)}
+                                                                    {Math.round(histData.currently.apparentTemperature)}
                                                                 </span>
                                                                 <span
                                                                     style={{
