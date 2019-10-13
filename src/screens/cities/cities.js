@@ -7,7 +7,8 @@ import {
     Modal,
     Header,
     Input,
-    Form
+    Form,
+    Icon
 
 } from 'semantic-ui-react'
 
@@ -145,7 +146,7 @@ class Cities extends Component {
     </div>
     </Card>
 
-        <Modal closeIcon size='small'  open={this.state.modalOpen}>
+        <Modal size='small'  open={this.state.modalOpen}>
     <Modal.Header>Add City</Modal.Header>
     <Modal.Content>
     <Form onSubmit={() => {
@@ -240,6 +241,15 @@ class Cities extends Component {
         />
     </div> }
     </Modal.Content>
+    <Modal.Actions>
+          <Button  onClick={() => {
+            this.setState({
+              modalOpen: false
+            })
+          }} >
+            <Icon name='cancel' /> Cancel
+          </Button>
+        </Modal.Actions>
   </Modal>
             
             
