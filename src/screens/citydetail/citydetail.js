@@ -72,9 +72,9 @@ class CityDetail extends Component {
                 {/* yaha per grid laga inko left aur right corner ka leyeh */}
                 <Grid divided="vertically">
                     <Grid.Row columns={2}>
-                        <Grid.Column>
+                  
+                        <Grid.Column >
 
-          
                 <Button
                     onClick={() => {
                     this
@@ -85,9 +85,12 @@ class CityDetail extends Component {
                     color='twitter'>Back</Button>
 
                     </Grid.Column>
-
                     <Grid.Column>
 
+                    <div style={{
+
+float: 'right'
+}}>
                     <Button
                     onClick={() => {
                     this
@@ -97,11 +100,10 @@ class CityDetail extends Component {
                 }}
                 
                     color='twitter'>Historical</Button>
+</div>
                         </Grid.Column>
 
-
-                    
-                    
+                 
                     </Grid.Row>
                     </Grid>
 
