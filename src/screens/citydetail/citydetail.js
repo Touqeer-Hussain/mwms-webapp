@@ -226,42 +226,10 @@ float: 'right'
 
                                                         </div>
                                                     </Segment>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                UV Index:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    {data.currently.uvIndex}
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-
-                                                    </Segment>
-                                                </Grid.Column>
+                                                   </Grid.Column>
 
                                                 <Grid.Column stackable>
+
                                                 <Segment>
                                                         <div
                                                             style={{
@@ -294,75 +262,13 @@ float: 'right'
                                                         </div>
                                                     </Segment>
                                                     
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                Wind Direction:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    {data.currently.windBearing}
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                Wind Speed:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    {data.currently.windSpeed}
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-
-                                                    </Segment>
                                                 </Grid.Column>
 
                                                 <Grid.Column stackable>
-
-                                                    <Segment>
+     
+                                                <Segment style={{
+                                                    textAlign: 'center'
+                                                }}>
                                                         <div
                                                             style={{
                                                             height: '100%',
@@ -394,78 +300,169 @@ float: 'right'
                                                         </div>
 
                                                     </Segment>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                Temperature:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
-                                                                Temperature:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    10
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
+                                                
                                                 </Grid.Column>
                                             </Grid.Row>
                                         </Grid>
+                        
+                            <Grid columns={2} divided stackable>
+                                            <Grid.Row stretched>
+                                                <Grid.Column>
+                                                <Segment style={{
+                                                    textAlign: 'center'
+                                                }}>
+                                                        <div
+                                                            style={{
+                                                            height: '100%',
+                                                            float: 'left',
+                                                            width: '100%'
+                                                        }}>
+                                                            <h1
+                                                                style={{
+                                                                fontSize: '1.5em',
+                                                                paddingLeft: '2px'
+                                                            }}>
+                                                                Wind Direction:
 
-                                    </Grid.Column>
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '1.2em',
+                                                                    paddingLeft: '5px'
+                                                                }}>
+                                                                    {data.currently.windBearing}
+                                                                </span>
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '0.9em'
+                                                                }}>
+                                                                    &#8451;
+                                                                </span>
+                                                            </h1>
+
+                                                        </div>
+                                                    </Segment>
+
+
+                                                    <Segment style={{
+                                                    textAlign: 'center'
+                                                }}>
+                                                        <div
+                                                            style={{
+                                                            height: '100%',
+                                                            float: 'left',
+                                                            width: '100%'
+                                                        }}>
+                                                            <h1
+                                                                style={{
+                                                                fontSize: '1.5em',
+                                                                paddingLeft: '2px'
+                                                            }}>
+                                                                Wind Speed:
+
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '1.2em',
+                                                                    paddingLeft: '5px'
+                                                                }}>
+                                                                    {data.currently.windSpeed}
+                                                                </span>
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '0.9em'
+                                                                }}>
+                                                                    &#8451;
+                                                                </span>
+                                                            </h1>
+
+                                                        </div>
+
+                                                    </Segment>
+
+                                                    </Grid.Column>
+
+                                                    <Grid.Column>
+
+                                                    <Segment style={{
+                                                    textAlign: 'center'
+                                                }}>
+                                                        <div
+                                                            style={{
+                                                            height: '100%',
+                                                            float: 'left',
+                                                            width: '100%'
+                                                        }}>
+                                                            <h1
+                                                                style={{
+                                                                fontSize: '1.5em',
+                                                                paddingLeft: '2px'
+                                                            }}>
+                                                                UV Index:
+
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '1.2em',
+                                                                    paddingLeft: '5px'
+                                                                }}>
+                                                                    {data.currently.uvIndex}
+                                                                </span>
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '0.9em'
+                                                                }}>
+                                                                    &#8451;
+                                                                </span>
+                                                            </h1>
+
+                                                        </div>
+
+                                                    </Segment>
+                                                    
+
+                                                    <Segment style={{
+                                                    textAlign: 'center'
+                                                }}>
+                                                        <div
+                                                            style={{
+                                                            height: '100%',
+                                                            float: 'left',
+                                                            width: '100%'
+                                                        }}>
+                                                            <h1
+                                                                style={{
+                                                                fontSize: '1.5em',
+                                                                paddingLeft: '2px'
+                                                            }}>
+                                                                Visibility:
+
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '1.2em',
+                                                                    paddingLeft: '5px'
+                                                                }}>
+                                                                    {data.currently.visibility.toFixed(2)}
+                                                                </span>
+                                                                <span
+                                                                    style={{
+                                                                    fontSize: '0.9em'
+                                                                }}>
+                                                                    &#8451;
+                                                                </span>
+                                                            </h1>
+
+                                                        </div>
+                                                    </Segment>
+
+
+
+
+                            </Grid.Column>
                                 </Grid.Row>
                             </Grid>
 
+                            </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+                            
                             <Grid
                                 columns={1}
                                 divided
