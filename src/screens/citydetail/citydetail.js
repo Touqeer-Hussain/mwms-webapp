@@ -10,7 +10,8 @@ import {
     Form,
     Grid,
     Segment,
-    Radio
+    Radio,
+    Icon
 
 } from 'semantic-ui-react'
 
@@ -18,7 +19,6 @@ import firebase from 'config/firebase'
 import plusimage from 'assest/images/plus.png'
 import Exximg from 'assest/images/fist.jpg'
 import {concat} from 'bytebuffer'
-
 class CityDetail extends Component {
     constructor(props) {
         super(props);
@@ -74,16 +74,18 @@ class CityDetail extends Component {
                     <Grid.Row columns={2}>
                   
                         <Grid.Column >
-
-                <Button
-                    onClick={() => {
+                        <Button animated     onClick={() => {
                     this
                         .props
                         .main
                         .setState({realTime: null, sensorControl: null, cities: true, citydetail: null})
                 }}
-                    color='twitter'>Back</Button>
-
+                    color='twitter'>
+      <Button.Content visible>Back</Button.Content>
+      <Button.Content hidden>
+        <Icon name='arrow left' />
+      </Button.Content>
+    </Button>
                     </Grid.Column>
                     <Grid.Column>
 
@@ -91,16 +93,20 @@ class CityDetail extends Component {
 
 float: 'right'
 }}>
-                    <Button
-                    onClick={() => {
+    <Button animated onClick={() => {
                     this
                         .props
                         .main
                         .setState({realTime: null, sensorControl: null, cities: null, citydetail: null, historical: true})
                 }}
                 
-                    color='twitter'>Historical</Button>
-</div>
+                    color='twitter' >
+      <Button.Content visible>History</Button.Content>
+      <Button.Content hidden>
+        <Icon name='arrow right' />
+      </Button.Content>
+    </Button>
+                    </div>
                         </Grid.Column>
 
                  

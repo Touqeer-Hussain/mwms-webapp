@@ -10,7 +10,8 @@ import {
     Form,
     Grid,
     Segment,
-    Radio
+    Radio,
+    Icon
 
 } from 'semantic-ui-react'
 
@@ -150,14 +151,21 @@ class Historical extends Component {
                     <Grid.Row columns={2}>
                         <Grid.Column>
 
-                        <Button
+                        <Button animated
                     onClick={() => {
                     this
                         .props
                         .main
                         .setState({realTime: null, sensorControl: null, cities: null, citydetail: true, historical:  null})
                 }}
-                    color='twitter'>Back</Button>
+                    color='twitter'>
+                        <Button.Content visible>Back</Button.Content>
+
+                        <Button.Content hidden>
+                        <Icon name='arrow left' />
+                        
+                        </Button.Content>
+                        </Button>
                        
                 
                         </Grid.Column>
