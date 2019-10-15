@@ -171,11 +171,9 @@ class Historical extends Component {
                         </Grid.Column>
                     
                     
-                        <Grid.Column   >
-<div style={{
-
-    float: 'right'
-}}>
+                        <Grid.Column  style={{
+                            float: 'right'
+                        }} >
                         <DateTimePicker 
                              onChange={this.dateChange}
                              value={this.state.date}
@@ -184,7 +182,7 @@ class Historical extends Component {
                            <Button compact style={{
 
                                borderRadius: '0px ',
-                            
+                               float: 'right'
                            }}
                     onClick={() => {
                         this.getData()
@@ -192,7 +190,7 @@ class Historical extends Component {
                     }}
                     color='black' >Select</Button>
 
-                    </div> 
+                
                         </Grid.Column>
                         </Grid.Row>
 </Grid>
