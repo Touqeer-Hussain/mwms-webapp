@@ -195,10 +195,13 @@ float: 'right'
 
                                         <Grid columns={3} divided stackable>
                                             <Grid.Row stretched>
-                                                <Grid.Column stackable>
 
-                                                    <Segment>
-                                                        <div
+                                            <Grid.Column stackable>
+
+                                    <Segment style={{
+                                     textAlign:'center'
+                            }}>
+                                                 <div
                                                             style={{
                                                             float: 'left'
                                                         }}>
@@ -230,7 +233,9 @@ float: 'right'
 
                                                 <Grid.Column stackable>
 
-                                                <Segment>
+                                                <Segment style={{
+                                                    textAlign: 'center'
+                                                }}>
                                                         <div
                                                             style={{
                                                             height: '100%',
