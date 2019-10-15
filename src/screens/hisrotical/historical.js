@@ -147,8 +147,8 @@ class Historical extends Component {
                 padding: '5vh'
             }}>
 
-<Grid divided="vertically">
-                    <Grid.Row columns={2}>
+<Grid columns={2} divided stackable>
+                    <Grid.Row >
                         <Grid.Column>
 
                         <Button animated
@@ -171,9 +171,13 @@ class Historical extends Component {
                         </Grid.Column>
                     
                     
-                        <Grid.Column  style={{
-                            float: 'right'
-                        }} >
+                        <Grid.Column >
+                            <div style={{
+                                float: 'right',
+                            
+                                
+                                
+                            }}>
                         <DateTimePicker 
                              onChange={this.dateChange}
                              value={this.state.date}
@@ -188,9 +192,9 @@ class Historical extends Component {
                         this.getData()
                     
                     }}
-                    color='black' >Select</Button>
+                    color='black'  >Select</Button>
 
-                
+</div>                
                         </Grid.Column>
                         </Grid.Row>
 </Grid>
