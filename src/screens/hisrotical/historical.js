@@ -186,13 +186,12 @@ class Historical extends Component {
                            <Button compact style={{
 
                                borderRadius: '0px ',
-                               float: 'right'
-                           }}
+                               }}
                     onClick={() => {
                         this.getData()
                     
                     }}
-                    color='black'  >Select</Button>
+             color='black'  >Select</Button>
 
 </div>                
                         </Grid.Column>

@@ -239,37 +239,6 @@ float: 'right'
                                                                 fontSize: '1.5em',
                                                                 paddingLeft: '2px'
                                                             }}>
-                                                                Air Pressure:
-
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
-                                                                }}>
-                                                                    {Math.round(data.currently.pressure)}
-                                                                </span>
-                                                                <span
-                                                                    style={{
-                                                                    fontSize: '0.9em'
-                                                                }}>
-                                                                    &#8451;
-                                                                </span>
-                                                            </h1>
-
-                                                        </div>
-                                                    </Segment>
-                                                    <Segment>
-                                                        <div
-                                                            style={{
-                                                            height: '100%',
-                                                            float: 'left',
-                                                            width: '100%'
-                                                        }}>
-                                                            <h1
-                                                                style={{
-                                                                fontSize: '1.5em',
-                                                                paddingLeft: '2px'
-                                                            }}>
                                                                 UV Index:
 
                                                                 <span
@@ -293,8 +262,7 @@ float: 'right'
                                                 </Grid.Column>
 
                                                 <Grid.Column stackable>
-
-                                                    <Segment>
+                                                <Segment>
                                                         <div
                                                             style={{
                                                             height: '100%',
@@ -306,14 +274,14 @@ float: 'right'
                                                                 fontSize: '1.5em',
                                                                 paddingLeft: '2px'
                                                             }}>
-                                                                Visibility:
+                                                                Air Pressure:
 
                                                                 <span
                                                                     style={{
                                                                     fontSize: '1.2em',
                                                                     paddingLeft: '5px'
                                                                 }}>
-                                                                    {data.currently.visibility.toFixed(2)}
+                                                                    {Math.round(data.currently.pressure)}
                                                                 </span>
                                                                 <span
                                                                     style={{
@@ -325,7 +293,7 @@ float: 'right'
 
                                                         </div>
                                                     </Segment>
-
+                                                    
                                                     <Segment>
                                                         <div
                                                             style={{
