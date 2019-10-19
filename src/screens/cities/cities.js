@@ -12,6 +12,8 @@ import {
 
 } from 'semantic-ui-react'
 
+
+
 import firebase from 'config/firebase'
 import plusimage from 'assest/images/plus.png'
 import MainCard from 'components/maincard'
@@ -96,7 +98,6 @@ class Cities extends Component {
       })
       let fth = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${searchQuery}&key=1ef2a51a49a748d1afd8e32f57c441d9`);
       let res = await fth.json();
-      console.log(res)
       this.setState({
         searchList: res
       }, () => {
@@ -162,11 +163,12 @@ class Cities extends Component {
        
     }}/>
     </Form> {
+      
       searchLoad ? 
     
-    this.state.searchList && this.state.searchList > 1 && this.state.searchList.results.map((data, i) => {
-      
-        return data.confidence <= 3 ? <div onClick={() => {
+    this.state.searchList && this.state.searchList.results.length >= 1 && this.state.searchList.results.map((data, i) => {
+            console.log(data)
+        return data.confidence <= 3  && data.components.city && data.components.country ? <div onClick={() => {
 
           
           firebase.database().ref('cities').once("value", snap  => {
@@ -221,11 +223,9 @@ class Cities extends Component {
         fontSize: '3em',
         fontFamily: 'vincHand'
        
-      }}>{data.components.city +",    "+ data.components.country}</h3> </div>: <h3 style={{
-        fontSize: '3em',
-        fontFamily: 'vincHand'
-       
-      }}>{"No results found!\nPlease search again!"}</h3>
+      }}>{data.components.city +",    "+ data.components.country}</h3> </div>: <span>
+          
+      </span>
     })
      : <div className='sweet-loading'>
         <DotLoader
