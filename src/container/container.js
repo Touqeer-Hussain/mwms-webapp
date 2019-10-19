@@ -16,7 +16,9 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
-import Exximg from 'assest/images/fist.jpg'
+import Exximg from 'assest/images/fist.jpg';
+import logoname from 'assest/images/mwms.jpg'
+import logo from 'assest/images/logo.PNG'
 
 
 const getWidth = () => {
@@ -57,9 +59,12 @@ class DesktopContainer extends Component {
               secondary={!fixed}
               size='large'
               color= 'teal'
-            >
-              <Container>
-                
+            > 
+            
+            <Container>
+            <Image size='tiny'  src={logo} />
+            
+             
                 <Menu.Item as='a' active={main.state.realTime} onClick={(e) => {
                    
                      
