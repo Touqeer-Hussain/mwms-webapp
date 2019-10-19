@@ -150,8 +150,7 @@ float: 'right'
                                                                     style={{
                                                                     fontSize: '2.5em',
                                                                     paddingLeft: '2px',
-                                                                    border: '1px solid red'
-                                                                }}>{data.city}
+                                                                    }}>{data.city}
                                                                 </h1>
                                                             </div>
                                                             <div
@@ -160,7 +159,6 @@ float: 'right'
                                                                 float: 'left',
                                                                 height: '60%',
                                                                 paddingTop: '2px',
-                                                                border: '1px solid red'
                                                             }}>
                                                                 <Image floated='right' size='medium' src={require('assest/images/fist.jpg')}/>
                                                             </div>
@@ -169,13 +167,13 @@ float: 'right'
                                                                 style={{
                                                                 height: '70%',
                                                                 width: '60%',
-                                                                paddingLeft: '13%'
+                                                                paddingLeft: '20%'  
                                                             }}>
 
                                                                 <p
                                                                     style={{
                                                                     fontSize: '5.5em',
-                                                                    fontFamily: 'typeface-roboto'
+                                                                    fontFamily: 'typeface-roboto',
                                                                 }}>
                                                                     {Math.round(data.currently.temperature)}<span
                                                                         style={{
