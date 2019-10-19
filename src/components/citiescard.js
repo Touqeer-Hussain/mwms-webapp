@@ -64,7 +64,9 @@ class CitiesCard extends Component {
             height: '100%',
             width: '60%',
             float: 'left',
-            border: '1px solid blue',
+            borderTop: '2px solid teal',
+            borderBottom: '2px solid teal',
+            borderRight: '2px solid teal'
           
 
          }
@@ -86,14 +88,15 @@ class CitiesCard extends Component {
             height: '100%',
             width: '40%',
             float: 'left',
-            border: '1px solid blue'
+            borderTop: '2px solid teal',
+            borderBottom: '2px solid teal',
 
          }
          }>
              <Image style={{
           marginTop: '-22px',
           marginLeft: '13px',
-
+          
              }} src={image}/>
               </div>
 
@@ -108,8 +111,7 @@ class CitiesCard extends Component {
                 height: '15%',
                 width: '100%',
                 float: 'left',
-                border: '1px solid red'
-            
+             
 
 
               }}> 
