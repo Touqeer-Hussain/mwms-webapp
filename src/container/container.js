@@ -16,6 +16,8 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+import Exximg from 'assest/images/fist.jpg'
+
 
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
@@ -44,7 +46,8 @@ class DesktopContainer extends Component {
           <Segment
             inverted
             textAlign='center'
-            style={{  padding: '0.5em 0em', backgroundColor: 'teal' }}
+            style={{  padding: '0.5em 0em'}}
+            color= 'teal'
             vertical
           >
             <Menu
@@ -53,6 +56,7 @@ class DesktopContainer extends Component {
               pointing={!fixed}
               secondary={!fixed}
               size='large'
+              color= 'teal'
             >
               <Container>
                 
@@ -64,7 +68,8 @@ class DesktopContainer extends Component {
                       sensorControl: null,
                       cities: null,
                       citydetail: null,
-                      historical: null
+                      historical: null,
+                      about: null,
 
                     })
                 }}>Realtime</Menu.Item>
@@ -75,19 +80,34 @@ class DesktopContainer extends Component {
                       sensorControl: true,
                       cities: null,
                       citydetail: null,
-                      historical: null
+                      historical: null,
+                      about: null
                     })
                 }}>Sensor Control</Menu.Item>
-                <Menu.Item as='a' onClick={(e) => {
+                <Menu.Item as='a' active={main.state.cities} onClick={(e) => {
                   
                   main.setState({
                     realTime: null,
                     sensorControl: null,
                     cities: true,
                     citydetail: null,
-                    historical: null
+                    historical: null,
+                    about: null
                   })
               }} >Cities</Menu.Item>
+              <Menu.Item as='a' active={main.state.about} onClick={(e) => {
+                   
+                     
+                   main.setState({
+                     realTime: null,
+                     sensorControl: null,
+                     cities: null,
+                     citydetail: null,
+                     historical: null,
+                     about: true,
+
+                   })
+               }}>About</Menu.Item>
                 <Menu.Item position='right'>
                   {/* <Button as='a' inverted={!fixed}>
                     Log in
@@ -96,6 +116,7 @@ class DesktopContainer extends Component {
                     Sign Up
                   </Button> */}
                 </Menu.Item>
+                
               </Container>
             </Menu>
             
@@ -120,7 +141,7 @@ class MobileContainer extends Component {
   handleToggle = () => this.setState({ sidebarOpened: true })
 
   render() {
-    const { children } = this.props
+    const { children, main } = this.props
     const { sidebarOpened } = this.state
 
     return (
@@ -137,27 +158,75 @@ class MobileContainer extends Component {
           vertical
           visible={sidebarOpened}
         >
-          <Menu.Item as='a' active>
-            Home
+          <Menu.Item>
+            
+          <Image  size='tiny' src={require('assest/images/fist.jpg')}/>
+          <p>MWMS</p>
           </Menu.Item>
-          <Menu.Item as='a'>Work</Menu.Item>
-          <Menu.Item as='a'>Company</Menu.Item>
-          <Menu.Item as='a'>Careers</Menu.Item>
-          <Menu.Item as='a'>Log in</Menu.Item>
-          <Menu.Item as='a'>Sign Up</Menu.Item>
+          
+          
+          <Menu.Item as='a' active={main.state.realTime} onClick={(e) => {
+                   
+                     
+                   main.setState({
+                     realTime: true,
+                     sensorControl: null,
+                     cities: null,
+                     citydetail: null,
+                     historical: null,
+                     about: null,
+
+                   })
+               }}>Realtime</Menu.Item>
+               <Menu.Item as='a' active={main.state.sensorControl} onClick={(e) => {
+                 
+                   main.setState({
+                     realTime: null,
+                     sensorControl: true,
+                     cities: null,
+                     citydetail: null,
+                     historical: null,
+                     about: null
+                   })
+               }}>Sensor Control</Menu.Item>
+               <Menu.Item as='a' active={main.state.cities} onClick={(e) => {
+                 
+                 main.setState({
+                   realTime: null,
+                   sensorControl: null,
+                   cities: true,
+                   citydetail: null,
+                   historical: null,
+                   about: null
+                 })
+             }} >Cities</Menu.Item>
+             <Menu.Item as='a' active={main.state.about} onClick={(e) => {
+                  
+                    
+                  main.setState({
+                    realTime: null,
+                    sensorControl: null,
+                    cities: null,
+                    citydetail: null,
+                    historical: null,
+                    about: true,
+
+                  })
+              }}>About</Menu.Item>
         </Sidebar>
 
         <Sidebar.Pusher dimmed={sidebarOpened}>
           <Segment
             inverted
             textAlign='center'
-            style={{ padding: '1em 0em', }}
+            style={{ padding: '0.5em 0em', }}
             vertical
+            color='teal'
           >
             <Container>
-              <Menu inverted pointing secondary size='large'>
-                <Menu.Item onClick={this.handleToggle}>
-                  <Icon name='sidebar' />
+              <Menu inverted secondary  color='teal'>
+                <Menu.Item onClick={this.handleToggle} >
+                  <Icon name='sidebar' style={{fontSize: '1.5em'}}/>
                 </Menu.Item>
                 <Menu.Item position='right'>
                   {/* <Button as='a' inverted>
