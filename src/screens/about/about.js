@@ -43,18 +43,34 @@ class About extends Component {
         <Container style={{
             padding: '5vh'
         }}>
-            <h1>About</h1>
-
             <Grid columns={1} divided stackable>
                                             <Grid.Row stretched>
+                                                <Grid.Column stackable>
+                                                    <Segment>
+                                                    <Image size='big'   src={logoname} centered/>
 
-                                            <Grid.Column stackable>
-                             <segment>              
-                                            <Image size='big'   src={logoname} centered/>
-</segment>
-                                              </Grid.Column>
-                                              </Grid.Row>
-                                              </Grid>
+
+                            </Segment> <Segment>
+                            <h1>About</h1>
+         
+<h3>The product My Weather Monitoring System (MWMS) is a Weather Monitoring Project which is IOT based Project. This system is too precisely, quickly and ease to show all information about weather.
+
+<br/><br/> The main motive of this project is to monitor environment/humidity/air pressure. It will help us to get the real-time readings on a small scale and give information about the coming weather throughout the day. It is easy to use and learns for everyone due to the friendly user interface.
+
+<br/><br/> In spite of this effective and eye-catching GUI for user’s system include very low cost hardware to give concurrent information about weather.  
+</h3>
+</Segment>
+
+<Segment>
+<h1>User Interfaces</h1>
+<h3>For all functionality to be handled via web interface likewise web application and android base.
+Eye catching interacted GUI used for user.
+</h3>
+                                               </Segment>
+
+                                                </Grid.Column>
+                                            </Grid.Row>
+                                        </Grid>
 
 
 

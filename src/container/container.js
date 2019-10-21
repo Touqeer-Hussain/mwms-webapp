@@ -62,7 +62,7 @@ class DesktopContainer extends Component {
             > 
             
             <Container>
-            <Image size='tiny'  src={logo} />
+            <Image  src={logo} width='40px' height='40px' />
             
              
                 <Menu.Item as='a' active={main.state.realTime} onClick={(e) => {
