@@ -17,6 +17,7 @@ import {
 
 import firebase from 'config/firebase'
 import logoname from 'assest/images/mwms.jpg'
+import logo from 'assest/images/logo.PNG'
 
 class About extends Component {
     constructor(props){
@@ -46,11 +47,14 @@ class About extends Component {
             <Grid columns={1} divided stackable>
                                             <Grid.Row stretched>
                                                 <Grid.Column stackable>
-                                                    <Segment>
+                                                
+
+                                                    <Image size='medium'   src={logo} centered/>
+
                                                     <Image size='big'   src={logoname} centered/>
 
 
-                            </Segment> <Segment>
+                           <Segment>
                             <h1>About</h1>
          
 <h3>The product My Weather Monitoring System (MWMS) is a Weather Monitoring Project which is IOT based Project. This system is too precisely, quickly and ease to show all information about weather.
@@ -62,10 +66,6 @@ class About extends Component {
 </Segment>
 
 <Segment>
-<h1>User Interfaces</h1>
-<h3>For all functionality to be handled via web interface likewise web application and android base.
-Eye catching interacted GUI used for user.
-</h3>
                                                </Segment>
 
                                                 </Grid.Column>
