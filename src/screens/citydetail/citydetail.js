@@ -491,7 +491,7 @@ float: 'right'
                                                                 textAlign:'center',
                                                             marginTop: '4%'
                                                         }}>
-                                                            Forcast
+                                                           Forcast 
                                                         </h1>
 
                                                     </div>
@@ -513,7 +513,7 @@ float: 'right'
                                                             fontSize: '1.5em',
                                                         textAlign:'center'
                                                         }}>
-                                                            Hourly Update
+                                                            ( Hourly Update )
                                                         </h1>
 
                                                     </div>
@@ -595,7 +595,7 @@ float: 'right'
                                                             fontSize: '1.5em',
                                                             textAlign:'center'
                                                         }}>
-                                                            Day by Days Update
+                                                            ( Day by Days Update )
                                                         </h1>
 
                                                     </div>
@@ -735,7 +735,7 @@ float: 'right'
                                                             fontSize: '1.5em',
                                                             textAlign:'center'
                                                         }}>
-                                                            Hourly Update
+                                                            ( Hourly Update )
                                                         </h1>
 
                                                     </div>
@@ -805,7 +805,7 @@ float: 'right'
                                                             
                                                         textAlign:'center'
                                                         }}>
-                                                            Day by Days Update
+                                                            ( Day by Days Update )
                                                         </h1>
 
                                                     </div>
