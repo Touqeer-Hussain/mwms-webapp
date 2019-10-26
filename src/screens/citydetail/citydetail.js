@@ -196,18 +196,20 @@ float: 'right'
 
                                             <Grid.Column stackable>
 
-                                    <Segment style={{
-                                     textAlign:'center'
-                            }}>
-                                                 <div
+                                            <Segment style={{
+                                                    textAlign: 'center'
+                                                }}>
+                                                        <div
                                                             style={{
-                                                            float: 'left'
+                                                            height: '100%',
+                                                            float: 'left',
+                                                            width: '100%'
                                                         }}>
                                                             <h1
                                                                 style={{
                                                                 fontSize: '1.5em',
-                                                                paddingLeft: '2px',
-                                                                textAlign:'center' }}>
+                                                                paddingLeft: '2px'
+                                                            }}>
                                                                 Humidity:
 
                                                                 <span
@@ -215,7 +217,8 @@ float: 'right'
                                                                     fontSize: '1.2em',
                                                                     paddingLeft: '5px'
                                                                 }}>
-                                                                    {data.currently.humidity.toString().split('.')[1]}
+                                                                       {data.currently.humidity.toString().split('.')[1]}
+                                                                
                                                                 </span>
                                                                 <span
                                                                     style={{
@@ -227,6 +230,7 @@ float: 'right'
 
                                                         </div>
                                                     </Segment>
+                                                 
                                                    </Grid.Column>
 
                                                 <Grid.Column stackable>
