@@ -16,9 +16,9 @@ class App extends Component {
         realTime: null,
         sensorControl: null,
         cities: null,
-        citydetail: null,
+        citydetail: true,
         historical: null,
-        about: true
+        about: null
   
       }
     }
