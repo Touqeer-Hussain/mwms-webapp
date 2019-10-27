@@ -196,12 +196,14 @@ float: 'right'
 
                                             <Grid.Column stackable>
 
-                                    <Segment style={{
-                                     textAlign:'center'
-                            }}>
-                                                 <div
+                                            <Segment style={{
+                                                    textAlign: 'center'
+                                                }}>
+                                                        <div
                                                             style={{
-                                                            float: 'left'
+                                                            height: '100%',
+                                                            float: 'left',
+                                                            width: '100%'
                                                         }}>
                                                             <h1
                                                                 style={{
@@ -215,7 +217,8 @@ float: 'right'
                                                                     fontSize: '1.2em',
                                                                     paddingLeft: '5px'
                                                                 }}>
-                                                                    {data.currently.humidity.toString().split('.')[1]}
+                                                                       {data.currently.humidity.toString().split('.')[1]}
+                                                                
                                                                 </span>
                                                                 <span
                                                                     style={{
@@ -227,6 +230,7 @@ float: 'right'
 
                                                         </div>
                                                     </Segment>
+                                                 
                                                    </Grid.Column>
 
                                                 <Grid.Column stackable>
@@ -487,11 +491,11 @@ float: 'right'
                                                     }}>
 
                                                         <h1
-                                                            style={{
-                                                            marginLeft: '45%',
+                                                            style={{    
+                                                                textAlign:'center',
                                                             marginTop: '4%'
                                                         }}>
-                                                            Forcast
+                                                           Forcast 
                                                         </h1>
 
                                                     </div>
@@ -505,14 +509,15 @@ float: 'right'
                                                 <Grid.Column>
                                                     <div
                                                         style={{
-                                                        height: '100%'
+                                                        height: '100%',
                                                     }}>
 
                                                         <h1
                                                             style={{
-                                                            fontSize: '1.5em'
+                                                            fontSize: '1.5em',
+                                                        textAlign:'center'
                                                         }}>
-                                                            Hourly Update
+                                                            ( Hourly Update )
                                                         </h1>
 
                                                     </div>
@@ -534,12 +539,14 @@ float: 'right'
                                                                     style={{
                                                                     height: '100%',
                                                                     float: 'left',
-                                                                    width: '100%'
+                                                                    width: '100%',
+                                                                    textAlign:'center'
                                                                 }}>
                                                                     <h1
                                                                         style={{
                                                                         float: 'left',
-                                                                        fontSize: '1.3em'
+                                                                       fontSize: '1.3em',
+                                                                       marginleft: '50%'
                                                                     }}>
                                                                         
                                                                         {pTime}
@@ -548,14 +555,16 @@ float: 'right'
                                                                     <h1
                                                                         style={{
                                                                         fontSize: '1.6em',
-                                                                        paddingTop: '15px'
+                                                                        paddingTop: '15px',
+                                                                        textAlign:'center'
                                                                     }}>
                                                                         {snap.temperature}
 
                                                                         <span
                                                                             style={{
                                                                             fontSize: '1.2em',
-                                                                            paddingLeft: '5px'
+                                                                            paddingLeft: '5px',
+                                                                            textAlign:'center'
                                                                         }}>
                                                                             
                                                                         </span>
@@ -587,9 +596,10 @@ float: 'right'
 
                                                         <h1
                                                             style={{
-                                                            fontSize: '1.5em'
+                                                            fontSize: '1.5em',
+                                                            textAlign:'center'
                                                         }}>
-                                                            Day by Days Update
+                                                            ( Day by Days Update )
                                                         </h1>
 
                                                     </div>
@@ -605,7 +615,10 @@ float: 'right'
                                                     return (
                                                         <Grid.Column>
 
-                                                            <Segment>
+                                                            <Segment style={{
+                                                                
+                                                        textAlign:'center'
+                                                            }}>
                                                                 <div
                                                                     style={{
                                                                     height: '100%',
@@ -700,7 +713,8 @@ float: 'right'
 
                                                         <h1
                                                             style={{
-                                                            marginLeft: '45%',
+                                            
+                                                            textAlign:'center',
                                                             marginTop: '4%'
                                                         }}>
                                                             Historical
@@ -722,9 +736,10 @@ float: 'right'
 
                                                         <h1
                                                             style={{
-                                                            fontSize: '1.5em'
+                                                            fontSize: '1.5em',
+                                                            textAlign:'center'
                                                         }}>
-                                                            Hourly Update
+                                                            ( Hourly Update )
                                                         </h1>
 
                                                     </div>
@@ -739,7 +754,9 @@ float: 'right'
                                                     return (
                                                         <Grid.Column>
 
-                                                            <Segment stackable>
+                                                            <Segment stackable 
+                                                            style={{
+                                                                textAlign:'center'}}>
                                                                 <div
                                                                     style={{
                                                                     height: '100%',
@@ -788,9 +805,11 @@ float: 'right'
 
                                                         <h1
                                                             style={{
-                                                            fontSize: '1.5em'
+                                                            fontSize: '1.5em',
+                                                            
+                                                        textAlign:'center'
                                                         }}>
-                                                            Day by Days Update
+                                                            ( Day by Days Update )
                                                         </h1>
 
                                                     </div>
@@ -805,7 +824,8 @@ float: 'right'
                                                     return (
                                                         <Grid.Column>
 
-                                                            <Segment>
+                                                            <Segment style={{
+                                                        textAlign:'center'}}>
                                                                 <div
                                                                     style={{
                                                                     height: '100%',
