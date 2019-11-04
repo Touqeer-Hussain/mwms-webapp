@@ -52,6 +52,20 @@ class DesktopContainer extends Component {
             color= 'teal'
             vertical
           >
+            <div style={{
+                height: '100%',
+                float: 'left',
+                width: '100%',
+            
+            }} >
+                  <h1 style={{
+                    fontSize: '2em'
+                  }} >My Weather Monitering System</h1>
+              
+              
+            
+            </div>
+            
             <Menu
               fixed={fixed ? 'top' : null}
               inverted={!fixed}
@@ -62,7 +76,8 @@ class DesktopContainer extends Component {
             > 
             
             <Container>
-            <Image  src={logo} width='40px' height='40px' />
+            
+            <Image  src={logo} width="50px"  height="50px"/>
             
              
                 <Menu.Item as='a' active={main.state.realTime} onClick={(e) => {
@@ -155,6 +170,7 @@ class MobileContainer extends Component {
         getWidth={getWidth}
         maxWidth={Responsive.onlyMobile.maxWidth}
       >
+        
         <Sidebar
           as={Menu}
           animation='push'
@@ -233,7 +249,17 @@ class MobileContainer extends Component {
                 <Menu.Item onClick={this.handleToggle} >
                   <Icon name='sidebar' style={{fontSize: '1.5em'}}/>
                 </Menu.Item>
-                <Menu.Item position='right'>
+                
+                
+            <Menu.Item position='left'>
+                  <h4 style={{
+                      fontSize: '1.5em'
+                  }} >MWMS</h4>
+              
+              
+            
+              </Menu.Item>
+              <Menu.Item position='right'>
                   {/* <Button as='a' inverted>
                     Log in
                   </Button>
