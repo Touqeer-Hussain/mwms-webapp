@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Card, Image, Button, Container} from 'semantic-ui-react';
+import {Card, Image, Button, Container, Confirm, Icon} from 'semantic-ui-react';
 import 'typeface-roboto'
 import Eximg from 'assest/images/fist.jpg'
 import CityDetail from 'screens/citydetail/citydetail'
@@ -10,7 +10,11 @@ class CitiesCard extends Component {
     this.state = {
         
     }
+
+
+  
   }
+
   render() {
 
     const { title, temp, image, date, unit, main, data } = this.props
@@ -49,6 +53,7 @@ class CitiesCard extends Component {
               
               }}>{title}</h1>
             </div>
+            
            
           </div>
 

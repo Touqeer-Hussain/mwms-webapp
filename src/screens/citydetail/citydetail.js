@@ -11,7 +11,8 @@ import {
     Grid,
     Segment,
     Radio,
-    Icon
+    Icon,
+    Confirm
 
 } from 'semantic-ui-react'
 
@@ -23,6 +24,7 @@ class CityDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            confirm: false,
             data: '',
             cityData: '',
             load: false,
@@ -35,6 +37,19 @@ class CityDetail extends Component {
                 6
             ]
         }
+    }
+
+
+    open = () => {
+        this.setState({ confirm: true })
+        console.log(this.state.confirm)
+    }  
+
+    close = () => { 
+        this.setState({ confirm: false }, ()=>{
+            console.log(this.state.confirm)
+        })
+        
     }
 
     componentDidMount() {
@@ -69,7 +84,41 @@ class CityDetail extends Component {
                 padding: '5vh'
             }}>
 
-                {/* yaha per grid laga inko left aur right corner ka leyeh */}
+<Modal
+          open={this.state.confirm}
+          
+          
+          onClose={this.close}
+        >
+          <Modal.Header>Delete City Data!</Modal.Header>
+          <Modal.Content>
+            <p>Are you sure you want to delete city data?</p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button onClick={this.close} negative>
+              No
+            </Button>
+            <Button
+              onClick={() => {
+                  
+                  firebase.database().ref(`cities/${data.cityKey}`).remove();
+                  this.setState({
+                      confirm: false,
+                      
+                  }, () => {
+                      this.props.main.setState({
+                          citydetail: null,
+                          cities: true
+                      })
+                  })
+              }}
+              positive
+              labelPosition='right'
+              icon='checkmark'
+              content='Yes'
+            />
+          </Modal.Actions>
+        </Modal>
                 <Grid divided="vertically">
                     <Grid.Row columns={2}>
                   
@@ -93,6 +142,17 @@ class CityDetail extends Component {
 
 float: 'right'
 }}>
+    <Button animated='fade' color="red" onClick={() => {
+        this.setState({
+            confirm: true
+        })
+    }}>
+                
+                  <Button.Content hidden>
+                    <Icon name="delete" />
+                  </Button.Content>
+                  <Button.Content visible>Delete</Button.Content>
+              </Button>
     <Button animated onClick={() => {
                     this
                         .props
@@ -691,191 +751,7 @@ float: 'right'
                                 </Grid.Row>
                             </Grid>
 
-                            <Grid
-                                columns={1}
-                                divided
-                                stackable
-                                style={{
-                                border: '2px solid teal',
-                                borderRadius: '5px',
-                                marginTop: '2%'
-                            }}>
-                                <Grid.Row stretched>
-                                    <Grid.Column>
-
-                                        <Grid columns={1} divided stackable>
-                                            <Grid.Row stretched>
-                                                <Grid.Column>
-                                                    <div
-                                                        style={{
-                                                        height: '100%'
-                                                    }}>
-
-                                                        <h1
-                                                            style={{
-                                            
-                                                            textAlign:'center',
-                                                            marginTop: '4%'
-                                                        }}>
-                                                            Historical
-                                                        </h1>
-
-                                                    </div>
-
-                                                </Grid.Column>
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={1} divided stackable>
-                                            <Grid.Row stretched>
-                                                <Grid.Column>
-                                                    <div
-                                                        style={{
-                                                        height: '100%'
-                                                    }}>
-
-                                                        <h1
-                                                            style={{
-                                                            fontSize: '1.5em',
-                                                            textAlign:'center'
-                                                        }}>
-                                                            ( Hourly Update )
-                                                        </h1>
-
-                                                    </div>
-
-                                                </Grid.Column>
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={6} divided stackable>
-                                            <Grid.Row stretched>
-                                                {list.map(snap => {
-                                                    return (
-                                                        <Grid.Column>
-
-                                                            <Segment stackable 
-                                                            style={{
-                                                                textAlign:'center'}}>
-                                                                <div
-                                                                    style={{
-                                                                    height: '100%',
-                                                                    float: 'left',
-                                                                    width: '100%'
-                                                                }}>
-                                                                    <h1
-                                                                        style={{
-                                                                        fontSize: '1.5em',
-                                                                        paddingLeft: '2px'
-                                                                    }}>
-                                                                        10:30 pm
-
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '1.2em',
-                                                                            paddingLeft: '5px'
-                                                                        }}>
-                                                                            10
-                                                                        </span>
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '0.9em'
-                                                                        }}>
-                                                                            &#8451;
-                                                                        </span>
-                                                                    </h1>
-
-                                                                </div>
-                                                            </Segment>
-
-                                                        </Grid.Column>
-                                                    )
-                                                })}
-
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={1} divided stackable>
-                                            <Grid.Row stretched>
-                                                <Grid.Column>
-                                                    <div
-                                                        style={{
-                                                        height: '100%'
-                                                    }}>
-
-                                                        <h1
-                                                            style={{
-                                                            fontSize: '1.5em',
-                                                            
-                                                        textAlign:'center'
-                                                        }}>
-                                                            ( Day by Days Update )
-                                                        </h1>
-
-                                                    </div>
-
-                                                </Grid.Column>
-                                            </Grid.Row>
-                                        </Grid>
-
-                                        <Grid columns={6} divided stackable>
-                                            <Grid.Row stretched>
-                                                {list.map(snap => {
-                                                    return (
-                                                        <Grid.Column>
-
-                                                            <Segment style={{
-                                                        textAlign:'center'}}>
-                                                                <div
-                                                                    style={{
-                                                                    height: '100%',
-                                                                    float: 'left',
-                                                                    width: '100%'
-                                                                }}>
-                                                                    <h1
-                                                                        style={{
-                                                                        float: 'left',
-                                                                        fontSize: '1.3em'
-                                                                    }}>
-                                                                        Monday, 30 2019
-                                                                    </h1>
-
-                                                                    <h1
-                                                                        style={{
-                                                                        fontSize: '1.6em',
-                                                                        paddingTop: '15px'
-                                                                    }}>
-                                                                        Temp:
-
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '1.2em',
-                                                                            paddingLeft: '5px'
-                                                                        }}>
-                                                                            10
-                                                                        </span>
-                                                                        <span
-                                                                            style={{
-                                                                            fontSize: '0.9em'
-                                                                        }}>
-                                                                            &#8451;
-                                                                        </span>
-                                                                    </h1>
-
-                                                                </div>
-                                                            </Segment>
-
-                                                        </Grid.Column>
-                                                    )
-                                                })}
-
-                                            </Grid.Row>
-                                        </Grid>
-                                    </Grid.Column>
-
-                                </Grid.Row>
-                            </Grid>
-
+                            
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>}
