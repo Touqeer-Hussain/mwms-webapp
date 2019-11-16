@@ -99,8 +99,9 @@ class CitiesCard extends Component {
          }
          }>
              <Image style={{
-          marginTop: '-30px',
-          marginLeft: '13px',
+          height:'95%',
+          width: '95%' ,
+          margin: '2px 0px 0px 2px'
           
              }} src={image}/>
               </div>

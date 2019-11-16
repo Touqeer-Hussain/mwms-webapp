@@ -215,24 +215,18 @@ float: 'right'
                                                             </div>
                                                             <div
                                                                 style={{
-                                                                width: '25%',
+                                                                width: '60%',
                                                                 float: 'left',
-                                                                height: '60%',
+                                                                height: '70%',
                                                                 paddingTop: '2px',
                                                             }}>
-                                                                <Image floated='right' size='medium' src={require('assest/images/fist.jpg')}/>
-                                                            </div>
-
-                                                            <div
-                                                                style={{
-                                                                height: '70%',
-                                                                width: '60%',
-                                                                paddingLeft: '20%'  
-                                                            }}>
-
+                                                                <Image style={{marginTop: '5%'}} floated='left' height='20%' width='20%' src={require('assest/images/temperature.png') }/>
+                                                          
+                                                          
+                                                          
                                                                 <p
                                                                     style={{
-                                                                    fontSize: '5.5em',
+                                                                    fontSize: '8.5em',
                                                                     fontFamily: 'typeface-roboto',
                                                                 }}>
                                                                     {Math.round(data.currently.temperature)}<span
@@ -241,6 +235,21 @@ float: 'right'
                     fontFamily: 'typeface-roboto'
                 }}>&#8451;</span>
                                                                 </p>
+                                                          
+                                                          
+                                                            </div>
+
+                                                            <div
+                                                                style={{
+                                                                height: '70%',
+                                                                width: '40%',
+                                                                float: 'right',
+                                                                    
+                                                             
+                                                            }}>
+                                                                 <Image  size='small' centered   src={require(`assest/images/${data.currently.icon}.png`) }/>
+                                                          
+
                                                             </div>
 
                                                         </div>
@@ -263,28 +272,39 @@ float: 'right'
                                                             style={{
                                                             height: '100%',
                                                             float: 'left',
-                                                            width: '100%'
+                                                            width: '100%',
                                                         }}>
+                                                            <div   style={{
+                                                                height: '70%',
+                                                                float: 'right',
+                                                                width: '30%',
+                                                            }}>
+                                                             <Image size='tiny' src={require('assest/images/humidity.png') }/>
+                                                             </div>
                                                             <h1
                                                                 style={{
                                                                 fontSize: '1.5em',
-                                                                paddingLeft: '2px'
+                                                                width: '70%'
+                                                                
                                                             }}>
                                                                 Humidity:
 
                                                                 <span
                                                                     style={{
-                                                                    fontSize: '1.2em',
-                                                                    paddingLeft: '5px'
+                                                                    fontSize: '2em',
+                                                                    paddingLeft: '5px',
+                                                                    
                                                                 }}>
                                                                        {data.currently.humidity.toString().split('.')[1]}
                                                                 
                                                                 </span>
                                                                 <span
                                                                     style={{
-                                                                    fontSize: '0.9em'
+                                                                    fontSize: '0.9em',
+                                                                    paddingLeft: '5px',
+
                                                                 }}>
-                                                                    &#8451;
+                                                                    &#37;
                                                                 </span>
                                                             </h1>
 
@@ -322,7 +342,7 @@ float: 'right'
                                                                     style={{
                                                                     fontSize: '0.9em'
                                                                 }}>
-                                                                    &#8451;
+                                                                    hPa
                                                                 </span>
                                                             </h1>
 
@@ -402,7 +422,8 @@ float: 'right'
                                                                     style={{
                                                                     fontSize: '0.9em'
                                                                 }}>
-                                                                    &#8451;
+                                                                    	
+                                                                &#176;
                                                                 </span>
                                                             </h1>
 
@@ -437,7 +458,7 @@ float: 'right'
                                                                     style={{
                                                                     fontSize: '0.9em'
                                                                 }}>
-                                                                    &#8451;
+                                                                    Km
                                                                 </span>
                                                             </h1>
 
@@ -476,7 +497,7 @@ float: 'right'
                                                                     style={{
                                                                     fontSize: '0.9em'
                                                                 }}>
-                                                                    &#8451;
+                                                                    mW²/m
                                                                 </span>
                                                             </h1>
 
@@ -512,7 +533,7 @@ float: 'right'
                                                                     style={{
                                                                     fontSize: '0.9em'
                                                                 }}>
-                                                                    &#8451;
+                                                                    Km
                                                                 </span>
                                                             </h1>
 

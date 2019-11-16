@@ -122,7 +122,7 @@ class Cities extends Component {
           {citiesLength == citiesList.length ?  citiesList.map((snap,i )=> {
                     console.log(citiesList)
                     
-                return <CitiesCard data={snap} title={snap.city} temp={Math.round(snap.currently.temperature)} image={require('assest/images/clear-day.png')} date={new Date(snap.currently.time * 1000).toDateString()} unit='&#8451;' main={this.props.main}/>
+                return <CitiesCard data={snap} title={snap.city} temp={Math.round(snap.currently.temperature)} image={require(`assest/images/${snap.currently.icon}.png`)} date={new Date(snap.currently.time * 1000).toDateString()} unit='&#8451;' main={this.props.main}/>
              
            
            
