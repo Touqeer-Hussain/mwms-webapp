@@ -7,6 +7,7 @@ import SensorControl from './screens/sensorcontrol/sensorcontrol'
 import Cities from 'screens/cities/cities'
 import CityDetail from 'screens/citydetail/citydetail'
 import Historical from 'screens/hisrotical/historical'
+import Theme from 'screens/theme/theme'
 import About from 'screens/about/about'
 
 class App extends Component {
@@ -18,13 +19,17 @@ class App extends Component {
         cities: null,
         citydetail: true,
         historical: null,
-        about: null
+        theme: null,
+        about: null,
+        menuBarColor: 'teal',
+        outlineColor: 'blue'
+
   
       }
     }
   render(){
     
-    var { realTime, sensorControl, cities, citydetail, historical, about } = this.state;
+    var { realTime, sensorControl, cities, citydetail, historical, theme, about } = this.state;
     return(
       <MainContainer main={this}>
       { realTime && <RealTime  main={this}/> }
@@ -32,6 +37,7 @@ class App extends Component {
       { cities && <Cities main={this} />}
       { citydetail && <CityDetail main={this} />}
       { historical && <Historical main={this} />}
+      {theme && <Theme main={this} />}
       { about && <About main={this} />}
      </MainContainer>
    

@@ -79,6 +79,7 @@ class CityDetail extends Component {
 
     render() {
         const {data, load, list} = this.state;
+        const { main } = this.props;
         return (
             <Container style={{
                 padding: '5vh'
@@ -120,7 +121,7 @@ class CityDetail extends Component {
           </Modal.Actions>
         </Modal>
                 <Grid divided="vertically">
-                    <Grid.Row columns={2}>
+                    <Grid.Row columns={3}>
                   
                         <Grid.Column >
                         <Button animated     onClick={() => {
@@ -137,12 +138,14 @@ class CityDetail extends Component {
     </Button>
                     </Grid.Column>
                     <Grid.Column>
+ </Grid.Column>
+              <Grid.Column style={{
+                  float: 'right'
+              }}>
 
-                    <div style={{
 
-float: 'right'
-}}>
-    <Button animated='fade' color="red" onClick={() => {
+                    
+              <Button animated='fade' color="red" onClick={() => {
         this.setState({
             confirm: true
         })
@@ -153,7 +156,9 @@ float: 'right'
                   </Button.Content>
                   <Button.Content visible>Delete</Button.Content>
               </Button>
-    <Button animated onClick={() => {
+             
+
+    <Button   animated='fade' onClick={() => {
                     this
                         .props
                         .main
@@ -166,7 +171,8 @@ float: 'right'
         <Icon name='arrow right' />
       </Button.Content>
     </Button>
-                    </div>
+             
+                        
                         </Grid.Column>
 
                  
@@ -184,7 +190,7 @@ float: 'right'
                                 divided
                                 stackable
                                 style={{
-                                border: '2px solid teal',
+                                border: `2px solid ${main.state.outlineColor}`,
                                 borderRadius: '5px',
                                 marginTop: '3%'
                             }}>
@@ -194,17 +200,24 @@ float: 'right'
                                         <Grid columns={1} divided stackable>
                                             <Grid.Row stretched>
                                                 <Grid.Column stackable>
-                                                    <Segment>
+                                                    <Segment
+                                                    style={{
+                                                        
+                                                        backgroundImage: `url(${require('assest/images/night-background.png')})`,
+                                                        borderRadius: '10px'
+                                                    }}>
                                                         <div
                                                             style={{
-                                                            height: '100%'
+                                                                height: '100%',
+                                                                color: 'white'
                                                         }}>
 
                                                             <div
                                                                 style={{
                                                                 width: '100%',
                                                                 height: '30%',
-                                                                float: 'left'
+                                                                float: 'left',
+                                                                
                                                             }}>
                                                                 <h1
                                                                     style={{
@@ -220,7 +233,7 @@ float: 'right'
                                                                 height: '70%',
                                                                 paddingTop: '2px',
                                                             }}>
-                                                                <Image style={{marginTop: '5%'}} floated='left' height='20%' width='20%' src={require('assest/images/temperature.png') }/>
+                                                                <Image style={{marginTop: '7%'}} floated='left' size='tiny' src={require('assest/images/temperature-white.png') }/>
                                                           
                                                           
                                                           
@@ -231,9 +244,9 @@ float: 'right'
                                                                 }}>
                                                                     {Math.round(data.currently.temperature)}<span
                                                                         style={{
-                    fontSize: '0.7em',
-                    fontFamily: 'typeface-roboto'
-                }}>&#8451;</span>
+                                                                              fontSize: '0.5em',
+                                                                              fontFamily: 'typeface-roboto'
+                                                                                 }}>&#8451;</span>
                                                                 </p>
                                                           
                                                           
@@ -266,13 +279,16 @@ float: 'right'
                                             <Grid.Column stackable>
 
                                             <Segment style={{
-                                                    textAlign: 'center'
+                                                    textAlign: 'center',
+                                                    border: `2px solid ${main.state.outlineColor}`
+
                                                 }}>
                                                         <div
                                                             style={{
                                                             height: '100%',
                                                             float: 'left',
                                                             width: '100%',
+                                                            
                                                         }}>
                                                             <div   style={{
                                                                 height: '70%',
@@ -288,10 +304,10 @@ float: 'right'
                                                                 
                                                             }}>
                                                                 Humidity:
-
+                                                                <br/>
                                                                 <span
                                                                     style={{
-                                                                    fontSize: '2em',
+                                                                    fontSize: '1.8em',
                                                                     paddingLeft: '5px',
                                                                     
                                                                 }}>
@@ -316,24 +332,39 @@ float: 'right'
                                                 <Grid.Column stackable>
 
                                                 <Segment style={{
-                                                    textAlign: 'center'
+                                                    textAlign: 'center',
+                                                    border: `2px solid ${main.state.outlineColor}`,
+                                                    borderRadius: '10px'
+
                                                 }}>
                                                         <div
                                                             style={{
                                                             height: '100%',
                                                             float: 'left',
-                                                            width: '100%'
+                                                            width: '100%',
+
                                                         }}>
+
+<div   style={{
+                                                                height: '70%',
+                                                                float: 'right',
+                                                                width: '30%',
+                                                            }}>
+                                                             <Image size='tiny' src={require('assest/images/airpressure.png') }/>
+                                                             </div> 
+
                                                             <h1
                                                                 style={{
                                                                 fontSize: '1.5em',
-                                                                paddingLeft: '2px'
+                                                                paddingLeft: '2px',
+                                                                width: '70%'
                                                             }}>
                                                                 Air Pressure:
-
+                                                            <br/>
                                                                 <span
                                                                     style={{
-                                                                    fontSize: '1.2em',
+                                                                    marginTop:'2px',
+                                                                    fontSize: '1.8em',
                                                                     paddingLeft: '5px'
                                                                 }}>
                                                                     {Math.round(data.currently.pressure)}
@@ -354,24 +385,38 @@ float: 'right'
                                                 <Grid.Column stackable>
      
                                                 <Segment style={{
-                                                    textAlign: 'center'
+                                                    textAlign: 'center',
+                                                    border: `2px solid ${main.state.outlineColor}`,
+                                                    borderRadius: '10px'
+
                                                 }}>
                                                         <div
                                                             style={{
                                                             height: '100%',
                                                             float: 'left',
-                                                            width: '100%'
+                                                            width: '100%',
+
                                                         }}>
+                                                            <div   style={{
+                                                                height: '70%',
+                                                                float: 'right',
+                                                                width: '30%',
+                                                            }}>
+                                                             <Image size='tiny' src={require('assest/images/realfeel.png') }/>
+                                                             </div>
+                                            
                                                             <h1
                                                                 style={{
                                                                 fontSize: '1.5em',
-                                                                paddingLeft: '2px'
+                                                                paddingLeft: '2px',
+                                                                width: '70%'
+                                                    
                                                             }}>
                                                                 Real Feel:
-
+                                                                <br/>
                                                                 <span
                                                                     style={{
-                                                                    fontSize: '1.2em',
+                                                                    fontSize: '1.8em',
                                                                     paddingLeft: '5px'
                                                                 }}>
                                                                     {Math.round(data.currently.apparentTemperature)}
@@ -396,31 +441,48 @@ float: 'right'
                                             <Grid.Row stretched>
                                                 <Grid.Column>
                                                 <Segment style={{
-                                                    textAlign: 'center'
+                                                    textAlign: 'center',
+                                                    border: `2px solid ${main.state.outlineColor}`,
+                                                    borderRadius: '10px'
+
                                                 }}>
                                                         <div
                                                             style={{
                                                             height: '100%',
                                                             float: 'left',
-                                                            width: '100%'
+                                                            width: '100%',
+
+                                                            
                                                         }}>
+                                            
+                                            <div   style={{
+                                                                height: '70%',
+                                                                float: 'right',
+                                                                width: '30%',
+                                                            }}>
+                                                             <Image size='tiny' src={require('assest/images/air-up-down.png') }/>
+                                                             </div>
+                                            
                                                             <h1
                                                                 style={{
                                                                 fontSize: '1.5em',
-                                                                paddingLeft: '2px'
+                                                                paddingLeft: '2px',
+                                                                width: '70%'
                                                             }}>
+                                                                  
                                                                 Wind Direction:
-
+                                                            <br/>
                                                                 <span
                                                                     style={{
-                                                                    fontSize: '1.2em',
+                                                                    fontSize: '1.8em',
                                                                     paddingLeft: '5px'
                                                                 }}>
                                                                     {data.currently.windBearing}
                                                                 </span>
                                                                 <span
                                                                     style={{
-                                                                    fontSize: '0.9em'
+                                                                    fontSize: '0.9em',
+                                                                    
                                                                 }}>
                                                                     	
                                                                 &#176;
@@ -432,24 +494,37 @@ float: 'right'
 
 
                                                     <Segment style={{
-                                                    textAlign: 'center'
+                                                    textAlign: 'center',
+                                                    border: `2px solid ${main.state.outlineColor}`,
+                                                    borderRadius: '10px'
+
                                                 }}>
                                                         <div
                                                             style={{
                                                             height: '100%',
                                                             float: 'left',
-                                                            width: '100%'
+                                                            width: '100%',
+
+
                                                         }}>
-                                                            <h1
+                                                            <div   style={{
+                                                                height: '70%',
+                                                                float: 'right',
+                                                                width: '30%',
+                                                            }}>
+                                                             <Image size='tiny' src={require('assest/images/air-left-right.png') }/>
+                                                             </div>
+                                                          <h1
                                                                 style={{
                                                                 fontSize: '1.5em',
-                                                                paddingLeft: '2px'
+                                                                paddingLeft: '2px',
+                                                                width: '70%'
                                                             }}>
                                                                 Wind Speed:
-
+                                                                <br/>
                                                                 <span
                                                                     style={{
-                                                                    fontSize: '1.2em',
+                                                                    fontSize: '1.8em',
                                                                     paddingLeft: '5px'
                                                                 }}>
                                                                     {data.currently.windSpeed}
@@ -471,24 +546,37 @@ float: 'right'
                                                     <Grid.Column>
 
                                                     <Segment style={{
-                                                    textAlign: 'center'
+                                                    textAlign: 'center',
+                                                    border: `2px solid ${main.state.outlineColor}`,
+                                                    borderRadius: '10px'
+
                                                 }}>
                                                         <div
                                                             style={{
                                                             height: '100%',
                                                             float: 'left',
-                                                            width: '100%'
+                                                            width: '100%',
+
                                                         }}>
+                                                            <div   style={{
+                                                                height: '70%',
+                                                                float: 'right',
+                                                                width: '30%',
+                                                            }}>
+                                                             <Image size='tiny' src={require('assest/images/sunrise.png') }/>
+                                                             </div>
+                                            
                                                             <h1
                                                                 style={{
                                                                 fontSize: '1.5em',
-                                                                paddingLeft: '2px'
+                                                                paddingLeft: '2px',
+                                                                width: '70%'
                                                             }}>
                                                                 UV Index:
-
+                                                                <br/>
                                                                 <span
                                                                     style={{
-                                                                    fontSize: '1.2em',
+                                                                    fontSize: '1.8em',
                                                                     paddingLeft: '5px'
                                                                 }}>
                                                                     {data.currently.uvIndex}
@@ -507,24 +595,40 @@ float: 'right'
                                                     
 
                                                     <Segment style={{
-                                                    textAlign: 'center'
+                                                    textAlign: 'center',
+                                                    border: `2px solid ${main.state.outlineColor}`,
+                                                    borderRadius: '10px'
+
                                                 }}>
                                                         <div
                                                             style={{
                                                             height: '100%',
                                                             float: 'left',
-                                                            width: '100%'
+                                                            width: '100%',
+
+
                                                         }}>
+                                            
+                                            <div   style={{
+                                                                height: '70%',
+                                                                float: 'right',
+                                                                width: '30%',
+                                                            }}>
+                                                             <Image size='tiny' src={require('assest/images/clear.png') }/>
+                                                             </div>
+                                            
                                                             <h1
                                                                 style={{
                                                                 fontSize: '1.5em',
-                                                                paddingLeft: '2px'
+                                                                paddingLeft: '2px',
+                                                                width: '70%'
                                                             }}>
+                                                                <br/>
                                                                 Visibility:
 
                                                                 <span
                                                                     style={{
-                                                                    fontSize: '1.2em',
+                                                                    fontSize: '1.8em',
                                                                     paddingLeft: '5px'
                                                                 }}>
                                                                     {data.currently.visibility.toFixed(2)}
@@ -556,7 +660,7 @@ float: 'right'
                                 divided
                                 stackable
                                 style={{
-                                border: '2px solid teal',
+                                border: `2px solid ${main.state.outlineColor}`,
                                 borderRadius: '5px',
                                 marginTop: '2%'
                             }}>
@@ -568,11 +672,13 @@ float: 'right'
                                                 <Grid.Column>
                                                     <div
                                                         style={{
-                                                        height: '100%'
+                                                        height: '100%',
+                                                        
                                                     }}>
 
                                                         <h1
                                                             style={{    
+                                                                fontSize: '3.5em',
                                                                 textAlign:'center',
                                                             marginTop: '4%'
                                                         }}>
@@ -595,10 +701,11 @@ float: 'right'
 
                                                         <h1
                                                             style={{
-                                                            fontSize: '1.5em',
-                                                        textAlign:'center'
+                                                            fontSize: '2.0em',
+                                                            textAlign:'center',
+                                                            
                                                         }}>
-                                                            ( Hourly Update )
+                                                             Hourly Update 
                                                         </h1>
 
                                                     </div>
@@ -615,13 +722,18 @@ float: 'right'
                                                     return (
                                                         <Grid.Column>
 
-                                                            <Segment>
+                                                            <Segment style={{
+                                                            border: `2px solid ${main.state.outlineColor}`,
+                                                            borderRadius: '5px'
+
+                                                            }}>
                                                                 <div
                                                                     style={{
                                                                     height: '100%',
                                                                     float: 'left',
                                                                     width: '100%',
-                                                                    textAlign:'center'
+                                                                    textAlign:'center',
+                                                                    
                                                                 }}>
                                                                     <h1
                                                                         style={{
@@ -635,7 +747,7 @@ float: 'right'
 
                                                                     <h1
                                                                         style={{
-                                                                        fontSize: '1.6em',
+                                                                        fontSize: '2.5em',
                                                                         paddingTop: '15px',
                                                                         textAlign:'center'
                                                                     }}>
@@ -643,7 +755,7 @@ float: 'right'
 
                                                                         <span
                                                                             style={{
-                                                                            fontSize: '1.2em',
+                                                                            fontSize: '1em',
                                                                             paddingLeft: '5px',
                                                                             textAlign:'center'
                                                                         }}>
@@ -651,7 +763,7 @@ float: 'right'
                                                                         </span>
                                                                         <span
                                                                             style={{
-                                                                            fontSize: '0.9em'
+                                                                            fontSize: '0.7em'
                                                                         }}>
                                                                             &#8451;
                                                                         </span>
@@ -677,10 +789,12 @@ float: 'right'
 
                                                         <h1
                                                             style={{
-                                                            fontSize: '1.5em',
-                                                            textAlign:'center'
+                                                            fontSize: '2.0em',
+                                                            textAlign:'center',
+                                                            
+
                                                         }}>
-                                                            ( Day by Days Update )
+                                                             Day by Days Update 
                                                         </h1>
 
                                                     </div>
@@ -697,8 +811,9 @@ float: 'right'
                                                         <Grid.Column>
 
                                                             <Segment style={{
-                                                                
-                                                        textAlign:'center'
+                                                            border: `2px solid ${main.state.outlineColor}`,
+                                                            borderRadius: '5px',        
+                                                            textAlign:'center'
                                                             }}>
                                                                 <div
                                                                     style={{
@@ -723,14 +838,14 @@ float: 'right'
 
                                                                         <span
                                                                             style={{
-                                                                            fontSize: '1.2em',
+                                                                            fontSize: '1.4em',
                                                                             paddingLeft: '5px'
                                                                         }}>
                                                                             {snap.temperatureHigh}
                                                                         </span>
                                                                         <span
                                                                             style={{
-                                                                            fontSize: '0.9em'
+                                                                            fontSize: '1.1em'
                                                                         }}>
                                                                             &#8451;
                                                                         </span>
@@ -745,14 +860,14 @@ float: 'right'
 
                                                                         <span
                                                                             style={{
-                                                                            fontSize: '1.2em',
+                                                                            fontSize: '1.4em',
                                                                             paddingLeft: '5px'
                                                                         }}>
                                                                             {snap.temperatureLow}
                                                                         </span>
                                                                         <span
                                                                             style={{
-                                                                            fontSize: '0.9em'
+                                                                            fontSize: '1.1em'
                                                                         }}>
                                                                             &#8451;
                                                                         </span>

@@ -63,21 +63,22 @@ class RealTime extends Component {
     }
     
   render(){
-      const { temperature, humidity, lux, realFeel, airPressure, altitude, load } = this.state
+      const { temperature, humidity, lux, realFeel, airPressure, altitude, load } = this.state;
+      const { main } = this.props;
     return(
         <Container style={{
             padding: '5vh'
         }}>
           {load ? <div>
         <Card.Group>
-            <MainCard title='Temperature' data={temperature} unit='&#8451;' image={temperatureimage}/>
-            <MainCard title='Humidity' data={humidity} unit='%' image={humidityimage}/>
-            <MainCard title='Air Pressure' data={airPressure} unit='hPa' image={airpressureimage}/>
-            <MainCard title='Altitude' data={altitude} unit='m' image={altitudeimage}/>
-            <MainCard title='Luminosity' data={lux} unit='lux' image={luminosityimage}/>
-            <MainCard title='RealFeel' data={realFeel} unit='&#8451;' image={realfeelimage}/>
+            <MainCard title='Temperature' data={temperature} unit='&#8451;' image={temperatureimage} main={this.props.main} />
+            <MainCard title='Humidity' data={humidity} unit='%' image={humidityimage} main={this.props.main} />
+            <MainCard title='Air Pressure' data={airPressure} unit='hPa' image={airpressureimage} main={this.props.main} />
+            <MainCard title='Altitude' data={altitude} unit='m' image={altitudeimage} main={this.props.main} />
+            <MainCard title='Luminosity' data={lux} unit='lux' image={luminosityimage} main={this.props.main} />
+            <MainCard title='RealFeel' data={realFeel} unit='&#8451;' image={realfeelimage} main={this.props.main} />
         </Card.Group>
-        <Chart />
+        <Chart main={this.props.main} />
         </div> : <div className='sweet-loading'>
         <DotLoader
           css={`
@@ -87,7 +88,7 @@ class RealTime extends Component {
       `}
           sizeUnit={"px"}
           size={150}
-          color={'#123abc'}
+          color={main.state.menuBarColor}
           loading={this.state.loading}
         />
       </div> 

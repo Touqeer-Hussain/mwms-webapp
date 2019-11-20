@@ -71,6 +71,7 @@ class Historical extends Component {
         console.log("done")
            const {  unixDate, data, arrayDate, numOfDays } = this.state 
 
+
         
 
 
@@ -142,6 +143,7 @@ class Historical extends Component {
 
     render() {
         const {data, load, list, cdata, unixDate, histData, monthlyData, hourlyData, dailyData} = this.state;
+        const { main } = this.props;
         return (
             <Container style={{
                 padding: '5vh'
@@ -244,11 +246,11 @@ class Historical extends Component {
           css={`
           display: block;
           margin: 0 auto;
-          border-color: red;
+          border-color: 'red';
       `}
           sizeUnit={"px"}
           size={150}
-          color={'#123abc'}
+          color={main.state.menuBarColor}
         />
       </div> 
             }

@@ -8,12 +8,12 @@ class MainCard extends Component {
     this.state = {}
   }
   render() {
-      console.log(this.props)
-      const { title, data, unit, image } = this.props
+      
+      const { title, data, unit, image, main } = this.props
     return (
       <Card
         style={{
-        border: '2px solid teal',
+        border: `2px solid ${main.state.outlineColor}`,
         borderRadius: '5px'
       }}>
         <div style={{

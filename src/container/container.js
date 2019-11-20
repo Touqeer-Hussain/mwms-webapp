@@ -29,7 +29,13 @@ const getWidth = () => {
 
 
 class DesktopContainer extends Component {
-  state = {e: ''}
+  constructor(props){
+    super(props)
+    this.state = {
+      e: ''
+    }
+  }
+  
   
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
@@ -49,7 +55,7 @@ class DesktopContainer extends Component {
             inverted
             textAlign='center'
             style={{  padding: '0.5em 0em'}}
-            color= 'teal'
+            color= {main.state.menuBarColor}
             vertical
           >
             <div style={{
@@ -72,7 +78,8 @@ class DesktopContainer extends Component {
               pointing={!fixed}
               secondary={!fixed}
               size='large'
-              color= 'teal'
+              color= {main.state.menuBarColor}
+              
             > 
             
             <Container>
@@ -89,6 +96,7 @@ class DesktopContainer extends Component {
                       cities: null,
                       citydetail: null,
                       historical: null,
+                      theme: null,
                       about: null,
 
                     })
@@ -101,6 +109,7 @@ class DesktopContainer extends Component {
                       cities: null,
                       citydetail: null,
                       historical: null,
+                      theme: null,
                       about: null
                     })
                 }}>Sensor Control</Menu.Item>
@@ -112,9 +121,24 @@ class DesktopContainer extends Component {
                     cities: true,
                     citydetail: null,
                     historical: null,
+                    theme: null,
                     about: null
                   })
               }} >Cities</Menu.Item>
+              <Menu.Item as='a' active={main.state.theme} onClick={(e) => {
+                   
+                     
+                   main.setState({
+                     realTime: null,
+                     sensorControl: null,
+                     cities: null,
+                     citydetail: null,
+                     historical: null,
+                     theme: true,
+                     about: null,
+
+                   })
+               }}>Theme</Menu.Item>
               <Menu.Item as='a' active={main.state.about} onClick={(e) => {
                    
                      
@@ -124,6 +148,7 @@ class DesktopContainer extends Component {
                      cities: null,
                      citydetail: null,
                      historical: null,
+                     theme: null,
                      about: true,
 
                    })
@@ -154,7 +179,16 @@ DesktopContainer.propTypes = {
 }
 
 class MobileContainer extends Component {
-  state = {}
+  constructor(props){
+    super(props)
+    this.state = {
+   
+    }
+  }
+
+  componentDidMount(){
+    console.log(this.props)
+  }
 
   handleSidebarHide = () => this.setState({ sidebarOpened: false })
 
@@ -178,11 +212,48 @@ class MobileContainer extends Component {
           onHide={this.handleSidebarHide}
           vertical
           visible={sidebarOpened}
+          width='very wide'
+          direction='top'
+          animation= 'push'
         >
-          <Menu.Item>
+          <Menu.Item style={{
+            backgroundColor: main.state.menuBarColor,
+            height: '73px'
             
-          <Image  size='tiny' src={require('assest/images/fist.jpg')}/>
-          <p>MWMS</p>
+          }}>
+            <div style={{
+            
+              width: '100%',
+              float: 'left'
+              
+            }} > 
+
+             <div style={{
+              
+              width: '18%',
+              float: 'left'
+              
+            }} > 
+            
+            
+          <Image  src={logo} width="50px"  height="50px" />
+          </div>
+          <div style={{
+            width:'78%',
+            float: 'left'
+          }}>
+          
+          <p style={{
+              fontSize: '1.2em',
+              fontWeight: 'bold',
+              color: 'white',
+              
+              
+
+
+          }}>My Weather Monitering System</p>
+          </div>
+          </div>
           </Menu.Item>
           
           
@@ -195,9 +266,11 @@ class MobileContainer extends Component {
                      cities: null,
                      citydetail: null,
                      historical: null,
+                     theme: null,
                      about: null,
 
                    })
+                   this.setState({ sidebarOpened: false })
                }}>Realtime</Menu.Item>
                <Menu.Item as='a' active={main.state.sensorControl} onClick={(e) => {
                  
@@ -207,8 +280,10 @@ class MobileContainer extends Component {
                      cities: null,
                      citydetail: null,
                      historical: null,
+                     theme: null,
                      about: null
                    })
+                   this.setState({ sidebarOpened: false })
                }}>Sensor Control</Menu.Item>
                <Menu.Item as='a' active={main.state.cities} onClick={(e) => {
                  
@@ -218,9 +293,26 @@ class MobileContainer extends Component {
                    cities: true,
                    citydetail: null,
                    historical: null,
+                   theme: null,
                    about: null
                  })
+                 this.setState({ sidebarOpened: false })
              }} >Cities</Menu.Item>
+             <Menu.Item as='a' active={main.state.theme} onClick={(e) => {
+                  
+                    
+                  main.setState({
+                    realTime: null,
+                    sensorControl: null,
+                    cities: null,
+                    citydetail: null,
+                    historical: null,
+                    theme: true,
+                    about: null,
+
+                  })
+                  this.setState({ sidebarOpened: false })
+              }}>Theme</Menu.Item>
              <Menu.Item as='a' active={main.state.about} onClick={(e) => {
                   
                     
@@ -230,9 +322,11 @@ class MobileContainer extends Component {
                     cities: null,
                     citydetail: null,
                     historical: null,
+                    theme: null,
                     about: true,
 
                   })
+                  this.setState({ sidebarOpened: false })
               }}>About</Menu.Item>
         </Sidebar>
 
@@ -242,10 +336,11 @@ class MobileContainer extends Component {
             textAlign='center'
             style={{ padding: '0.5em 0em', }}
             vertical
-            color='teal'
+            color={main.state.menuBarColor}
+            
           >
             <Container>
-              <Menu inverted secondary  color='teal'>
+              <Menu inverted secondary  color={main.state.menuBarColor}>
                 <Menu.Item onClick={this.handleToggle} >
                   <Icon name='sidebar' style={{fontSize: '1.5em'}}/>
                 </Menu.Item>

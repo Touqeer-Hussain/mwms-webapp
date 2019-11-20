@@ -19,9 +19,10 @@ class CitiesCard extends Component {
 
     const { title, temp, image, date, unit, main, data } = this.props
 
+
     return ( 
         
-      <Card onClick={async () => {
+      <Card  onClick={async () => {
         await localStorage.setItem('data', JSON.stringify(data))
         main.setState({
             cities: null,
@@ -32,7 +33,7 @@ class CitiesCard extends Component {
         
       }} 
         style={{
-        border: '2px solid teal',
+        border: `2px solid ${main.state.outlineColor}`,
         borderRadius: '5px'
       }}>
         <div style={{
@@ -69,9 +70,9 @@ class CitiesCard extends Component {
             height: '100%',
             width: '60%',
             float: 'left',
-            borderTop: '2px solid teal',
-            borderBottom: '2px solid teal',
-            borderRight: '2px solid teal'
+            borderTop: `2px solid ${main.state.outlineColor}`,
+            borderBottom: `2px solid ${main.state.outlineColor}`,
+            borderRight: `2px solid ${main.state.outlineColor}`
           
 
          }
@@ -93,8 +94,8 @@ class CitiesCard extends Component {
             height: '100%',
             width: '40%',
             float: 'left',
-            borderTop: '2px solid teal',
-            borderBottom: '2px solid teal',
+            borderTop: `2px solid ${main.state.outlineColor}`,
+            borderBottom: `2px solid ${main.state.outlineColor}`,
 
          }
          }>

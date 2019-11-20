@@ -1,6 +1,6 @@
 {
-  "name": "mwms-webapp",
-  "version": "0.1.0",
+  "name": "My Weather Monitoring System",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "firebase": "^6.6.2",

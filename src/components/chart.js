@@ -8,8 +8,8 @@ import DotLoader from 'react-spinners/DotLoader';
 
 
 export default class Chart extends Component {
-    constructor(){
-      super();
+    constructor(props){
+      super(props);
       this.state = {
         data: [
           {
@@ -46,6 +46,8 @@ export default class Chart extends Component {
 
     componentDidMount(){
 
+
+        console.log('Chats', this.props.main)
         var count = 0
       firebase.database().ref('realtime').limitToLast(12).on('child_added', snap => {
         count++;
@@ -109,6 +111,7 @@ export default class Chart extends Component {
 
   render() {
     const { data, tempData, airPreData, altiData, humidityData, luxData, realFeelData, load } = this.state;
+    const { main } = this.props;
     return (
       load ? 
       <div>
@@ -118,8 +121,8 @@ export default class Chart extends Component {
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-      <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+      <stop offset="5%" stopColor={main.state.outlineColor} stopOpacity={0.8}/>
+      <stop offset="95%" stopColor={main.state.outlineColor} stopOpacity={0}/>
     </linearGradient>
   </defs>
   <XAxis dataKey="time" />
@@ -127,7 +130,7 @@ export default class Chart extends Component {
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
   <Legend verticalAlign="top" height={36}/>
-  <Area type="monotone" dataKey="temperature" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+  <Area type="monotone" dataKey="temperature" stroke={main.state.outlineColor} fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 
 
@@ -135,8 +138,8 @@ export default class Chart extends Component {
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-      <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+      <stop offset="5%" stopColor={main.state.outlineColor} stopOpacity={0.8}/>
+      <stop offset="95%" stopColor={main.state.outlineColor} stopOpacity={0}/>
     </linearGradient>
   </defs>
   <XAxis dataKey="time" />
@@ -145,7 +148,7 @@ export default class Chart extends Component {
   <Tooltip />
   <Legend verticalAlign="top" height={36}/>
   <Legend verticalAlign="top" height={36}/>
-  <Area type="monotone" dataKey="humidity" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+  <Area type="monotone" dataKey="humidity" stroke={main.state.outlineColor} fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 
 
@@ -154,8 +157,8 @@ export default class Chart extends Component {
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-      <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+      <stop offset="5%" stopColor={main.state.outlineColor} stopOpacity={0.8}/>
+      <stop offset="95%" stopColor={main.state.outlineColor} stopOpacity={0}/>
     </linearGradient>
   </defs>
   <XAxis dataKey="time" />
@@ -163,7 +166,7 @@ export default class Chart extends Component {
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
   <Legend verticalAlign="top" height={36}/>
-  <Area type="monotone" dataKey="airPressure" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+  <Area type="monotone" dataKey="airPressure" stroke={main.state.outlineColor} fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 
 
@@ -172,8 +175,8 @@ export default class Chart extends Component {
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-      <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+      <stop offset="5%" stopColor={main.state.outlineColor} stopOpacity={0.8}/>
+      <stop offset="95%" stopColor={main.state.outlineColor} stopOpacity={0}/>
     </linearGradient>
   </defs>
   <XAxis dataKey="time" />
@@ -181,7 +184,7 @@ export default class Chart extends Component {
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
   <Legend verticalAlign="top" height={36}/>
-  <Area type="monotone" dataKey="altitude" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+  <Area type="monotone" dataKey="altitude" stroke={main.state.outlineColor} fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 
 
@@ -190,8 +193,8 @@ export default class Chart extends Component {
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-      <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+      <stop offset="5%" stopColor={main.state.outlineColor} stopOpacity={0.8}/>
+      <stop offset="95%" stopColor={main.state.outlineColor} stopOpacity={0}/>
     </linearGradient>
   </defs>
   <XAxis dataKey="time" />
@@ -199,7 +202,7 @@ export default class Chart extends Component {
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
   <Legend verticalAlign="top" height={36}/>
-  <Area type="monotone" dataKey="lux" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+  <Area type="monotone" dataKey="lux" stroke={main.state.outlineColor} fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 
 
@@ -208,8 +211,8 @@ export default class Chart extends Component {
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-      <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+      <stop offset="5%" stopColor={main.state.outlineColor} stopOpacity={0.8}/>
+      <stop offset="95%" stopColor={main.state.outlineColor} stopOpacity={0}/>
     </linearGradient>
   </defs>
   <XAxis dataKey="time" />
@@ -217,7 +220,7 @@ export default class Chart extends Component {
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
   <Legend verticalAlign="top" height={36}/>
-  <Area type="monotone" dataKey="realFeel" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+  <Area type="monotone" dataKey="realFeel" stroke={main.state.outlineColor} fillOpacity={1} fill="url(#colorUv)" />
 </AreaChart>
 </div> : <div className='sweet-loading'>
         <DotLoader
@@ -228,7 +231,7 @@ export default class Chart extends Component {
       `}
           sizeUnit={"px"}
           size={150}
-          color={'#123abc'}
+          color={main.state.menuBarColor}
           loading={this.state.loading}
         />
       </div> 

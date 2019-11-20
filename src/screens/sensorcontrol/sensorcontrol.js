@@ -37,6 +37,7 @@ class SensorControl extends Component {
   render(){
 
         const { dht22, bmp180, ldr, load } = this.state
+        const { main } = this.props
     return(
       load ?
       <Container style={{
@@ -90,7 +91,7 @@ class SensorControl extends Component {
       `}
           sizeUnit={"px"}
           size={150}
-          color={'#123abc'}
+          color={main.state.menuBarColor}
           loading={this.state.loading}
         />
       </div>
