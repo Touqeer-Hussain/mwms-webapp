@@ -19,6 +19,7 @@ import {
 import firebase from 'config/firebase'
 import plusimage from 'assest/images/plus.png'
 import Exximg from 'assest/images/fist.jpg'
+
 import {concat} from 'bytebuffer'
 class CityDetail extends Component {
     constructor(props) {
@@ -27,6 +28,7 @@ class CityDetail extends Component {
             confirm: false,
             data: '',
             cityData: '',
+            sun: {},
             load: false,
             list: [
                 1,
@@ -35,7 +37,11 @@ class CityDetail extends Component {
                 4,
                 5,
                 6
-            ]
+            ],
+            background: '',
+            timePhase: '',
+            tempIcon: '',
+            currentFontColor: ''
         }
     }
 
@@ -65,20 +71,43 @@ class CityDetail extends Component {
     }
 
     async getData() {
+            const { data } = this.state;
+        
         this.setState({
             data: await JSON.parse(localStorage.getItem('data'))
-        }, () => {
+        }, async () => {
+            const { data } = this.state;
+            
+           
+            if(data.currently.time >= data.daily.data[0].sunriseTime && data.currently.time <= data.daily.data[0].sunsetTime){
+                    this.setState({
+                        background: require('assest/images/day-background.png'),
+                        currentFontColor: 'black',
+                        tempIcon: require('assest/images/temperature.png'),
+                    })
+            }else{
+                this.setState({
+                    background: require('assest/images/night-background.png'),
+                    currentFontColor: 'white',
+                    tempIcon: require('assest/images/temperature-white.png'),
+                })
+            }
+            
+            
+            
             this.setState({load: true})
             this.state.data.daily.data.length = 6
             this.state.data.hourly.data.length = 6
             console.log(this.state.data)
+
+
 
         })
 
     }
 
     render() {
-        const {data, load, list} = this.state;
+        const {data, load, background, currentFontColor, tempIcon} = this.state;
         const { main } = this.props;
         return (
             <Container style={{
@@ -203,13 +232,13 @@ class CityDetail extends Component {
                                                     <Segment
                                                     style={{
                                                         
-                                                        backgroundImage: `url(${require('assest/images/night-background.png')})`,
+                                                        backgroundImage: `url(${background})`,
                                                         borderRadius: '10px'
                                                     }}>
                                                         <div
                                                             style={{
                                                                 height: '100%',
-                                                                color: 'white'
+                                                                color: currentFontColor
                                                         }}>
 
                                                             <div
@@ -233,7 +262,7 @@ class CityDetail extends Component {
                                                                 height: '70%',
                                                                 paddingTop: '2px',
                                                             }}>
-                                                                <Image style={{marginTop: '7%'}} floated='left' size='tiny' src={require('assest/images/temperature-white.png') }/>
+                                                                <Image style={{marginTop: '7%'}} floated='left' size='tiny' src={tempIcon}/>
                                                           
                                                           
                                                           
@@ -460,7 +489,7 @@ class CityDetail extends Component {
                                                                 float: 'right',
                                                                 width: '30%',
                                                             }}>
-                                                             <Image size='tiny' src={require('assest/images/air-up-down.png') }/>
+                                                             <Image size='tiny' src={require('assest/images/wind-direction.png') }/>
                                                              </div>
                                             
                                                             <h1
@@ -479,14 +508,14 @@ class CityDetail extends Component {
                                                                 }}>
                                                                     {data.currently.windBearing}
                                                                 </span>
-                                                                <span
+                                                                <sup
                                                                     style={{
                                                                     fontSize: '0.9em',
                                                                     
                                                                 }}>
                                                                     	
                                                                 &#176;
-                                                                </span>
+                                                                </sup>
                                                             </h1>
 
                                                         </div>
@@ -512,7 +541,7 @@ class CityDetail extends Component {
                                                                 float: 'right',
                                                                 width: '30%',
                                                             }}>
-                                                             <Image size='tiny' src={require('assest/images/air-left-right.png') }/>
+                                                             <Image size='tiny' src={require('assest/images/wind-speed.png') }/>
                                                              </div>
                                                           <h1
                                                                 style={{
@@ -563,7 +592,7 @@ class CityDetail extends Component {
                                                                 float: 'right',
                                                                 width: '30%',
                                                             }}>
-                                                             <Image size='tiny' src={require('assest/images/sunrise.png') }/>
+                                                             <Image size='tiny' src={require('assest/images/uv-index.png') }/>
                                                              </div>
                                             
                                                             <h1
@@ -614,7 +643,7 @@ class CityDetail extends Component {
                                                                 float: 'right',
                                                                 width: '30%',
                                                             }}>
-                                                             <Image size='tiny' src={require('assest/images/clear.png') }/>
+                                                             <Image size='tiny' src={require('assest/images/visibility.png') }/>
                                                              </div>
                                             
                                                             <h1

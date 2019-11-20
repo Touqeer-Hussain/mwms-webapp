@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Card, Image, Button, Container, Confirm, Icon, Grid, Segment, GridColumn, GridRow} from 'semantic-ui-react';
 import 'typeface-roboto'
+import firebase from 'config/firebase'
 import swal from 'sweetalert'
 
 class Theme extends Component {
@@ -61,6 +62,8 @@ class Theme extends Component {
                                                             height: 10
                                                         }}
                                                     onClick={() => {
+                                                        firebase.database().ref('theme/menuBarColor').set(color);
+                                                        localStorage.setItem('menuBarColor', color);
                                                             main.setState({
                                                                 menuBarColor: color
                                                             })
@@ -98,6 +101,8 @@ class Theme extends Component {
                                                         width: 10,
                                                         height: 10
                                                     }} onClick={() => {
+                                                        firebase.database().ref('theme/outlineColor').set(color);
+                                                        localStorage.setItem('outlineColor', color);
                                                             main.setState({
                                                                 outlineColor: color
                                                             })

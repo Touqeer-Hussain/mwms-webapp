@@ -22,17 +22,26 @@ class SensorControl extends Component {
     }
 
     componentDidMount(){
-          firebase.database().ref('sensor').on('value', (data) => {
-              this.setState({
-                dht22: data.val().dht22,
-                bmp180: data.val().bmp180,
-                ldr: data.val().ldr
-              }, () => {
-                this.setState({
-                  load: true
-                })
-              })
+          this.getData();
+    }
+
+    componentWillUnmount(){
+      firebase.database().ref('sensor').off('value')
+    }
+
+    getData(){
+      this.sensorRef = firebase.database().ref('sensor')
+      this.sensorRef.on('value', (data) => {
+        this.setState({
+          dht22: data.val().dht22,
+          bmp180: data.val().bmp180,
+          ldr: data.val().ldr
+        }, () => {
+          this.setState({
+            load: true
           })
+        })
+    })
     }
   render(){
 

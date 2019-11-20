@@ -46,12 +46,27 @@ export default class Chart extends Component {
 
     componentDidMount(){
 
+        this.getData()
+        
+    }
 
-        console.log('Chats', this.props.main)
+    componentWillUnmount(){
+        this.unsub.off('child_added')      
+    }
+
+
+    getData(){
+      console.log('Get Data')
+      this.setState({
+        load: false
+      })
+      console.log('Chats', this.props.main)
         var count = 0
-      firebase.database().ref('realtime').limitToLast(12).on('child_added', snap => {
+      this.unsub = firebase.database().ref('realtime').limitToLast(12)
+      this.unsub.on('child_added', snap => {
         count++;
-        console.log(snap.val())
+        console.log('Get Data',`count ${count}`, snap.val().lux)
+        console.log( this.state.tempData)
         var time = new Date(snap.val().time * 1000).getHours() + ":" +new Date(snap.val().time * 1000).getMinutes() + ":" +new Date(snap.val().time * 1000).getSeconds();
         this.setState({
             tempData: this.state.tempData.concat({
@@ -91,7 +106,7 @@ export default class Chart extends Component {
       
       var f = 1
       setInterval(() => {
-        
+            
             f++
             this.setState({
               data:  this.state.data.concat({
@@ -108,7 +123,6 @@ export default class Chart extends Component {
       //   console.log(snap.val())
       // })
     }
-
   render() {
     const { data, tempData, airPreData, altiData, humidityData, luxData, realFeelData, load } = this.state;
     const { main } = this.props;

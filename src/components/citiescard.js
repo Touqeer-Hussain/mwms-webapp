@@ -22,7 +22,7 @@ class CitiesCard extends Component {
 
     return ( 
         
-      <Card  onClick={async () => {
+      <Card onClick={async () => {
         await localStorage.setItem('data', JSON.stringify(data))
         main.setState({
             cities: null,
@@ -39,7 +39,7 @@ class CitiesCard extends Component {
         <div style={{
           height: '100%'
         }}>
-          <div style={{
+            <div style={{
             height: '30%'
           }}>
             <div
@@ -50,7 +50,8 @@ class CitiesCard extends Component {
             }}>
               <h1 style={{
                 fontSize: '2.5em',
-                marginLeft: '3px'
+                marginLeft: '3px',
+                
               
               }}>{title}</h1>
             </div>
@@ -58,7 +59,7 @@ class CitiesCard extends Component {
            
           </div>
 
-          <div style={{
+            <div style={{
             height: '55%',
         
           }}>
@@ -113,24 +114,23 @@ class CitiesCard extends Component {
               
       </div>
 
-<div
-              style={{
-                height: '15%',
-                width: '100%',
-                float: 'left',
-             
-
-
+            <div style={{
+                    height: '15%',
+                    width: '100%',
+                    float: 'left',
               }}> 
+              
               <span style={{
           fontSize: '1.6em',
           fontFamily: 'typeface-roboto',
           
           }}> {date} </span>
+          
+              
         
                </div>
 
-      </div>
+        </div>
     </Card>
 
     )

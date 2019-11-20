@@ -8,7 +8,9 @@ import {
     Header,
     Input,
     Form,
-    Icon
+    Icon,
+    List,
+
 
 } from 'semantic-ui-react'
 
@@ -65,6 +67,10 @@ class Cities extends Component {
       
     }
 
+    componentWillUnmount(){
+      this.citiesRef.off('child_added')
+    }
+
     async getCityData(){
 
       this.setState({
@@ -72,14 +78,14 @@ class Cities extends Component {
         citiesLength: 0,
         load: false
       })
-
+      
       firebase.database().ref('cities').once("value", async snap => { 
         this.setState({
           citiesLength: snap.numChildren()
         })
       })
-
-    firebase.database().ref('cities').on("child_added", async snap => { 
+    this.citiesRef = firebase.database().ref('cities');
+    this.citiesRef.on("child_added", async snap => { 
     
      
       
@@ -193,13 +199,13 @@ class Cities extends Component {
         icon: 'search'
        
     }}/>
-    </Form> {
+    </Form>  <List divided relaxed >{
       
       searchLoad ? 
     
     this.state.searchList  &&this.state.searchList.results.length >= 1 && this.state.searchList.results.map((data, i) => {
             
-        return data.confidence <= 5  && ( data.components.city || data.components.state ) && data.components.country ? <div onClick={() => {
+        return data.confidence <= 5  && ( data.components.city || data.components.state ) && data.components.country ? <List.Item onClick={() => {
 
           
           firebase.database().ref('cities').once("value", snap  => {
@@ -254,12 +260,12 @@ class Cities extends Component {
 
 
 
-      }} key={data.annotations.geohash}  >
-        <p style={{
-        fontSize: '1.5em',
-        fontFamily: 'vincHand'
-       
-      }}>{data.formatted}</p> </div>: <span>
+      }} key={data.annotations.geohash}>
+          <List.Content>
+              <List.Header as='a'>{data.formatted}</List.Header> 
+    <List.Description as='a'>{data.components.city ? data.components.city : data.components.state}, {data.components.country}</List.Description>
+          </List.Content> 
+        </List.Item>: <span>
           
       </span>
     })
@@ -275,7 +281,7 @@ class Cities extends Component {
           color={main.state.menuBarColor}
           loading={this.state.loading}
         />
-    </div> }
+    </div> }</List>
     </Modal.Content>
     <Modal.Actions>
           <Button  color='red' onClick={() => {

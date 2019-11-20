@@ -18,7 +18,7 @@ import {
 import 'semantic-ui-css/semantic.min.css';
 import Exximg from 'assest/images/fist.jpg';
 import logoname from 'assest/images/mwms.jpg'
-import logo from 'assest/images/logo.PNG'
+import logo from 'assest/images/logo.png'
 
 
 const getWidth = () => {
@@ -187,7 +187,7 @@ class MobileContainer extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props)
+    
   }
 
   handleSidebarHide = () => this.setState({ sidebarOpened: false })

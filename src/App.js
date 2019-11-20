@@ -10,22 +10,44 @@ import Historical from 'screens/hisrotical/historical'
 import Theme from 'screens/theme/theme'
 import About from 'screens/about/about'
 
+//firebase
+import firebase from 'config/firebase'
+
 class App extends Component {
     constructor(props){
       super(props);
       this.state ={
-        realTime: null,
+        realTime: true,
         sensorControl: null,
-        cities: null,
-        citydetail: true,
+        cities: false,
+        citydetail: null,
         historical: null,
         theme: null,
         about: null,
-        menuBarColor: 'teal',
-        outlineColor: 'blue'
+        menuBarColor: localStorage.getItem('menuBarColor'),
+        outlineColor: localStorage.getItem('outlineColor'),
+      
 
   
       }
+    }
+
+    componentDidMount(){
+
+       this.themeRef =  firebase.database().ref('theme')
+       this.themeRef.on('value', snap => {
+          
+          
+          this.setState({
+              menuBarColor: snap.val().menuBarColor,
+              outlineColor:  snap.val().outlineColor
+          })
+        })
+    }
+
+
+    componentWillUnmount(){
+        this.themeRef.off('value')
     }
   render(){
     

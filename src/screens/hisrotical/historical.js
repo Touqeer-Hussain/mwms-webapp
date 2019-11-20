@@ -213,7 +213,7 @@ class Historical extends Component {
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
   <Legend verticalAlign="top" height={36}/>
-  <Line type="monotone" dataKey="temperature" stroke="#00BFFF" fillOpacity={1}  />
+  <Line type="monotone" dataKey="temperature" stroke="#00BFFF" fillOpacity={1} strokeWidth={2} />
 </LineChart>
 
 
@@ -225,7 +225,7 @@ class Historical extends Component {
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
   <Legend verticalAlign="top" height={36}/>
-  <Line type="monotone" dataKey="temperature" stroke="#00BFFF" fillOpacity={1}  />
+  <Line type="monotone" dataKey="temperature" stroke="#00BFFF" fillOpacity={1}  strokeWidth={2}/>
 </LineChart>
 
 
@@ -237,8 +237,8 @@ class Historical extends Component {
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
   <Legend verticalAlign="top" height={36}/>
-  <Line type="monotone" dataKey="temperature_max" stroke="#FFA500" fillOpacity={1}  />
-  <Line type="monotone" dataKey="temperature_min" stroke="#00BFFF" fillOpacity={1}  />
+  <Line type="monotone" dataKey="temperature_max" stroke="#FFA500" fillOpacity={1}  strokeWidth={2}/>
+  <Line type="monotone" dataKey="temperature_min" stroke="#00BFFF" fillOpacity={1}  strokeWidth={2}/>
 </LineChart>
 
                 </div> : <div className='sweet-loading'>

@@ -17,7 +17,7 @@ import {
 
 import firebase from 'config/firebase'
 import logoname from 'assest/images/mwms.jpg'
-import logo from 'assest/images/logo.PNG'
+import logo from 'assest/images/logo.png'
 
 class About extends Component {
     constructor(props){

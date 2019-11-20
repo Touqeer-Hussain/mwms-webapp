@@ -1,5 +1,5 @@
 {
-  "name": "My Weather Monitoring System",
+  "name": "mwms",
   "version": "1.0.0",
   "private": true,
   "dependencies": {

@@ -42,7 +42,18 @@ class RealTime extends Component {
     }
 
     componentDidMount(){
-      firebase.database().ref('current').on('value', (data) =>{
+      this.getData()
+
+      
+    }
+
+    componentWillUnmount(){
+      this.currentRef.off('value')
+    }
+
+    getData(){
+      this.currentRef = firebase.database().ref('current');
+      this.currentRef.on('value', (data) =>{
         
         this.setState({
           temperature: Math.round(data.val().temperature),
@@ -56,15 +67,14 @@ class RealTime extends Component {
             load: true
           })
         })
-        console.log(data.val())
+        
       })
-
-      
     }
     
   render(){
       const { temperature, humidity, lux, realFeel, airPressure, altitude, load } = this.state;
       const { main } = this.props;
+      
     return(
         <Container style={{
             padding: '5vh'
