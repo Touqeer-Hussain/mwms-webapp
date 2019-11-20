@@ -254,11 +254,12 @@ class Cities extends Component {
 
 
 
-      }} key={data.annotations.geohash}  ><h3 style={{
-        fontSize: '3em',
+      }} key={data.annotations.geohash}  >
+        <p style={{
+        fontSize: '1.5em',
         fontFamily: 'vincHand'
        
-      }}>{data.formatted}</h3> </div>: <span>
+      }}>{data.formatted}</p> </div>: <span>
           
       </span>
     })
