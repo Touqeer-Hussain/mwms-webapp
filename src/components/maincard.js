@@ -49,7 +49,7 @@ class MainCard extends Component {
 
           <div style={{
             height: '70%',
-            paddingLeft: '13%'
+            paddingLeft: '5%'
           }}>
 
             <p style={{
@@ -58,7 +58,7 @@ class MainCard extends Component {
           
         }} >
           {data}<span style={{
-          fontSize: '0.6em',
+          fontSize: '0.4em',
           fontFamily: 'typeface-roboto',
           
         }}>{unit}</span>
