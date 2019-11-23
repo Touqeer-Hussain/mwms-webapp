@@ -17,10 +17,10 @@ class App extends Component {
     constructor(props){
       super(props);
       this.state ={
-        realTime: null,
+        realTime: true,
         sensorControl: null,
-        cities: false,
-        citydetail: true,
+        cities: null,
+        citydetail: null,
         historical: null,
         theme: null,
         about: null,
