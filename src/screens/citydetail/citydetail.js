@@ -20,6 +20,8 @@ import firebase from 'config/firebase'
 import plusimage from 'assest/images/plus.png'
 import Exximg from 'assest/images/fist.jpg'
 
+import swal from 'sweetalert'
+
 import {concat} from 'bytebuffer'
 class CityDetail extends Component {
     constructor(props) {
@@ -53,7 +55,7 @@ class CityDetail extends Component {
 
     close = () => { 
         this.setState({ confirm: false }, ()=>{
-            console.log(this.state.confirm)
+            
         })
         
     }
@@ -136,10 +138,16 @@ class CityDetail extends Component {
                       confirm: false,
                       
                   }, () => {
-                      this.props.main.setState({
-                          citydetail: null,
-                          cities: true
-                      })
+                    swal("City Deleted!", "","success")
+                    .then((value) => {
+                    
+                        this.props.main.setState({
+                            citydetail: null,
+                            cities: true
+                        })
+                    })  
+                    
+                    
                   })
               }}
               positive
@@ -188,12 +196,14 @@ class CityDetail extends Component {
              
 
     <Button   animated='fade' onClick={() => {
+                
                     this
                         .props
                         .main
                         .setState({realTime: null, sensorControl: null, cities: null, citydetail: null, historical: true})
+                        
                 }}
-                
+
                     color='twitter' >
       <Button.Content visible>History</Button.Content>
       <Button.Content hidden>
@@ -231,7 +241,7 @@ class CityDetail extends Component {
                                                 <Grid.Column stackable>
                                                     <Segment
                                                     style={{
-                                                        
+                                                        backgroundSize: 'cover',
                                                         backgroundImage: `url(${background})`,
                                                         borderRadius: '10px'
                                                     }}>
@@ -562,7 +572,7 @@ class CityDetail extends Component {
                                                                     style={{
                                                                     fontSize: '0.9em'
                                                                 }}>
-                                                                    Km
+                                                                    km/h
                                                                 </span>
                                                             </h1>
 
@@ -635,15 +645,13 @@ class CityDetail extends Component {
                                                             float: 'left',
                                                             width: '100%',
 
-
                                                         }}>
-                                            
-                                            <div   style={{
+                                                            <div   style={{
                                                                 height: '70%',
                                                                 float: 'right',
                                                                 width: '30%',
                                                             }}>
-                                                             <Image size='tiny' src={require('assest/images/visibility.png') }/>
+                                                            <Image size='tiny' src={require('assest/images/visibility.png') }/>
                                                              </div>
                                             
                                                             <h1
@@ -652,9 +660,8 @@ class CityDetail extends Component {
                                                                 paddingLeft: '2px',
                                                                 width: '70%'
                                                             }}>
-                                                                <br/>
                                                                 Visibility:
-
+                                                                <br/>
                                                                 <span
                                                                     style={{
                                                                     fontSize: '1.8em',
@@ -666,14 +673,14 @@ class CityDetail extends Component {
                                                                     style={{
                                                                     fontSize: '0.9em'
                                                                 }}>
-                                                                    Km
+                                                                    km/h
                                                                 </span>
                                                             </h1>
 
                                                         </div>
+
                                                     </Segment>
-
-
+                                                    
 
 
                             </Grid.Column>
@@ -734,7 +741,7 @@ class CityDetail extends Component {
                                                             textAlign:'center',
                                                             
                                                         }}>
-                                                             Hourly Update 
+                                                             Hourly Update.
                                                         </h1>
 
                                                     </div>
@@ -823,7 +830,7 @@ class CityDetail extends Component {
                                                             
 
                                                         }}>
-                                                             Day by Days Update 
+                                                             Weekly Update.
                                                         </h1>
 
                                                     </div>

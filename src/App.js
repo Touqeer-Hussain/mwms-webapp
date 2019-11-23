@@ -17,10 +17,10 @@ class App extends Component {
     constructor(props){
       super(props);
       this.state ={
-        realTime: true,
+        realTime: null,
         sensorControl: null,
         cities: false,
-        citydetail: null,
+        citydetail: true,
         historical: null,
         theme: null,
         about: null,
@@ -33,8 +33,8 @@ class App extends Component {
     }
 
     componentDidMount(){
-
-       this.themeRef =  firebase.database().ref('theme')
+      
+       this.themeRef =  firebase.database().ref('theme/web')
        this.themeRef.on('value', snap => {
           
           

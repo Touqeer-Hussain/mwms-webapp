@@ -62,7 +62,7 @@ class Historical extends Component {
             arrayDate: cDate,
             numOfDays: numOfDays
         }, () => {
-            
+            this.getData()        
         })
        
     }
@@ -77,7 +77,7 @@ class Historical extends Component {
 
 
 
-        fetch(`https://api.meteostat.net/v1/stations/nearby?lat=${data.latitude}&lon=${data.longitude}&limit=1&key=oyRxjMhk`).then(fth => {
+        fetch(`https://api.meteostat.net/v1/stations/nearby?lat=${data.latitude}&lon=${data.longitude}&key=oyRxjMhk`).then(fth => {
             fth.json().then(res => { 
                 console.log(res)
                 if(res.data.length >= 1){
@@ -93,6 +93,7 @@ class Historical extends Component {
                             this.setState({
                             load: true
                         })
+                        
                         })
     
                     })})
@@ -185,15 +186,7 @@ class Historical extends Component {
                              value={this.state.date}
                              minDate={new Date(0)}
                         />
-                           <Button compact style={{
-
-                               borderRadius: '0px ',
-                               }}
-                    onClick={() => {
-                        this.getData()
-                    
-                    }}
-             color='black'  >Select</Button>
+                          
 
 </div>                
                         </Grid.Column>
@@ -237,8 +230,8 @@ class Historical extends Component {
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
   <Legend verticalAlign="top" height={36}/>
-  <Line type="monotone" dataKey="temperature_max" stroke="#FFA500" fillOpacity={1}  strokeWidth={2}/>
-  <Line type="monotone" dataKey="temperature_min" stroke="#00BFFF" fillOpacity={1}  strokeWidth={2}/>
+  <Line type="monotone" dataKey="temperature_mean_max" stroke="#FFA500" fillOpacity={1}  strokeWidth={2}/>
+  <Line type="monotone" dataKey="temperature_mean_min" stroke="#00BFFF" fillOpacity={1}  strokeWidth={2}/>
 </LineChart>
 
                 </div> : <div className='sweet-loading'>

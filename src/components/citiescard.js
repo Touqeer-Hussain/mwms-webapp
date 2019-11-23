@@ -118,6 +118,7 @@ class CitiesCard extends Component {
                     height: '15%',
                     width: '100%',
                     float: 'left',
+                    paddingTop: '1%'
               }}> 
               
               <span style={{

@@ -62,7 +62,7 @@ class Theme extends Component {
                                                             height: 10
                                                         }}
                                                     onClick={() => {
-                                                        firebase.database().ref('theme/menuBarColor').set(color);
+                                                        firebase.database().ref('theme/web/menuBarColor').set(color);
                                                         localStorage.setItem('menuBarColor', color);
                                                             main.setState({
                                                                 menuBarColor: color
@@ -101,7 +101,7 @@ class Theme extends Component {
                                                         width: 10,
                                                         height: 10
                                                     }} onClick={() => {
-                                                        firebase.database().ref('theme/outlineColor').set(color);
+                                                        firebase.database().ref('theme/web/outlineColor').set(color);
                                                         localStorage.setItem('outlineColor', color);
                                                             main.setState({
                                                                 outlineColor: color

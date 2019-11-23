@@ -58,7 +58,7 @@ class MainCard extends Component {
           
         }} >
           {data}<span style={{
-          fontSize: '0.7em',
+          fontSize: '0.6em',
           fontFamily: 'typeface-roboto',
           
         }}>{unit}</span>
