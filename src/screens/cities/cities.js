@@ -97,9 +97,12 @@ class Cities extends Component {
             citiesList: this.state.citiesList.concat({...res, "city": snap.val().city, "cityKey": snap.key})
            
           }, () => {
-            this.setState({
-              load: true
-            })
+            if(this.state.citiesLength == this.state.citiesList.length){
+              this.setState({
+                load: true
+              })
+            }
+            
             
         console.log('list',this.state.citiesList)
         console.log('lenght',this.state.citiesLength)
@@ -151,7 +154,7 @@ class Cities extends Component {
 
     return( load ? 
         <Container style={{
-            padding: '5vh'
+            padding: '5vh',
         }}>
         <Card.Group>
            
@@ -208,8 +211,8 @@ class Cities extends Component {
         return data.confidence <= 5  && ( data.components.city || data.components.state ) && data.components.country ? <List.Item onClick={() => {
           let cityFound = false;
           
-          firebase.database().ref('cities').once("value", snap  => {
-            if(snap.val() !== null){
+          
+            if(this.state.citiesLength >= 1){
 
               this.state.citiesList.filter((entry) => {
                 if(entry.city == data.components.city || entry.city == data.components.state){
@@ -227,7 +230,8 @@ class Cities extends Component {
                     lat: data.geometry.lat,
                     lng: data.geometry.lng,
                     city: data.components.city ? data.components.city : data.components.state,
-                    country: data.components.country
+                    country: data.components.country,
+                    formatted: data.formatted
                   }, (err) => {
                     if(err){
 
@@ -245,42 +249,15 @@ class Cities extends Component {
                 }else{
                   swal('Duplicate!', 'City is already added!', 'warning')
                 }
-   
-
-              firebase.database().ref('cities').once("value", snap => {
-                  
-                  
-                // if(snap.val().lat != data.geometry.lat || snap.val().lng != data.geometry.lng){
-                //   firebase.database().ref('cities').push({
-                //     lat: data.geometry.lat,
-                //     lng: data.geometry.lng,
-                //     city: data.components.city ? data.components.city : data.components.state,
-                //     country: data.components.country
-                //   }, (err) => {
-                //     if(err){
-
-                //     }else{
-                //       swal('City Added!', '', 'success').then((value) => {
-                //         this.setState({
-                //           modalOpen: false,
-                //           citiesLength: this.state.citiesLength + 1
-                //       })  
-                //       });
-                      
-                      
-                //     }
-                //   })
-                // }else{
-                //   swal('Duplicate!', 'City is already added!', 'warning')
-                // }
-              })
+  
             }else{
 
               firebase.database().ref('cities').push({
                 lat: data.geometry.lat,
                 lng: data.geometry.lng,
                 city: data.components.city ? data.components.city : data.components.state,
-                country: data.components.country
+                country: data.components.country,
+                formatted: data.formatted
               }, (err) => {
                 if(err){
 
@@ -296,7 +273,7 @@ class Cities extends Component {
               })
 
             }
-          })
+          
             
           
 
