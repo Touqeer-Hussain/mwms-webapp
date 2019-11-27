@@ -105,7 +105,11 @@ class Cities extends Component {
         fth.json().then(res => { 
           
           this.setState({
-            citiesList: this.state.citiesList.concat({...res, "city": snap.val().city, "cityKey": snap.key, "timezone": snap.val().timezone})
+            citiesList: this.state.citiesList.concat({
+              ...res, 
+              city: snap.val().city, 
+              cityKey: snap.key, 
+              timezone: snap.val().timezone})
            
           }, () => {
             // if(this.state.citiesLength == this.state.citiesList.length){
