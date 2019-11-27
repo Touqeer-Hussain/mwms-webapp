@@ -79,11 +79,22 @@ class Cities extends Component {
         load: false
       })
       
-      firebase.database().ref('cities').once("value", async snap => { 
+      firebase.database().ref('cities').on("value", async snap => { 
         this.setState({
           citiesLength: snap.numChildren()
         })
+
+      
+
+        if(snap.numChildren() < 1){
+          this.setState({
+            load: true
+          })
+        }
       })
+
+    
+
     this.citiesRef = firebase.database().ref('cities');
     this.citiesRef.on("child_added", async snap => { 
     
@@ -94,14 +105,14 @@ class Cities extends Component {
         fth.json().then(res => { 
           
           this.setState({
-            citiesList: this.state.citiesList.concat({...res, "city": snap.val().city, "cityKey": snap.key})
+            citiesList: this.state.citiesList.concat({...res, "city": snap.val().city, "cityKey": snap.key, "timezone": snap.val().timezone})
            
           }, () => {
-            if(this.state.citiesLength == this.state.citiesList.length){
+            // if(this.state.citiesLength == this.state.citiesList.length){
               this.setState({
                 load: true
               })
-            }
+            // }
             
             
         console.log('list',this.state.citiesList)
@@ -158,7 +169,7 @@ class Cities extends Component {
         }}>
         <Card.Group>
            
-          {citiesLength == citiesList.length ?  citiesList.map((snap,i )=> {
+          {citiesList.map((snap,i )=> {
                     
                     
                 return <CitiesCard key={snap.cityKey} data={snap} title={snap.city} temp={Math.round(snap.currently.temperature)} image={require(`assest/images/${snap.currently.icon}.png`)} date={new Date(snap.currently.time * 1000).toDateString()} unit='&#8451;' main={this.props.main}/>
@@ -166,7 +177,7 @@ class Cities extends Component {
            
            
              
-          }) : ''}
+          })}
 
         
             
@@ -231,7 +242,9 @@ class Cities extends Component {
                     lng: data.geometry.lng,
                     city: data.components.city ? data.components.city : data.components.state,
                     country: data.components.country,
-                    formatted: data.formatted
+                    formatted: data.formatted,
+                    timezone: data.annotations.timezone.offset_string.substring(0, 3)
+
                   }, (err) => {
                     if(err){
 
@@ -257,7 +270,9 @@ class Cities extends Component {
                 lng: data.geometry.lng,
                 city: data.components.city ? data.components.city : data.components.state,
                 country: data.components.country,
-                formatted: data.formatted
+                formatted: data.formatted,
+                timezone: data.annotations.timezone.offset_string.substring(0, 3)
+
               }, (err) => {
                 if(err){
 

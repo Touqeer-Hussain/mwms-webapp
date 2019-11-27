@@ -753,9 +753,14 @@ class CityDetail extends Component {
                                         <Grid columns={6} divided stackable>
                                             <Grid.Row stretched>
                                                 {data.hourly.data.map((snap, i) => {
-                                                    var cTime = new Date(snap.time * 1000).toLocaleTimeString().split(":");
-                                                    var pTime = `${cTime[0]}:${cTime[1]}`
-                                                    var meridim = cTime[0] > 12 ? 'pm' : 'am'
+                                                      var targetTime = new Date(snap.time * 1000);
+                                                      var timeZoneFromDB = parseInt(data.timezone); 
+                                                      var tzDifference = timeZoneFromDB * 60 + targetTime.getTimezoneOffset();
+                                                      var offsetTime = new Date(targetTime.getTime() + tzDifference * 60 * 1000); 
+  
+                                                      var cTime = offsetTime.toLocaleTimeString().split(":");
+                                                      var pTime = cTime[0] > 12 ? `${cTime[0] - 12}:${cTime[1]}` : `${cTime[0]}:${cTime[1]}`
+                                                      var meridim = cTime[0] > 12 ? 'pm' : 'am'
                                                     return (
                                                         <Grid.Column key={i}>
 
@@ -779,7 +784,7 @@ class CityDetail extends Component {
                                                                        marginleft: '50%'
                                                                     }}>
                                                                         
-                                                                        {pTime}
+                                                                        {pTime} {meridim}
                                                                     </h1>
 
                                                                     <h1
@@ -843,7 +848,12 @@ class CityDetail extends Component {
                                         <Grid columns={6} divided stackable>
                                             <Grid.Row stretched>
                                                 {data.daily.data.map(snap => {
-                                                    var cDate = new Date(snap.time * 1000).toLocaleDateString()
+                                                       var targetTime = new Date(snap.time * 1000);
+                                                       var timeZoneFromDB = parseInt(data.timezone); 
+                                                       var tzDifference = timeZoneFromDB * 60 + targetTime.getTimezoneOffset();
+                                                       var offsetTime = new Date(targetTime.getTime() + tzDifference * 60 * 1000); 
+   
+                                                       var cDate = offsetTime.toLocaleDateString()
                                                     return (
                                                         <Grid.Column>
 

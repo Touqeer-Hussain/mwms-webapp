@@ -104,20 +104,8 @@ export default class Chart extends Component {
         
       })
       
-      var f = 1
-      setInterval(() => {
-            
-            f++
-            this.setState({
-              data:  this.state.data.concat({
-                time: 'dsds '+f, temperature: Math.random(100)
-              })
-            }, () => {
-              this.state.data.shift();
-            })
-         
-          
-      },2000)
+      
+      
 
       // firebase.database().ref('realtime').limitToLast(5).on('child_added', snap => {
       //   console.log(snap.val())
