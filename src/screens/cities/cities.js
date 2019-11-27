@@ -69,6 +69,7 @@ class Cities extends Component {
 
     componentWillUnmount(){
       this.citiesRef.off('child_added')
+      this.citiesNumRef.off('value')
     }
 
     async getCityData(){
@@ -79,7 +80,8 @@ class Cities extends Component {
         load: false
       })
       
-      firebase.database().ref('cities').on("value", async snap => { 
+      this.citiesNumRef = firebase.database().ref('cities')
+      this.citiesNumRef.on("value", async snap => { 
         this.setState({
           citiesLength: snap.numChildren()
         })
