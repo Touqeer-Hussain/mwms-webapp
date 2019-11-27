@@ -752,11 +752,12 @@ class CityDetail extends Component {
 
                                         <Grid columns={6} divided stackable>
                                             <Grid.Row stretched>
-                                                {data.hourly.data.map(snap => {
+                                                {data.hourly.data.map((snap, i) => {
                                                     var cTime = new Date(snap.time * 1000).toLocaleTimeString().split(":");
-                                                    var pTime = `${cTime[0]}:${cTime[1]} ${cTime[2].split(" ")[1]}`
+                                                    var pTime = `${cTime[0]}:${cTime[1]}`
+                                                    var meridim = cTime[0] > 12 ? 'pm' : 'am'
                                                     return (
-                                                        <Grid.Column>
+                                                        <Grid.Column key={i}>
 
                                                             <Segment style={{
                                                             border: `2px solid ${main.state.outlineColor}`,
