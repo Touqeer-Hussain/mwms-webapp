@@ -1,38 +1,26 @@
 import React, {Component} from 'react'
 import {
-    Card,
-    Image,
     Button,
     Container,
-    Modal,
-    Header,
-    Input,
-    Form,
     Grid,
-    Segment,
-    Radio,
     Icon
 
 } from 'semantic-ui-react'
 
 import {
-    AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, ResponsiveContainer, Line, LineChart
+   XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line, LineChart
   } from 'recharts';
 
 import DateTimePicker from 'react-datetime-picker';
-import firebase from 'config/firebase'
-import plusimage from 'assest/images/plus.png'
-import Exximg from 'assest/images/fist.jpg'
 import DotLoader from 'react-spinners/DotLoader';
 
 
 
-class Historical extends Component {
+export default class Historical extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data: JSON.parse(localStorage.getItem('data')),
-            cityData: '',
             load: false,
             date: new Date(),
             arrayDate: new Date().toLocaleDateString().split("/"),
@@ -41,11 +29,22 @@ class Historical extends Component {
             dailyData: '',
             hourlyData: '',
             numOfDays: new Date(new Date().toLocaleDateString().split("/")[2], new Date().toLocaleDateString().split("/")[0], 0).getDate(),
+            chartWidth: 0
+
             
         }
     }
 
     componentDidMount() {
+        if(window.innerWidth <= 600){
+            this.setState({
+              chartWidth: window.innerWidth * 0.83
+            })
+          }else{
+            this.setState({
+              chartWidth: window.innerWidth * 0.70
+            })
+          }
 
        this.getData()
 
@@ -56,7 +55,7 @@ class Historical extends Component {
     dateChange = date => {
         var cDate = new Date(date).toLocaleDateString().split("/");
         var numOfDays = new Date(cDate[2], cDate[0], 0).getDate()
-        console.log(numOfDays)
+        // console.log(numOfDays)
         this.setState({ 
             date,
             arrayDate: cDate,
@@ -68,8 +67,8 @@ class Historical extends Component {
     }
 
     async getData() {
-        console.log("done")
-           const {  unixDate, data, arrayDate, numOfDays } = this.state 
+        // console.log("done")
+           const { data, arrayDate, numOfDays } = this.state 
 
 
         
@@ -79,7 +78,7 @@ class Historical extends Component {
 
         fetch(`https://api.meteostat.net/v1/stations/nearby?lat=${data.latitude}&lon=${data.longitude}&key=oyRxjMhk`).then(fth => {
             fth.json().then(res => { 
-                console.log(res)
+                // console.log(res)
                 if(res.data.length >= 1){
                         // Monthly
                     fetch(`https://api.meteostat.net/v1/history/monthly?station=${res.data[0].id}&start=${arrayDate[2]}-01&end=${arrayDate[2]}-12&time_zone=${data.timezone}&time_format=Y-m-d%20H:i&key=oyRxjMhk`).then(fth => {
@@ -99,7 +98,7 @@ class Historical extends Component {
                     })})
 
                     //daily
-                    fetch(`https://api.meteostat.net/v1/history/daily?station=${res.data[0].id}&start=${arrayDate[2]}-${arrayDate[0] < 10 ? '0'+arrayDate[0] : ''+arrayDate[0] }-01&end=${arrayDate[2]}-${arrayDate[0] < 10 ? '0'+arrayDate[0] : ''+arrayDate[0] }-${numOfDays}&time_zone=${data.timezone}&key=oyRxjMhk`).then(fth => {
+                    fetch(`https://api.meteostat.net/v1/history/daily?station=${res.data[0].id}&start=${arrayDate[2]}-${arrayDate[1]}-01&end=${arrayDate[2]}-${arrayDate[1]}-${numOfDays}&time_zone=${data.timezone}&key=oyRxjMhk`).then(fth => {
                     fth.json().then(res => { 
                         console.log("daily",res)
                         this.setState({
@@ -114,7 +113,7 @@ class Historical extends Component {
                     })})
 
                     //hourly
-                    fetch(`https://api.meteostat.net/v1/history/hourly?station=${res.data[0].id}&start=${arrayDate[2]}-${arrayDate[0]}-${arrayDate[1]}&end=${arrayDate[2]}-${arrayDate[0]}-${arrayDate[1]}&time_zone=${data.timezone}&time_format=Y-m-d%20H:i&key=oyRxjMhk`).then(fth => {
+                    fetch(`https://api.meteostat.net/v1/history/hourly?station=${res.data[0].id}&start=${arrayDate[2]}-${arrayDate[1]}-${arrayDate[0]}&end=${arrayDate[2]}-${arrayDate[1]}-${arrayDate[0]}&time_zone=${data.timezone}&time_format=Y-m-d%20H:i&key=oyRxjMhk`).then(fth => {
                         fth.json().then(res => { 
                         console.log("hourly",res)
                         this.setState({
@@ -143,7 +142,7 @@ class Historical extends Component {
     }
 
     render() {
-        const {data, load, list, cdata, unixDate, histData, monthlyData, hourlyData, dailyData} = this.state;
+        const { load, monthlyData, hourlyData, dailyData, chartWidth} = this.state;
         const { main } = this.props;
         return (
             <Container style={{
@@ -195,10 +194,10 @@ class Historical extends Component {
                 
                
 
-                {load ?
+                {   load ?
                     <div>
                 
-                <LineChart width={1000} height={390} data={hourlyData.data}
+                 <LineChart width={chartWidth} height={390} data={hourlyData.data}
   margin={{ top: 100, right: 30, left: 0, bottom: 0 }}>
   
   <XAxis dataKey="time_local" />
@@ -210,7 +209,7 @@ class Historical extends Component {
 </LineChart>
 
 
-      <LineChart width={1000} height={390} data={dailyData.data}
+      <LineChart width={chartWidth} height={390} data={dailyData.data}
   margin={{ top: 100, right: 30, left: 0, bottom: 0 }}>
   
   <XAxis dataKey="date" />
@@ -222,7 +221,7 @@ class Historical extends Component {
 </LineChart>
 
 
-<LineChart width={1000} height={390} data={monthlyData.data}
+<LineChart width={chartWidth} height={390} data={monthlyData.data}
   margin={{ top: 100, right: 30, left: 0, bottom: 0 }}>
   
   <XAxis dataKey="month" />
@@ -253,5 +252,3 @@ class Historical extends Component {
         )
     }
 }
-
-export default Historical;

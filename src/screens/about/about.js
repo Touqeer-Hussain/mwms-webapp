@@ -1,25 +1,18 @@
 import React, { Component } from 'react'
 import {
-  Card,
   Image,
-  Button,
   Container,
-  Modal,
-  Header,
-  Input,
-  Form,
   Grid,
   Segment,
-  Radio,
-  Icon
+
 
 } from 'semantic-ui-react'
 
-import firebase from 'config/firebase'
 import logoname from 'assest/images/mwms.jpg'
 import logo from 'assest/images/logo.png'
 
-class About extends Component {
+
+export default class About extends Component {
     constructor(props){
       super(props);
       this.state ={
@@ -30,10 +23,7 @@ class About extends Component {
 
     }
 
-    componentDidMount(){
-      
-    }
-    
+
 
 
   render(){
@@ -79,5 +69,3 @@ class About extends Component {
     )
   }
 }
-
-export default About;

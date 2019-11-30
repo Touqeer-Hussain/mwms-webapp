@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
-import {Card, Image, Button, Container, Confirm, Icon, Grid, Segment, GridColumn, GridRow} from 'semantic-ui-react';
+import { Grid, Segment } from 'semantic-ui-react';
 import 'typeface-roboto'
 import firebase from 'config/firebase'
-import swal from 'sweetalert'
 
-class Theme extends Component {
+export default class Theme extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -123,4 +122,3 @@ class Theme extends Component {
 }
 }
 
-export default Theme;

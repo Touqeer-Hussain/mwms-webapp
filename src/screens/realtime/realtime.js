@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 import {
     Card,
-    Image,
-    Button,
     Container,
-    Segment,
-    Loader,
-    Dimmer
 } from 'semantic-ui-react'
 
 import MainCard from 'components/maincard'
@@ -24,7 +19,7 @@ import DotLoader from 'react-spinners/DotLoader';
 
 
 
-class RealTime extends Component {
+export default class RealTime extends Component {
     constructor(props){
       super(props);
       this.state ={
@@ -109,5 +104,3 @@ class RealTime extends Component {
     )
   }
 }
-
-export default RealTime;

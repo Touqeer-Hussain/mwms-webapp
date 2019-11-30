@@ -34,6 +34,8 @@ class App extends Component {
 
     componentDidMount(){
       
+
+      console.log(window.innerWidth)
        this.themeRef =  firebase.database().ref('theme/web')
        this.themeRef.on('value', snap => {
           

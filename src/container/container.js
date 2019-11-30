@@ -1,14 +1,9 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import {
-  Button,
   Container,
-  Divider,
-  Grid,
-  Header,
   Icon,
   Image,
-  List,
   Menu,
   Responsive,
   Segment,
@@ -16,8 +11,6 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
-import Exximg from 'assest/images/fist.jpg';
-import logoname from 'assest/images/mwms.jpg'
 import logo from 'assest/images/logo.png'
 
 
@@ -32,7 +25,7 @@ class DesktopContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
-      e: ''
+      fixed: ''
     }
   }
   
@@ -42,7 +35,7 @@ class DesktopContainer extends Component {
 
   render() {
     const { children, main } = this.props
-    const { fixed, cons } = this.state
+    const { fixed } = this.state
 
     return (
       <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth} >
@@ -182,7 +175,7 @@ class MobileContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
-   
+          sidebarOpened: ''
     }
   }
 
@@ -214,7 +207,6 @@ class MobileContainer extends Component {
           visible={sidebarOpened}
           width='very wide'
           direction='top'
-          animation= 'push'
         >
           <Menu.Item style={{
             backgroundColor: main.state.menuBarColor,
@@ -377,11 +369,7 @@ class MobileContainer extends Component {
 
 
 class MainContainer extends Component {
-    constructor(props){
-        super(props);
-
-    }
-
+   
 
 
     render(){

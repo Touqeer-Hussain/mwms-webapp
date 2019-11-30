@@ -9,7 +9,7 @@ import DotLoader from 'react-spinners/DotLoader';
 
 
 
-class SensorControl extends Component {
+export default class SensorControl extends Component {
     constructor(props){
       super(props);
       this.state ={
@@ -110,4 +110,3 @@ class SensorControl extends Component {
   }
 }
 
-export default SensorControl;

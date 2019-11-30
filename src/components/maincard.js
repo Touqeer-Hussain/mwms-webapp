@@ -1,12 +1,9 @@
 import React, {Component} from 'react'
-import {Card, Image, Button, Container} from 'semantic-ui-react';
+import { Card, Image } from 'semantic-ui-react';
 import 'typeface-roboto'
 
-class MainCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
+export default class MainCard extends Component {
+ 
   render() {
       
       const { title, data, unit, image, main } = this.props
@@ -74,4 +71,3 @@ class MainCard extends Component {
   }
 }
 
-export default MainCard;

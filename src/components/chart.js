@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, ResponsiveContainer
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts';
 
 import firebase from 'config/firebase'
@@ -11,40 +11,28 @@ export default class Chart extends Component {
     constructor(props){
       super(props);
       this.state = {
-        data: [
-          {
-            time: 'Page A', temperature: 4000
-          },
-          {
-            time: 'Page B', temperature: 3000
-          },
-          {
-            time: 'Page C', temperature: 2000
-          },
-          {
-            time: 'Page D', temperature: 2780
-          },
-          {
-            time: 'Page E', temperature: 1890
-          },
-          {
-            time: 'Page F', temperature: 2390
-          },
-          {
-            time: 'Page G', temperature: 3490
-          }
-        ],
         tempData: [],
         humidityData: [],
         luxData: [],
         airPreData: [],
         altiData: [],
         realFeelData: [],
-        load: false
+        load: false,
+        chartWidth: 0
       }
     }
 
     componentDidMount(){
+
+      if(window.innerWidth <= 600){
+        this.setState({
+          chartWidth: window.innerWidth * 0.83
+        })
+      }else{
+        this.setState({
+          chartWidth: window.innerWidth * 0.55
+        })
+      }
 
         this.getData()
         
@@ -56,17 +44,17 @@ export default class Chart extends Component {
 
 
     getData(){
-      console.log('Get Data')
+      // console.log('Get Data')
       this.setState({
         load: false
       })
-      console.log('Chats', this.props.main)
+      // console.log('Chats', this.props.main)
         var count = 0
       this.unsub = firebase.database().ref('realtime').limitToLast(12)
       this.unsub.on('child_added', snap => {
         count++;
-        console.log('Get Data',`count ${count}`, snap.val().lux)
-        console.log( this.state.tempData)
+        // console.log('Get Data',`count ${count}`, snap.val().lux)
+        // console.log( this.state.tempData)
         var time = new Date(snap.val().time * 1000).getHours() + ":" +new Date(snap.val().time * 1000).getMinutes() + ":" +new Date(snap.val().time * 1000).getSeconds();
         this.setState({
             tempData: this.state.tempData.concat({
@@ -107,19 +95,17 @@ export default class Chart extends Component {
       
       
 
-      // firebase.database().ref('realtime').limitToLast(5).on('child_added', snap => {
-      //   console.log(snap.val())
-      // })
+     
     }
   render() {
-    const { data, tempData, airPreData, altiData, humidityData, luxData, realFeelData, load } = this.state;
+    const { tempData, airPreData, altiData, humidityData, luxData, realFeelData, load, chartWidth } = this.state;
     const { main } = this.props;
     return (
       load ? 
       <div>
 
 
-        <AreaChart width={870} height={300} data={tempData}
+        <AreaChart width={chartWidth} height={300} data={tempData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -136,7 +122,7 @@ export default class Chart extends Component {
 </AreaChart>
 
 
-      <AreaChart width={870} height={300} data={humidityData}
+      <AreaChart width={chartWidth} height={300} data={humidityData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -155,7 +141,7 @@ export default class Chart extends Component {
 
 
 
-<AreaChart width={870} height={300} data={airPreData}
+<AreaChart width={chartWidth} height={300} data={airPreData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -173,7 +159,7 @@ export default class Chart extends Component {
 
 
 
-<AreaChart width={870} height={300} data={altiData}
+<AreaChart width={chartWidth} height={300} data={altiData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -191,7 +177,7 @@ export default class Chart extends Component {
 
 
 
-<AreaChart width={870} height={300} data={luxData}
+<AreaChart width={chartWidth} height={300} data={luxData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -209,7 +195,7 @@ export default class Chart extends Component {
 
 
 
-<AreaChart width={870} height={300} data={realFeelData}
+<AreaChart width={chartWidth} height={300} data={realFeelData}
   margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">

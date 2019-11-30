@@ -5,8 +5,6 @@ import {
     Button,
     Container,
     Modal,
-    Header,
-    Input,
     Form,
     Icon,
     List,
@@ -15,27 +13,21 @@ import {
 } from 'semantic-ui-react'
 
 
-
-
-
 import firebase from 'config/firebase'
 import plusimage from 'assest/images/plus.png'
-import MainCard from 'components/maincard'
 import CitiesCard from 'components/citiescard'
-import Exximg from 'assest/images/fist.jpg'
 
 
 import DotLoader from 'react-spinners/DotLoader';
 import swal from 'sweetalert'
 
-class Cities extends Component {
+export default class Cities extends Component {
     constructor(props){
       super(props);
       this.state ={
          searchQuery: '',
          cityName: '',
          temperature: '',
-         eximage: Exximg , 
          rdate:   '',
          searchList: '',
          citiesList: [],
@@ -51,18 +43,7 @@ class Cities extends Component {
     }
 
     componentDidMount(){
-    //   firebase.database().ref('current').on('value', (data) =>{
-        
-    //     this.setState({
-    //       temperature: Math.round(data.val().temperature),
-    //       humidity: Math.round(data.val().humidity),
-    //       lux: data.val().lux,
-    //       realFeel: Math.round(data.val().realFeel),
-    //       airPressure: data.val().airPressure,
-    //       altitude: Math.round(data.val().altitude)
-    //     })
-    //     console.log(data.val())
-    //   })
+ 
       this.getCityData();
       
     }
@@ -111,18 +92,16 @@ class Cities extends Component {
               ...res, 
               city: snap.val().city, 
               cityKey: snap.key, 
-              timezone: snap.val().timezone})
+              timezoneOffset: snap.val().timezone})
            
           }, () => {
-            // if(this.state.citiesLength == this.state.citiesList.length){
               this.setState({
                 load: true
               })
-            // }
             
             
-        console.log('list',this.state.citiesList)
-        console.log('lenght',this.state.citiesLength)
+        // console.log('list',this.state.citiesList)
+        // console.log('lenght',this.state.citiesLength)
             
           })
 
@@ -146,7 +125,7 @@ class Cities extends Component {
         this.setState({
           searchList: res
         }, () => {
-          console.log(res)
+          // console.log(res)
 
           if(res.total_results >= 1){
               
@@ -166,7 +145,7 @@ class Cities extends Component {
 
   render(){
       
-    const { cityName, temperature, eximage, rdate, citiesList, citiesLength, citiesName, load, searchLoad } = this.state
+    const { citiesList, load, searchLoad } = this.state
     const { main } = this.props;
 
     return( load ? 
@@ -232,11 +211,12 @@ class Cities extends Component {
             if(this.state.citiesLength >= 1){
 
               this.state.citiesList.filter((entry) => {
-                if(entry.city == data.components.city || entry.city == data.components.state){
-                      console.log('city Found', entry.city)
+                if(entry.city === data.components.city || entry.city === data.components.state){
                       cityFound = true
+                      return true
+
                 }else{
-                    console.log('not', entry.city)
+                    return false
                 } 
                 
               })
@@ -356,5 +336,3 @@ class Cities extends Component {
     )
   }
 }
-
-export default Cities;

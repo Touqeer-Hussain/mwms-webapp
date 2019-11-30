@@ -1,45 +1,26 @@
 import React, {Component} from 'react'
 import {
-    Card,
     Image,
     Button,
     Container,
     Modal,
-    Header,
-    Input,
-    Form,
     Grid,
     Segment,
-    Radio,
     Icon,
-    Confirm
 
 } from 'semantic-ui-react'
 
 import firebase from 'config/firebase'
-import plusimage from 'assest/images/plus.png'
-import Exximg from 'assest/images/fist.jpg'
 
 import swal from 'sweetalert'
 
-import {concat} from 'bytebuffer'
-class CityDetail extends Component {
+export default class CityDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
             confirm: false,
             data: '',
-            cityData: '',
-            sun: {},
             load: false,
-            list: [
-                1,
-                2,
-                3,
-                4,
-                5,
-                6
-            ],
             background: '',
             timePhase: '',
             tempIcon: '',
@@ -50,7 +31,7 @@ class CityDetail extends Component {
 
     open = () => {
         this.setState({ confirm: true })
-        console.log(this.state.confirm)
+        // console.log(this.state.confirm)
     }  
 
     close = () => { 
@@ -64,16 +45,10 @@ class CityDetail extends Component {
 
         this.getData();
 
-        //
-        // fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/04
-        // eaa61891ba6ace0154c6b2b6ce1c60/${city.lat},${city.lng}?units=si`).then(fth =>
-        // {     fth.json().then(res => {         console.log(res)       this.setState({
-        //         cityData: res,         load: true,       })     }) })
-
+      
     }
 
     async getData() {
-            const { data } = this.state;
         
         this.setState({
             data: await JSON.parse(localStorage.getItem('data'))
@@ -100,7 +75,7 @@ class CityDetail extends Component {
             this.setState({load: true})
             this.state.data.daily.data.length = 6
             this.state.data.hourly.data.length = 6
-            console.log(this.state.data)
+            // console.log(this.state.data)
 
 
 
@@ -754,7 +729,7 @@ class CityDetail extends Component {
                                             <Grid.Row stretched>
                                                 {data.hourly.data.map((snap, i) => {
                                                       var targetTime = new Date(snap.time * 1000);
-                                                      var timeZoneFromDB = parseInt(data.timezone); 
+                                                      var timeZoneFromDB = parseInt(data.timezoneOffset); 
                                                       var tzDifference = timeZoneFromDB * 60 + targetTime.getTimezoneOffset();
                                                       var offsetTime = new Date(targetTime.getTime() + tzDifference * 60 * 1000); 
   
@@ -849,7 +824,7 @@ class CityDetail extends Component {
                                             <Grid.Row stretched>
                                                 {data.daily.data.map(snap => {
                                                        var targetTime = new Date(snap.time * 1000);
-                                                       var timeZoneFromDB = parseInt(data.timezone); 
+                                                       var timeZoneFromDB = parseInt(data.timezoneOffset); 
                                                        var tzDifference = timeZoneFromDB * 60 + targetTime.getTimezoneOffset();
                                                        var offsetTime = new Date(targetTime.getTime() + tzDifference * 60 * 1000); 
    
@@ -944,4 +919,3 @@ class CityDetail extends Component {
     }
 }
 
-export default CityDetail;
