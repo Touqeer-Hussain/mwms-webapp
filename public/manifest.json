@@ -1,6 +1,7 @@
 {
   "short_name": "MWMS",
   "name": "My Weather Monitoring System",
+  "version": "1.0.2",
   "icons": [
     {
       "src": "favicon.ico",

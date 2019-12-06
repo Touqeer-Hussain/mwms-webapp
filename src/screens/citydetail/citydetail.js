@@ -48,6 +48,73 @@ export default class CityDetail extends Component {
       
     }
 
+
+    getPic(icon){
+        switch (icon) {
+          case 'clear-day':
+      
+              
+                return require('assest/images/clear-day.png')
+             
+              
+          break;
+          case 'clear-night':
+             
+            return require('assest/images/clear-night.png')
+          break;
+          case 'rain':
+              
+              return require('assest/images/rain.png')
+            
+          break;
+          case 'snow':
+              
+                return require('assest/images/snow.png')
+         
+          break;
+          case 'sleet':
+             
+                return require('assest/images/sleet.png')
+           
+          break;
+          case 'wind':
+            
+              return require('assest/images/wind.png')
+           
+          break;
+          case 'rain':
+              
+                return require('assest/images/rain.png')
+         
+          break;
+          case 'fog':
+              
+              return require('assest/images/fog.png')
+           
+          break;
+          case 'cloudy':
+              
+                return require('assest/images/cloudy.png')
+           
+          break;
+          case 'partly-cloudy-day':
+              
+                return require('assest/images/partly-cloudy-day.png')
+            
+          break;
+          case 'partly-cloudy-night':
+              
+                return require('assest/images/partly-cloudy-night.png')
+            
+          break;
+      
+        default:
+          break;
+      }
+      }
+
+
+
     async getData() {
         
         this.setState({
@@ -716,7 +783,7 @@ export default class CityDetail extends Component {
                                                             textAlign:'center',
                                                             
                                                         }}>
-                                                             Hourly Update.
+                                                             Hourly Update
                                                         </h1>
 
                                                     </div>
@@ -725,23 +792,26 @@ export default class CityDetail extends Component {
                                             </Grid.Row>
                                         </Grid>
 
-                                        <Grid columns={6} divided stackable>
+                                        <Grid columns={3} divided stackable>
                                             <Grid.Row stretched>
                                                 {data.hourly.data.map((snap, i) => {
+
                                                       var targetTime = new Date(snap.time * 1000);
-                                                      var timeZoneFromDB = parseInt(data.timezoneOffset); 
-                                                      var tzDifference = timeZoneFromDB * 60 + targetTime.getTimezoneOffset();
-                                                      var offsetTime = new Date(targetTime.getTime() + tzDifference * 60 * 1000); 
-  
-                                                      var cTime = offsetTime.toLocaleTimeString().split(":");
-                                                      var pTime = cTime[0] > 12 ? `${cTime[0] - 12}:${cTime[1]}` : `${cTime[0]}:${cTime[1]}`
-                                                      var meridim = cTime[0] > 12 ? 'pm' : 'am'
+                                                      var cTime = targetTime.toLocaleTimeString('en-US', {
+                                                        timeZone: data.timezone, 
+                                                        hour12: true,
+                                                        timeStyle: 'short',
+                                                          })
+
+                                                      
                                                     return (
                                                         <Grid.Column key={i}>
 
                                                             <Segment style={{
                                                             border: `2px solid ${main.state.outlineColor}`,
-                                                            borderRadius: '5px'
+                                                            borderRadius: '5px',
+                                                            textAlign: 'center',
+                                                            marginTop: '10px'
 
                                                             }}>
                                                                 <div
@@ -749,23 +819,36 @@ export default class CityDetail extends Component {
                                                                     height: '100%',
                                                                     float: 'left',
                                                                     width: '100%',
-                                                                    textAlign:'center',
+                                                                    textAlign: 'center'
                                                                     
                                                                 }}>
-                                                                    <h1
+                                                                     <h1
                                                                         style={{
                                                                         float: 'left',
                                                                        fontSize: '1.3em',
-                                                                       marginleft: '50%'
                                                                     }}>
                                                                         
-                                                                        {pTime} {meridim}
+                                                                        {cTime} 
                                                                     </h1>
+                                                                    <div style={{
+                                                                        height: '100%',
+                                                                        width: '50%',
+                                                                        float: 'right',
+                                                                        
+                                                                    }}>
+                                                                            <Image size='mini' floated='right' src={this.getPic(snap.icon)}/>
+                                                                   
+                                                                    </div>
+
+                                                                    <div style={{
+                                                                        height: '100%',
+                                                                        width: '50%',
+                                                                        float:'left',
+                                                                    }}>
 
                                                                     <h1
                                                                         style={{
                                                                         fontSize: '2.5em',
-                                                                        paddingTop: '15px',
                                                                         textAlign:'center'
                                                                     }}>
                                                                         {snap.temperature}
@@ -785,6 +868,10 @@ export default class CityDetail extends Component {
                                                                             &#8451;
                                                                         </span>
                                                                     </h1>
+                                                                    </div>
+                                                                   
+                                                                   
+                                                                  
 
                                                                 </div>
                                                             </Segment>
@@ -811,7 +898,7 @@ export default class CityDetail extends Component {
                                                             
 
                                                         }}>
-                                                             Weekly Update.
+                                                             Daily Update
                                                         </h1>
 
                                                     </div>
@@ -820,22 +907,25 @@ export default class CityDetail extends Component {
                                             </Grid.Row>
                                         </Grid>
 
-                                        <Grid columns={6} divided stackable>
+                                        <Grid columns={3} divided stackable>
                                             <Grid.Row stretched>
                                                 {data.daily.data.map(snap => {
-                                                       var targetTime = new Date(snap.time * 1000);
-                                                       var timeZoneFromDB = parseInt(data.timezoneOffset); 
-                                                       var tzDifference = timeZoneFromDB * 60 + targetTime.getTimezoneOffset();
-                                                       var offsetTime = new Date(targetTime.getTime() + tzDifference * 60 * 1000); 
-   
-                                                       var cDate = offsetTime.toLocaleDateString()
+                                                      var targetTime = new Date(snap.time * 1000);
+                                                      
+                                                       var cDate = targetTime.toLocaleDateString('en-IN', {
+                                                        timeZone: data.timezone, 
+                                                        dateStyle: 'short',
+                                                          })
+
+
                                                     return (
                                                         <Grid.Column>
 
                                                             <Segment style={{
                                                             border: `2px solid ${main.state.outlineColor}`,
                                                             borderRadius: '5px',        
-                                                            textAlign:'center'
+                                                            textAlign:'center',
+                                                            marginTop: '10px'
                                                             }}>
                                                                 <div
                                                                     style={{
@@ -843,6 +933,8 @@ export default class CityDetail extends Component {
                                                                     float: 'left',
                                                                     width: '100%'
                                                                 }}>
+
+
                                                                     <h1
                                                                         style={{
                                                                         float: 'left',
@@ -850,7 +942,15 @@ export default class CityDetail extends Component {
                                                                     }}>
                                                                         {cDate}
                                                                     </h1>
-
+                                                                    <div style={{
+                                                                        height: '100%',
+                                                                        width: '50%',
+                                                                        float: 'right',
+                                                                        
+                                                                    }}>
+                                                                            <Image size='mini' floated='right' src={this.getPic(snap.icon)}/>
+                                                                   
+                                                                    </div>
                                                                     <h1
                                                                         style={{
                                                                         fontSize: '1.6em',

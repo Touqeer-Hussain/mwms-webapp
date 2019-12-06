@@ -76,9 +76,21 @@ export default class About extends Component {
                                                 Ali Muhammad Amour
 
                                                 </p>
-                                                <Icon name='github' size='large' />
-                                                <Icon name='facebook' size='large' color='blue' />
-                                                <Icon name='mail'  size='large' color='red'/>
+                                                
+                                                <Icon name='github' size='large'  onClick={() => {
+                                                  window.open('https://github.com/Touqeer-Hussain', '_blank')
+                                                }} />
+                                                
+                                                
+                                                <Icon name='facebook' size='large' color='blue' onClick={() => {
+                                                  window.open('https://github.com/Touqeer-Hussain', '_blank')
+                                                }} />
+                                                
+                                                
+                                                <Icon name='mail'  size='large' color='red' onClick={() => {
+                                                  window.open('https://github.com/Touqeer-Hussain', '_blank')
+                                                }}/>
+                                               
                                                </Segment>
                                                <Segment>
                                                  <h3>
@@ -89,9 +101,21 @@ export default class About extends Component {
                                                  Touqeer Hussain
                                                   
                                                 </p>
-                                                <Icon name='github' size='large' />
-                                                <Icon name='facebook' size='large' color='blue' />
-                                                <Icon name='mail'  size='large' color='red'/>
+                                                
+                                                <Icon name='github' size='large'  onClick={() => {
+                                                  window.open('https://github.com/Touqeer-Hussain', '_blank')
+                                                }} />
+                                               
+                                               
+                                                <Icon name='facebook' size='large' color='blue' onClick={() => {
+                                                  window.open('https://www.facebook.com/touqeerhussaintx', '_blank')
+                                                }} />
+                                                
+                                                <Icon name='mail'  size='large' color='red' onClick={() => {
+                                                  window.open('mailto:touqeerhussain@zoho.com', '_blank')
+                                                }} />
+                                               
+
                                                </Segment>
                                                <Segment>
                                                  <h3>
@@ -102,9 +126,21 @@ export default class About extends Component {
                                                    Muhammad Sajid Rajput
                                                   
                                                 </p>
-                                                <Icon name='github' size='large' />
-                                                <Icon name='facebook' size='large' color='blue' />
-                                                <Icon name='mail'  size='large' color='red'/>
+                                                <a href='https://github.com/MxSAJIDxR' >
+                                                <Icon name='github' size='large' onClick={() => {
+                                                  window.open('https://github.com/MxSAJIDxR', '_blank')
+                                                }}  />
+                                                </a>
+                                                <a href='https://www.facebook.com/MxSajidxR' >
+                                                <Icon name='facebook' size='large' color='blue' onClick={() => {
+                                                  window.open('https://www.facebook.com/MxSajidxR', '_blank')
+                                                }} />
+                                                </a>
+                                                <a href='mailto:www.sajidrajput666@gmail.com' >
+                                                <Icon name='mail'  size='large' color='red' onClick={() => {
+                                                  window.open('mailto:www.sajidrajput666@gmail.com', '_blank')
+                                                }} />
+                                                </a>
                                                </Segment>
                                                <Segment>
                                                  <h3>
@@ -115,9 +151,18 @@ export default class About extends Component {
                                                   Syed Ejaz Hussain Shah
                                                   
                                                 </p>
-                                                <Icon name='github' size='large' />
-                                                <Icon name='facebook' size='large' color='blue' />
-                                                <Icon name='mail'  size='large' color='red'/>
+                                                <Icon name='github' size='large' onClick={() => {
+                                                  window.open('https://github.com/Touqeer-Hussain', '_blank')
+                                                }} />
+                                                
+                                                <Icon name='facebook' size='large' color='blue' onClick={() => {
+                                                  window.open('https://www.facebook.com/ejaz.shah.927', '_blank')
+                                                }} />
+                                                
+                                                <Icon name='mail'  size='large' color='red' onClick={() => {
+                                                  window.open('mailto:ejazshah077@gmail.com', '_blank')
+                                                }} />
+                                               
                                                </Segment>
                             </Segment>
 

@@ -6,7 +6,7 @@ export default class CitiesCard extends Component {
  
   render() {
 
-    const { title, temp, image, date, unit, main, data } = this.props
+    const { title, temp, image, compositeTime, unit, main, data } = this.props
 
 
     return ( 
@@ -62,7 +62,8 @@ export default class CitiesCard extends Component {
             float: 'left',
             borderTop: `2px solid ${main.state.outlineColor}`,
             borderBottom: `2px solid ${main.state.outlineColor}`,
-            borderRight: `2px solid ${main.state.outlineColor}`
+            borderRight: `2px solid ${main.state.outlineColor}`,
+            
           
 
          }
@@ -114,7 +115,11 @@ export default class CitiesCard extends Component {
           fontSize: '1.6em',
           fontFamily: 'typeface-roboto',
           
-          }}> {date} </span>
+          }}> {compositeTime} <span style={{
+            fontSize: '0.7em',
+            fontFamily: 'typeface-roboto',
+            
+            }}>last updated</span> </span>
           
               
         

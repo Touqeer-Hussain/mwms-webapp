@@ -27,7 +27,7 @@ export default class MainCard extends Component {
             }}>
               <h1 style={{
                 fontSize: '2.5em',
-                paddingLeft: '2px',
+                paddingLeft: '5px',
               }}>{title}</h1>
             </div>
             <div
@@ -35,7 +35,7 @@ export default class MainCard extends Component {
               width: '25%',
               float: 'right',
               height: '100%',
-              paddingTop: '2px',
+              paddingTop: '5px',
               paddingRight: '2px',
             }}>
               <Image floated='right' size='medium' src={image}/>

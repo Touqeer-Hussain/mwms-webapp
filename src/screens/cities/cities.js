@@ -155,9 +155,27 @@ export default class Cities extends Component {
         <Card.Group>
            
           {citiesList.map((snap,i )=> {
-                    
-                    
-                return <CitiesCard key={snap.cityKey} data={snap} title={snap.city} temp={Math.round(snap.currently.temperature)} image={require(`assest/images/${snap.currently.icon}.png`)} date={new Date(snap.currently.time * 1000).toDateString()} unit='&#8451;' main={this.props.main}/>
+                    var targetTime = new Date(snap.currently.time * 1000)
+                    var cDate = targetTime.toLocaleDateString('en-IN', {
+                      timeZone: snap.timezone, 
+                      dateStyle: 'short',
+                        })
+                        console.log(snap)
+                        var cTime = targetTime.toLocaleTimeString('en-US', {
+                          timeZone: snap.timezone, 
+                          hour12: true,
+                          timeStyle: 'short',
+                            })
+
+                        console.log(snap)
+                return <CitiesCard key={snap.cityKey} 
+                data={snap} 
+                title={snap.city} 
+                temp={Math.round(snap.currently.temperature)} 
+                image={require(`assest/images/${snap.currently.icon}.png`)} 
+                compositeTime={cDate + ' ' + cTime} 
+                unit='&#8451;' 
+                main={this.props.main}/>
              
            
            
