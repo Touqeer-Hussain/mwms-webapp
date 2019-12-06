@@ -126,21 +126,20 @@ export default class About extends Component {
                                                    Muhammad Sajid Rajput
                                                   
                                                 </p>
-                                                <a href='https://github.com/MxSAJIDxR' >
+                                               
                                                 <Icon name='github' size='large' onClick={() => {
                                                   window.open('https://github.com/MxSAJIDxR', '_blank')
                                                 }}  />
-                                                </a>
-                                                <a href='https://www.facebook.com/MxSajidxR' >
+                                                
                                                 <Icon name='facebook' size='large' color='blue' onClick={() => {
                                                   window.open('https://www.facebook.com/MxSajidxR', '_blank')
                                                 }} />
-                                                </a>
-                                                <a href='mailto:www.sajidrajput666@gmail.com' >
+                                                
+                                               
                                                 <Icon name='mail'  size='large' color='red' onClick={() => {
                                                   window.open('mailto:www.sajidrajput666@gmail.com', '_blank')
                                                 }} />
-                                                </a>
+                                               
                                                </Segment>
                                                <Segment>
                                                  <h3>
@@ -152,7 +151,7 @@ export default class About extends Component {
                                                   
                                                 </p>
                                                 <Icon name='github' size='large' onClick={() => {
-                                                  window.open('https://github.com/Touqeer-Hussain', '_blank')
+                                                  window.open('https://github.com/ejazshah', '_blank')
                                                 }} />
                                                 
                                                 <Icon name='facebook' size='large' color='blue' onClick={() => {
