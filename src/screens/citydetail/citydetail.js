@@ -53,60 +53,47 @@ export default class CityDetail extends Component {
         switch (icon) {
           case 'clear-day':
       
-              
-                return require('assest/images/clear-day.png')
+                    return require('assest/images/clear-day.png')
              
               
-          break;
           case 'clear-night':
              
             return require('assest/images/clear-night.png')
-          break;
-          case 'rain':
-              
-              return require('assest/images/rain.png')
+
+           
             
-          break;
           case 'snow':
               
                 return require('assest/images/snow.png')
          
-          break;
           case 'sleet':
              
                 return require('assest/images/sleet.png')
            
-          break;
           case 'wind':
             
               return require('assest/images/wind.png')
            
-          break;
           case 'rain':
               
                 return require('assest/images/rain.png')
          
-          break;
           case 'fog':
               
               return require('assest/images/fog.png')
            
-          break;
           case 'cloudy':
               
                 return require('assest/images/cloudy.png')
            
-          break;
           case 'partly-cloudy-day':
               
                 return require('assest/images/partly-cloudy-day.png')
             
-          break;
           case 'partly-cloudy-night':
               
                 return require('assest/images/partly-cloudy-night.png')
             
-          break;
       
         default:
           break;

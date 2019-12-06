@@ -115,11 +115,7 @@ export default class CitiesCard extends Component {
           fontSize: '1.6em',
           fontFamily: 'typeface-roboto',
           
-          }}> {compositeTime} <span style={{
-            fontSize: '0.7em',
-            fontFamily: 'typeface-roboto',
-            
-            }}>last updated</span> </span>
+          }}> {compositeTime}</span>
           
               
         
