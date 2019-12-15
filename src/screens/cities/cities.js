@@ -34,7 +34,8 @@ export default class Cities extends Component {
          citiesName: [],
          citiesLength: '',
          load: false,
-         searchLoad: true
+         searchLoad: true,
+         noSearch: false
          
       }
       
@@ -118,15 +119,32 @@ export default class Cities extends Component {
       const { searchQuery } = this.state;
       if(searchQuery.length >= 1){
         this.setState({
-          searchLoad: false
+          searchLoad: false,
+          noSearch: false
         })
         let fth = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${searchQuery}&key=1ef2a51a49a748d1afd8e32f57c441d9`);
         let res = await fth.json();
         this.setState({
           searchList: res
         }, () => {
-          // console.log(res)
-
+          console.log(res)
+          var stoper = true;
+          res.results.filter(a => {
+            if(stoper){
+            if(a.confidence <= 5) {
+              stoper = false
+              this.setState({
+                noSearch: false
+              })
+            }else{
+              this.setState({
+                noSearch: true
+              })
+            }
+            
+          }
+          return stoper
+          })
           if(res.total_results >= 1){
               
           }else{
@@ -145,7 +163,7 @@ export default class Cities extends Component {
 
   render(){
       
-    const { citiesList, load, searchLoad } = this.state
+    const { citiesList, load, searchLoad, noSearch } = this.state
     const { main } = this.props;
 
     return( load ? 
@@ -160,14 +178,12 @@ export default class Cities extends Component {
                       timeZone: snap.timezone, 
                       dateStyle: 'short',
                         })
-                        console.log(snap)
                         var cTime = targetTime.toLocaleTimeString('en-US', {
                           timeZone: snap.timezone, 
                           hour12: true,
                           timeStyle: 'short',
                             })
 
-                        console.log(snap)
                 return <CitiesCard key={snap.cityKey} 
                 data={snap} 
                 title={snap.city} 
@@ -220,7 +236,7 @@ export default class Cities extends Component {
       
       searchLoad ? 
     
-    this.state.searchList  &&this.state.searchList.results.length >= 1 && this.state.searchList.results.map((data, i) => {
+    this.state.searchList  && this.state.searchList.results.length >= 1 && this.state.searchList.results.map((data, i) => {
             
         return data.confidence <= 5  && ( data.components.city || data.components.state ) && data.components.country ? <List.Item onClick={() => {
           let cityFound = false;
@@ -303,7 +319,7 @@ export default class Cities extends Component {
               <List.Header as='a'>{data.formatted}</List.Header> 
     <List.Description as='a'>{data.components.city ? data.components.city : data.components.state}, {data.components.country}</List.Description>
           </List.Content> 
-        </List.Item>: <span>
+        </List.Item> : <span key={data.annotations.geohash}>
           
       </span>
     })
@@ -319,7 +335,17 @@ export default class Cities extends Component {
           color={main.state.menuBarColor}
           loading={this.state.loading}
         />
-    </div> }</List>
+  </div> }{
+      noSearch &&
+      <List.Item>
+      <List.Content>
+      <List.Header as='a'>No city Found!!</List.Header> 
+<List.Description as='a'>Please search again!</List.Description>
+  </List.Content> 
+</List.Item> 
+      
+     }
+  </List>
     </Modal.Content>
     <Modal.Actions>
           <Button  color='red' onClick={() => {
